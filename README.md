@@ -19,6 +19,6 @@ Below you can check our documentation, in particular:
 | Name       | Matricola       | Mail  |
 | ------------- |:-------------:| -----:|
 | Capobianco Federica   | 0623200001 | f.capobianco3@studenti.unisa.it |
-| Del Pezzo Emilia     | xxxxxxxxxx     |  e.delpezzo@studenti.unisa.it |
+| Del Pezzo Emilia     | 0612704276    |  e.delpezzo@studenti.unisa.it |
 | Fraenza Valeria |   xxxxxxxxxx   |    v.fraenza@studenti.unisa.it |
 | Pastore Palumbo Francesco Pio | xxxxxxxxxx      |    f.pastorepalumbo@studenti.unisa.it |
