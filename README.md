@@ -12,7 +12,7 @@ Below you can check our documentation, in particular:
 
 * [Product Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/f_pastorepalumbo_studenti_unisa_it/EQfgEhzQ0RJEsK45KyKajq0Bn4kl0isU5TcEatUb3XHl3g?e=wMCzaM)
 
-* [Sprint Backlog](https://unisalerno-my.sharepoint.com/:w:/g/personal/f_pastorepalumbo_studenti_unisa_it/ETqywdWM0UhLnDI4wFNUU8YB-QTReDuRnPmQxDgl3vwogg?e=9yY8GC)
+* [Sprint Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/e_delpezzo_studenti_unisa_it/EahZKZWcaTBNrrLgumc_J2UBBtBbWsmPqALs4apdVajjiA?e=MGXQPR)
 
 ### Team members
 
