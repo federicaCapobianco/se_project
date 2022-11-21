@@ -8,11 +8,11 @@ The given task is to realize a geometric drawing application.
 
 Below you can check our documentation, in particular:
 
-* [Design of the architecture](https://unisalerno-my.sharepoint.com/:w:/g/personal/f_pastorepalumbo_studenti_unisa_it/EWAyS3HCib5Kvemxl1PEV9wBoJxS9kPa1sQcf4BrEly2lg?e=P9uQTf)
+* [Design of the architecture](https://unisalerno-my.sharepoint.com/:w:/g/personal/f_pastorepalumbo_studenti_unisa_it/EWAyS3HCib5Kvemxl1PEV9wBoJxS9kPa1sQcf4BrEly2lg?e=GiAVxd)
 
-* [Product Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/f_pastorepalumbo_studenti_unisa_it/EQfgEhzQ0RJEsK45KyKajq0Bn4kl0isU5TcEatUb3XHl3g?e=wMCzaM)
+* [Product Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/f_pastorepalumbo_studenti_unisa_it/EQfgEhzQ0RJEsK45KyKajq0Bn4kl0isU5TcEatUb3XHl3g?e=ix1xTv)
 
-* [Sprint Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/e_delpezzo_studenti_unisa_it/EahZKZWcaTBNrrLgumc_J2UBBtBbWsmPqALs4apdVajjiA?e=MGXQPR)
+* [First Sprint Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/f_pastorepalumbo_studenti_unisa_it/ESmcFHM4kD1AvBBIhpwRPSMB-63uh9k1obcnjnS_y1NHeg?e=Pc85P7)
 
 ### Team members
 
