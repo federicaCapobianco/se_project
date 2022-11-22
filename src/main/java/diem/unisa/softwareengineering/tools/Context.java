@@ -10,11 +10,13 @@ public class Context {
     public Context() {
         shape = new DrawableLine(); //default shape is our line class
 
+
     }
 
     //add a method changeState that instantiates the shape as for the passed parameter
     public void changeState(Shape state){
        shape = state; //this will be line, circle, rectangle, etc.
+        System.out.println(shape);
     }
 
 
