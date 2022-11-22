@@ -8,7 +8,7 @@ public class Context {
 
     //add an initializer for the Context class
     public Context() {
-        //shape = new DrawableLine(); //default shape is our line class
+        shape = new DrawableLine(); //default shape is our line class
 
     }
 

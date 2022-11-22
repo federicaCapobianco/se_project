@@ -9,7 +9,7 @@
    <children>
       <Pane prefHeight="102.0" prefWidth="1280.0">
          <children>
-            <Button fx:id="lineButton" layoutX="823.0" layoutY="35.0" mnemonicParsing="false" onAction="#setLine" text="Line" />
+            <Button fx:id="lineButton" layoutX="823.0" layoutY="35.0" mnemonicParsing="false" text="Line" />
          </children>
       </Pane>
       <Pane prefHeight="631.0" prefWidth="1280.0" />
