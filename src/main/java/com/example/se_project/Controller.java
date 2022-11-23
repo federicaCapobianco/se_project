@@ -66,7 +66,7 @@ public class Controller {
         try {
             File file = fileChooser.showSaveDialog(stage);
             if (file != null) {
-                //c.save(file);
+                c.saveFile(drawingPane, file);
                 System.out.println(file.getName());
             }
         }
