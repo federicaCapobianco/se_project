@@ -23,12 +23,12 @@ public class Controller {
 
     @FXML
     private void setLine(ActionEvent actionEvent) {
-         c.changeState(new DrawableLine());
+        c.changeState(new DrawableLine());
     }
 
     @FXML
     public void setRectangle(ActionEvent actionEvent) {
-        //c.changeState(new DrawableRectangle());
+        c.changeState(new DrawableRectangle());
     }
 
     @FXML
