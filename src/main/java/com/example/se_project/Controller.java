@@ -18,12 +18,18 @@ public class Controller {
     private Button lineButton;
     @FXML
     private Pane drawingPane;
+    @FXML
+    private Button rectangleButton;
 
     @FXML
     private void setLine(ActionEvent actionEvent) {
          c.changeState(new DrawableLine());
     }
 
+    @FXML
+    public void setRectangle(ActionEvent actionEvent) {
+        //c.changeState(new DrawableRectangle());
+    }
 
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
@@ -39,4 +45,6 @@ public class Controller {
         Shape shape = c.draw();
         drawingPane.getChildren().add(shape);
     }
+
+
 }
