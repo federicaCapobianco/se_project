@@ -82,7 +82,6 @@ public class Context {
             decoder.setExceptionListener(e -> {
                 throw new RuntimeException(e);
             });
-
             pane.getChildren().setAll((Node[]) decoder.readObject());
         }
     }
