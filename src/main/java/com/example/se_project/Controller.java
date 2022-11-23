@@ -77,5 +77,20 @@ public class Controller {
 
     @FXML
     public void loadFile(ActionEvent actionEvent) {
+        Window stage = drawingPane.getScene().getWindow();
+        fileChooser.setTitle("Save file");
+        fileChooser.setInitialFileName("drawing");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
+
+        try {
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+                c.loadFile(drawingPane, file);
+                System.out.println(file.getName());
+            }
+        }
+        catch (Exception e){
+            System.out.println("Error");
+        }
     }
 }

@@ -4,6 +4,8 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 
+import java.beans.XMLDecoder;
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -77,6 +79,19 @@ public class Context {
             });
             encoder.writeObject(pane.getChildren().toArray(new Node[0]));
             System.out.println("File saved");
+        }
+    }
+
+    public void loadFile(Pane pane, File file) throws IOException {
+        try (XMLDecoder decoder = new XMLDecoder(
+                new BufferedInputStream(
+                        Files.newInputStream(file.toPath())))) {
+
+            decoder.setExceptionListener(e -> {
+                throw new RuntimeException(e);
+            });
+
+            pane.getChildren().setAll((Node[]) decoder.readObject());
         }
     }
 }
