@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.*;
@@ -18,6 +19,10 @@ public class Controller {
     private Button lineButton;
     @FXML
     private Pane drawingPane;
+    @FXML
+    private MenuItem saveButton;
+    @FXML
+    private MenuItem loadButton;
 
     @FXML
     private void setLine(ActionEvent actionEvent) {
@@ -38,5 +43,13 @@ public class Controller {
 
         Shape shape = c.draw();
         drawingPane.getChildren().add(shape);
+    }
+
+    @FXML
+    public void saveFile(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void loadFile(ActionEvent actionEvent) {
     }
 }
