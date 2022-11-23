@@ -39,6 +39,11 @@ public class Controller {
     }
 
     @FXML
+
+    private void setEllipse(ActionEvent actionEvent) {
+        c.changeState(new DrawableEllipse());
+    }
+
     public void setRectangle(ActionEvent actionEvent) {
         c.changeState(new DrawableRectangle());
     }
