@@ -1,6 +1,17 @@
 package diem.unisa.softwareengineering.tools;
 
+import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
+
+import java.beans.XMLDecoder;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.IOException;
+
+import java.beans.XMLEncoder;
+import java.nio.file.Files;
 
 public class Context {
     //add an instance of the Shape class
@@ -48,5 +59,31 @@ public class Context {
 
     public void setyE(double yE) {
         this.yE = yE;
+    }
+
+    public void saveFile(Pane pane, File file) throws IOException {
+        try (XMLEncoder encoder = new XMLEncoder(
+                new BufferedOutputStream(
+                        Files.newOutputStream(file.toPath())))) {
+
+            encoder.setExceptionListener(e -> {
+                throw new RuntimeException(e);
+            });
+            encoder.writeObject(pane.getChildren().toArray(new Node[0]));
+            System.out.println("File saved");
+        }
+    }
+
+    public void loadFile(Pane pane, File file) throws IOException {
+        try (XMLDecoder decoder = new XMLDecoder(
+                new BufferedInputStream(
+                        Files.newInputStream(file.toPath())))) {
+
+            decoder.setExceptionListener(e -> {
+                throw new RuntimeException(e);
+            });
+
+            pane.getChildren().setAll((Node[]) decoder.readObject());
+        }
     }
 }
