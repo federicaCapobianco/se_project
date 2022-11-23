@@ -24,7 +24,10 @@ public class Controller {
          c.changeState(new DrawableLine());
     }
 
-
+    @FXML
+    private void setEllipse(ActionEvent actionEvent) {
+        c.changeState(new DrawableEllipse());
+    }
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
         c.setxS(mouseEvent.getX());
