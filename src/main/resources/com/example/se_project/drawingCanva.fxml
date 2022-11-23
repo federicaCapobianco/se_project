@@ -7,11 +7,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_project.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_project.Controller">
    <children>
       <Pane prefHeight="102.0" prefWidth="1280.0">
          <children>
             <Button fx:id="lineButton" layoutX="823.0" layoutY="35.0" mnemonicParsing="false" onAction="#setLine" text="Line" />
+            <Button fx:id="rectangleButton" layoutX="873.0" layoutY="35.0" mnemonicParsing="false" onAction="#setRectangle" text="Rectangle" />
             <MenuBar layoutY="1.0" prefHeight="28.0" prefWidth="1280.0">
               <menus>
                 <Menu mnemonicParsing="false" text="File">

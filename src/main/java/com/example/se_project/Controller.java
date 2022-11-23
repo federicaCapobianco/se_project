@@ -27,15 +27,21 @@ public class Controller {
     @FXML
     private Pane drawingPane;
     @FXML
+    private Button rectangleButton;
+    @FXML
     private MenuItem saveButton;
     @FXML
     private MenuItem loadButton;
-
+   
     @FXML
     private void setLine(ActionEvent actionEvent) {
-         c.changeState(new DrawableLine());
+        c.changeState(new DrawableLine());
     }
 
+    @FXML
+    public void setRectangle(ActionEvent actionEvent) {
+        c.changeState(new DrawableRectangle());
+    }
 
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
@@ -51,6 +57,7 @@ public class Controller {
         Shape shape = c.draw();
         drawingPane.getChildren().add(shape);
     }
+
 
     public void initialize(URL location, ResourceBundle resources) {
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
