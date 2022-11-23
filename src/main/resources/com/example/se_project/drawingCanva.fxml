@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_project.Controller">
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_project.Controller">
+
    <children>
       <Pane prefHeight="102.0" prefWidth="1280.0">
          <children>
             <Button fx:id="ellipseButton" layoutX="535.0" layoutY="35.0" mnemonicParsing="false" onAction="#setEllipse" text="Ellipse" />
             <Button fx:id="lineButton" layoutX="823.0" layoutY="35.0" mnemonicParsing="false" onAction="#setLine" text="Line" />
+            <Button fx:id="rectangleButton" layoutX="873.0" layoutY="35.0" mnemonicParsing="false" onAction="#setRectangle" text="Rectangle" />
+            <MenuBar layoutY="1.0" prefHeight="28.0" prefWidth="1280.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#saveFile" text="Save" />
+                        <MenuItem fx:id="loadButton" mnemonicParsing="false" onAction="#loadFile" text="Load" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
          </children>
       </Pane>
       <Pane fx:id="drawingPane" onDragDetected="#setLine" onMousePressed="#mouseDown" onMouseReleased="#mouseUp" prefHeight="631.0" prefWidth="1280.0" />
