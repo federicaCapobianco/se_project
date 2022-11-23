@@ -13,11 +13,16 @@ class DrawableEllipseTest {
     @Test
     void draw() {
         DrawableEllipse elipse = new DrawableEllipse();
-        assertInstanceOf(Shape.class, elipse.draw(10.0,10.0,50.0,50.0));
-        assertInstanceOf(Shape.class, elipse.draw(50.0,50.0,10.0,10.0));
-        assertInstanceOf(Shape.class, elipse.draw(50.0,50.0,50.0,50.0));
-        assertInstanceOf(Shape.class, elipse.draw(-10.0,-10.0,50.0,50.0));
-        assertInstanceOf(Shape.class, elipse.draw(10.0,10.0,-50.0,-50.0));
-        assertInstanceOf(Shape.class, elipse.draw(-10.0,-10.0,-50.0,-50.0));
+
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,80.0,220.0));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,150.0,220.0));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,220.0,220.0));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,220.0,150.0));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,220.0,80.0));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,150.0,80.0));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,80.0,80.0));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,80.0,150.0));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,150.0,150.0));
+
     }
 }
