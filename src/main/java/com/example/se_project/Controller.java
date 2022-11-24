@@ -131,10 +131,12 @@ public class Controller implements Initializable {
         }
     }
 
+    @FXML
     public void setLineColor(ActionEvent actionEvent) {
         c.setShapeLineColor(lineColorPicker.getValue());
     }
 
+    @FXML
     public void setFillColor(ActionEvent actionEvent) {
         c.setShapeFillColor(fillColorPicker.getValue());
     }
