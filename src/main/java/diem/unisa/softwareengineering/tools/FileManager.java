@@ -2,8 +2,8 @@ package diem.unisa.softwareengineering.tools;
 
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
-import java.awt.*;
 import java.beans.DefaultPersistenceDelegate;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
@@ -31,7 +31,7 @@ public class FileManager {
             });
 
             encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
-            encoder.writeObject(this.canvas.getChildren().toArray(new Node[0]));
+            encoder.writeObject(canvas.getChildren().toArray(new Node[0]));
             return file;
         }
     }
@@ -44,7 +44,7 @@ public class FileManager {
             decoder.setExceptionListener(e -> {
                 throw new RuntimeException(e);
             });
-            this.canvas.getChildren().setAll((Node[]) decoder.readObject());
+            canvas.getChildren().setAll((Node[]) decoder.readObject());
         }
         return file;
     }
