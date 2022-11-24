@@ -6,9 +6,12 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -20,6 +23,13 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+    private Context c = new Context();
+
+    private FileChooser fileChooser = new FileChooser();
+
+    @FXML
+    private TextField tfline;
+
     @FXML
     private Button lineButton;
     @FXML
@@ -30,6 +40,10 @@ public class Controller implements Initializable {
     private MenuItem saveButton;
     @FXML
     private MenuItem loadButton;
+
+
+    @FXML
+    private ColorPicker lineColorPicker;
 
     private Context c;
     private FileManager fm;
@@ -43,6 +57,7 @@ public class Controller implements Initializable {
         fileChooser = new FileChooser();
     }
     
+
     @FXML
     private void setLine(ActionEvent actionEvent) {
         c.changeState(new DrawableLine());
@@ -72,6 +87,13 @@ public class Controller implements Initializable {
 
         Shape shape = c.draw();
         drawingPane.getChildren().add(shape);
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        c.setShapeLineColor(Color.BLACK);
     }
 
 
@@ -111,5 +133,9 @@ public class Controller implements Initializable {
         catch (Exception e){
             System.out.println(e.getLocalizedMessage());
         }
+    }
+
+    public void setColorLine(ActionEvent actionEvent) {
+        c.setShapeLineColor(lineColorPicker.getValue());
     }
 }

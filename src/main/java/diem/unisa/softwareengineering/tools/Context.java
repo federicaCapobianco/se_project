@@ -2,6 +2,7 @@ package diem.unisa.softwareengineering.tools;
 
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
 import java.awt.*;
@@ -22,6 +23,8 @@ public class Context {
 
     private double xS,xE,yS,yE;
 
+    private Color shapeLineColor;
+
     //add a method changeState that instantiates the shape as for the passed parameter
     public void changeState(DrawableShape state){
         shape = state; //this will be line, circle, rectangle, etc.
@@ -29,7 +32,9 @@ public class Context {
 
     //add a method draw that calls the draw method of the shape class
     public Shape draw(){
-        return shape.draw(xS,yS,xE,yE);
+
+       return shape.draw(xS,yS,xE,yE,shapeLineColor);
+
     }
 
     public double getxS() {
@@ -48,6 +53,10 @@ public class Context {
         return yE;
     }
 
+    public Color getShapeLineColor() {
+        return shapeLineColor;
+    }
+
     public void setxS(double xS) {
         this.xS = xS;
     }
@@ -62,6 +71,22 @@ public class Context {
 
     public void setyE(double yE) {
         this.yE = yE;
+    }
+
+
+    public void setShapeLineColor(Color shapeLineColor){ this.shapeLineColor = shapeLineColor; }
+
+    public void saveFile(Pane pane, File file) throws IOException {
+        try (XMLEncoder encoder = new XMLEncoder(
+                new BufferedOutputStream(
+                        Files.newOutputStream(file.toPath())))) {
+
+            encoder.setExceptionListener(e -> {
+                throw new RuntimeException(e);
+            });
+            encoder.writeObject(pane.getChildren().toArray(new Node[0]));
+            System.out.println("File saved");
+        }
     }
 
     public DrawableShape getShape(){ return shape;}
