@@ -8,7 +8,7 @@ public class DrawableLine extends DrawableShape implements Drawable{
     private Shape line;
 
     @Override
-    public Shape draw(double xS, double yS, double xE, double yE, Color lineColor) {
+    public Shape draw(double xS, double yS, double xE, double yE, Color lineColor, Color fillColor) {
         this.line = new Line(xS, yS, xE, yE);
         this.line.setStroke(lineColor);
         return line;

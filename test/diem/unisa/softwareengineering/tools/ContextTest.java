@@ -1,6 +1,7 @@
 package diem.unisa.softwareengineering.tools;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -53,5 +54,18 @@ class ContextTest {
         assertEquals(4.0, handler.getyE());
     }
 
+    @Test
+    void testGetSetLineColor(){
+        Context handler = new Context();
+        handler.setShapeLineColor(Color.BLACK);
+        assertEquals(Color.BLACK, handler.getShapeLineColor());
+    }
+
+    @Test
+    void testGetSetFillColor(){
+        Context handler = new Context();
+        handler.setShapeFillColor(Color.BLACK);
+        assertEquals(Color.BLACK, handler.getShapeFillColor());
+    }
 
 }
