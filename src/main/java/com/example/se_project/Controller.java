@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 
 
 public class Controller implements Initializable {
+
     private Context c = new Context();
 
     private FileChooser fileChooser = new FileChooser();
@@ -40,8 +41,22 @@ public class Controller implements Initializable {
     @FXML
     private MenuItem loadButton;
 
+
     @FXML
     private ColorPicker lineColorPicker;
+
+    private Context c;
+    private FileManager fm;
+    private FileChooser fileChooser;
+
+    //override initialize method
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        c = new Context();
+        fm = new FileManager(drawingPane);
+        fileChooser = new FileChooser();
+    }
+    
 
     @FXML
     private void setLine(ActionEvent actionEvent) {
@@ -62,6 +77,7 @@ public class Controller implements Initializable {
     public void mouseDown(MouseEvent mouseEvent) {
         c.setxS(mouseEvent.getX());
         c.setyS(mouseEvent.getY());
+        //could draw a temporary shape here
     }
 
     @FXML
@@ -73,11 +89,13 @@ public class Controller implements Initializable {
         drawingPane.getChildren().add(shape);
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         c.setShapeLineColor(Color.BLACK);
     }
+
 
     @FXML
     public void saveFile(ActionEvent actionEvent) {
@@ -89,12 +107,12 @@ public class Controller implements Initializable {
         try {
             File file = fileChooser.showSaveDialog(stage);
             if (file != null) {
-                c.saveFile(drawingPane, file);
+                fm.saveFile(file);
                 System.out.println(file.getName());
             }
         }
         catch (Exception e){
-            System.out.println("Error");
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -108,12 +126,12 @@ public class Controller implements Initializable {
         try {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
-                c.loadFile(drawingPane, file);
+                fm.loadFile(file);
                 System.out.println(file.getName());
             }
         }
         catch (Exception e){
-            System.out.println("Error");
+            System.out.println(e.getLocalizedMessage());
         }
     }
 

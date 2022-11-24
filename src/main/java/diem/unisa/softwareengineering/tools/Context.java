@@ -5,6 +5,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
+import java.awt.*;
+import java.beans.DefaultPersistenceDelegate;
+import java.beans.Encoder;
 import java.beans.XMLDecoder;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -24,13 +27,14 @@ public class Context {
 
     //add a method changeState that instantiates the shape as for the passed parameter
     public void changeState(DrawableShape state){
-       shape = state; //this will be line, circle, rectangle, etc.
+        shape = state; //this will be line, circle, rectangle, etc.
     }
 
     //add a method draw that calls the draw method of the shape class
     public Shape draw(){
 
        return shape.draw(xS,yS,xE,yE,shapeLineColor);
+
     }
 
     public double getxS() {
@@ -69,6 +73,7 @@ public class Context {
         this.yE = yE;
     }
 
+
     public void setShapeLineColor(Color shapeLineColor){ this.shapeLineColor = shapeLineColor; }
 
     public void saveFile(Pane pane, File file) throws IOException {
@@ -84,15 +89,8 @@ public class Context {
         }
     }
 
-    public void loadFile(Pane pane, File file) throws IOException {
-        try (XMLDecoder decoder = new XMLDecoder(
-                new BufferedInputStream(
-                        Files.newInputStream(file.toPath())))) {
+    public DrawableShape getShape(){ return shape;}
 
-            decoder.setExceptionListener(e -> {
-                throw new RuntimeException(e);
-            });
-            pane.getChildren().setAll((Node[]) decoder.readObject());
-        }
-    }
+
+
 }
