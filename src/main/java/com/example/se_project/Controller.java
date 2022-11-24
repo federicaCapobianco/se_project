@@ -4,6 +4,7 @@ import diem.unisa.softwareengineering.tools.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.MenuItem;
@@ -20,7 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class Controller {
+public class Controller implements Initializable {
     private Context c = new Context();
 
     private FileChooser fileChooser = new FileChooser();
@@ -72,9 +73,10 @@ public class Controller {
         drawingPane.getChildren().add(shape);
     }
 
-
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        c.setShapeLineColor(Color.BLACK);
     }
 
     @FXML

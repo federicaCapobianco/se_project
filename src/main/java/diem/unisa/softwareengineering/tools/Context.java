@@ -29,9 +29,7 @@ public class Context {
 
     //add a method draw that calls the draw method of the shape class
     public Shape draw(){
-        if (shapeLineColor == null){
-            this.shapeLineColor = Color.BLACK;
-        }
+
        return shape.draw(xS,yS,xE,yE,shapeLineColor);
     }
 
