@@ -25,6 +25,8 @@ public class Context {
 
     private Color shapeLineColor;
 
+    private Color shapeFillColor;
+
     //add a method changeState that instantiates the shape as for the passed parameter
     public void changeState(DrawableShape state){
         shape = state; //this will be line, circle, rectangle, etc.
@@ -33,7 +35,7 @@ public class Context {
     //add a method draw that calls the draw method of the shape class
     public Shape draw(){
 
-       return shape.draw(xS,yS,xE,yE,shapeLineColor);
+       return shape.draw(xS,yS,xE,yE,shapeLineColor, shapeFillColor);
 
     }
 
@@ -57,6 +59,10 @@ public class Context {
         return shapeLineColor;
     }
 
+    public Color getShapeFillColor(){
+        return shapeFillColor;
+    }
+
     public void setxS(double xS) {
         this.xS = xS;
     }
@@ -75,6 +81,10 @@ public class Context {
 
 
     public void setShapeLineColor(Color shapeLineColor){ this.shapeLineColor = shapeLineColor; }
+
+    public void setShapeFillColor(Color shapeFillColor){
+        this.shapeFillColor = shapeFillColor;
+    }
 
     public void saveFile(Pane pane, File file) throws IOException {
         try (XMLEncoder encoder = new XMLEncoder(

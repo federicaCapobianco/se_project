@@ -5,10 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -28,6 +25,9 @@ public class Controller implements Initializable {
     private TextField tfline;
 
     @FXML
+    private Label fillLabel;
+
+    @FXML
     private Button lineButton;
     @FXML
     private Pane drawingPane;
@@ -41,6 +41,9 @@ public class Controller implements Initializable {
 
     @FXML
     private ColorPicker lineColorPicker;
+
+    @FXML
+    private ColorPicker fillColorPicker;
 
     private Context c;
     private FileManager fm;
@@ -85,6 +88,7 @@ public class Controller implements Initializable {
         fm = new FileManager(drawingPane);
         fileChooser = new FileChooser();
         c.setShapeLineColor(Color.BLACK);
+        c.setShapeFillColor(Color.TRANSPARENT);
     }
 
     @FXML
@@ -127,5 +131,9 @@ public class Controller implements Initializable {
 
     public void setColorLine(ActionEvent actionEvent) {
         c.setShapeLineColor(lineColorPicker.getValue());
+    }
+
+    public void setColorFill(ActionEvent actionEvent) {
+        c.setShapeFillColor(fillColorPicker.getValue());
     }
 }
