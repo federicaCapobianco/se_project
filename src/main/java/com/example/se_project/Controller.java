@@ -22,7 +22,7 @@ public class Controller implements Initializable {
 
 
     @FXML
-    private TextField tfline;
+    private Label tfLine;
 
     @FXML
     private Label fillLabel;
@@ -48,6 +48,8 @@ public class Controller implements Initializable {
     private Context c;
     private FileManager fm;
     private FileChooser fileChooser;
+    @FXML
+    private Button ellipseButton;
 
 
     @FXML
@@ -129,11 +131,12 @@ public class Controller implements Initializable {
         }
     }
 
-    public void setColorLine(ActionEvent actionEvent) {
+    public void setLineColor(ActionEvent actionEvent) {
         c.setShapeLineColor(lineColorPicker.getValue());
     }
 
-    public void setColorFill(ActionEvent actionEvent) {
+    public void setFillColor(ActionEvent actionEvent) {
         c.setShapeFillColor(fillColorPicker.getValue());
     }
+
 }
