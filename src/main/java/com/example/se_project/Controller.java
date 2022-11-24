@@ -4,10 +4,14 @@ import diem.unisa.softwareengineering.tools.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -17,10 +21,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class Controller {
+public class Controller implements Initializable {
+
     private Context c = new Context();
 
     private FileChooser fileChooser = new FileChooser();
+
+    @FXML
+    private TextField tfline;
 
     @FXML
     private Button lineButton;
@@ -32,18 +40,35 @@ public class Controller {
     private MenuItem saveButton;
     @FXML
     private MenuItem loadButton;
-   
+
+
+    @FXML
+    private ColorPicker lineColorPicker;
+
+    private Context c;
+    private FileManager fm;
+    private FileChooser fileChooser;
+
+    //override initialize method
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        c = new Context();
+        fm = new FileManager(drawingPane);
+        fileChooser = new FileChooser();
+    }
+    
+
     @FXML
     private void setLine(ActionEvent actionEvent) {
         c.changeState(new DrawableLine());
     }
 
     @FXML
-
     private void setEllipse(ActionEvent actionEvent) {
         c.changeState(new DrawableEllipse());
     }
 
+    @FXML
     public void setRectangle(ActionEvent actionEvent) {
         c.changeState(new DrawableRectangle());
     }
@@ -52,6 +77,7 @@ public class Controller {
     public void mouseDown(MouseEvent mouseEvent) {
         c.setxS(mouseEvent.getX());
         c.setyS(mouseEvent.getY());
+        //could draw a temporary shape here
     }
 
     @FXML
@@ -64,9 +90,12 @@ public class Controller {
     }
 
 
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        c.setShapeLineColor(Color.BLACK);
     }
+
 
     @FXML
     public void saveFile(ActionEvent actionEvent) {
@@ -78,12 +107,12 @@ public class Controller {
         try {
             File file = fileChooser.showSaveDialog(stage);
             if (file != null) {
-                c.saveFile(drawingPane, file);
+                fm.saveFile(file);
                 System.out.println(file.getName());
             }
         }
         catch (Exception e){
-            System.out.println("Error");
+            System.out.println(e.getLocalizedMessage());
         }
     }
 
@@ -97,12 +126,16 @@ public class Controller {
         try {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
-                c.loadFile(drawingPane, file);
+                fm.loadFile(file);
                 System.out.println(file.getName());
             }
         }
         catch (Exception e){
-            System.out.println("Error");
+            System.out.println(e.getLocalizedMessage());
         }
+    }
+
+    public void setColorLine(ActionEvent actionEvent) {
+        c.setShapeLineColor(lineColorPicker.getValue());
     }
 }
