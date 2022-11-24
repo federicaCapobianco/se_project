@@ -86,19 +86,6 @@ public class Context {
         this.shapeFillColor = shapeFillColor;
     }
 
-    public void saveFile(Pane pane, File file) throws IOException {
-        try (XMLEncoder encoder = new XMLEncoder(
-                new BufferedOutputStream(
-                        Files.newOutputStream(file.toPath())))) {
-
-            encoder.setExceptionListener(e -> {
-                throw new RuntimeException(e);
-            });
-            encoder.writeObject(pane.getChildren().toArray(new Node[0]));
-            System.out.println("File saved");
-        }
-    }
-
     public DrawableShape getShape(){ return shape;}
 
 
