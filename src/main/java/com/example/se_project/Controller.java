@@ -23,9 +23,6 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    private Context c = new Context();
-
-    private FileChooser fileChooser = new FileChooser();
 
     @FXML
     private TextField tfline;
@@ -49,14 +46,6 @@ public class Controller implements Initializable {
     private FileManager fm;
     private FileChooser fileChooser;
 
-    //override initialize method
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        c = new Context();
-        fm = new FileManager(drawingPane);
-        fileChooser = new FileChooser();
-    }
-    
 
     @FXML
     private void setLine(ActionEvent actionEvent) {
@@ -92,10 +81,11 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        c = new Context();
+        fm = new FileManager(drawingPane);
+        fileChooser = new FileChooser();
         c.setShapeLineColor(Color.BLACK);
     }
-
 
     @FXML
     public void saveFile(ActionEvent actionEvent) {
