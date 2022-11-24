@@ -62,6 +62,7 @@ public class Controller implements Initializable {
     public void mouseDown(MouseEvent mouseEvent) {
         c.setxS(mouseEvent.getX());
         c.setyS(mouseEvent.getY());
+        //could draw a temporary shape here
     }
 
     @FXML
