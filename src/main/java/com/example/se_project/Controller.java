@@ -5,9 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -23,6 +26,9 @@ public class Controller {
     private FileChooser fileChooser = new FileChooser();
 
     @FXML
+    private TextField tfline;
+
+    @FXML
     private Button lineButton;
     @FXML
     private Pane drawingPane;
@@ -32,18 +38,21 @@ public class Controller {
     private MenuItem saveButton;
     @FXML
     private MenuItem loadButton;
-   
+
+    @FXML
+    private ColorPicker lineColorPicker;
+
     @FXML
     private void setLine(ActionEvent actionEvent) {
         c.changeState(new DrawableLine());
     }
 
     @FXML
-
     private void setEllipse(ActionEvent actionEvent) {
         c.changeState(new DrawableEllipse());
     }
 
+    @FXML
     public void setRectangle(ActionEvent actionEvent) {
         c.changeState(new DrawableRectangle());
     }
@@ -104,5 +113,9 @@ public class Controller {
         catch (Exception e){
             System.out.println("Error");
         }
+    }
+
+    public void setColorLine(ActionEvent actionEvent) {
+        c.setShapeLineColor(lineColorPicker.getValue());
     }
 }

@@ -10,7 +10,7 @@ public class DrawableRectangle extends DrawableShape implements Drawable{
     private Shape rectangle;
 
     @Override
-    public Shape draw(double xS, double yS, double xE, double yE){
+    public Shape draw(double xS, double yS, double xE, double yE, Color lineColor){
         // le y ragionano in logica negata nel pane
         if(xS>xE){
             if(yS<yE){
@@ -28,7 +28,7 @@ public class DrawableRectangle extends DrawableShape implements Drawable{
             this.rectangle = new Rectangle(xS, yE, abs(xE-abs(xS)), abs(yE-abs(yS)));
         }
 
-        this.rectangle.setStroke(Color.BLACK);
+        this.rectangle.setStroke(lineColor);
         this.rectangle.setFill(Color.TRANSPARENT);
         return rectangle;
     }

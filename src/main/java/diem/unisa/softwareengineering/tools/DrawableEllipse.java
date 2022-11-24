@@ -10,9 +10,9 @@ public class DrawableEllipse extends DrawableShape implements Drawable{
 
     private Shape ellipse;
     @Override
-    public Shape draw(double xS, double yS, double xE, double yE) {
+    public Shape draw(double xS, double yS, double xE, double yE, Color lineColor) {
         this.ellipse = new Ellipse(xS, yS, abs(xS-xE), abs(yS-yE)); //xS, yS, xE, yE
-        this.ellipse.setStroke(Color.BLACK);
+        this.ellipse.setStroke(lineColor);
         this.ellipse.setFill(Color.TRANSPARENT);
         return ellipse;
     }
