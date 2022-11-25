@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
-public class DrawableLine extends DrawableShape implements Drawable{
+public class DrawableLine extends DrawableShape{
     private Shape line;
 
     @Override

@@ -6,7 +6,7 @@ import javafx.scene.shape.Shape;
 
 import static java.lang.Math.abs;
 
-public class DrawableEllipse extends DrawableShape implements Drawable{
+public class DrawableEllipse extends DrawableShape{
 
     private Shape ellipse;
     @Override

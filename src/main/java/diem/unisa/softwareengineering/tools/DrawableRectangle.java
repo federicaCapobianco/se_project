@@ -6,7 +6,7 @@ import javafx.scene.shape.Shape;
 
 import static java.lang.Math.abs;
 
-public class DrawableRectangle extends DrawableShape implements Drawable{
+public class DrawableRectangle extends DrawableShape{
     private Shape rectangle;
 
     @Override
