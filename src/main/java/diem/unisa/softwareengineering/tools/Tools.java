@@ -3,6 +3,9 @@ package diem.unisa.softwareengineering.tools;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Tools {
     //add an instance of the Shape class
     private DrawableShape shape;
@@ -13,7 +16,7 @@ public class Tools {
 
     private Color shapeFillColor;
 
-    private DrawableShape selectedNode;
+    private ArrayList<Shape> selectedNodes = new ArrayList<Shape>();
 
     //add a method changeState that instantiates the shape as for the passed parameter
     public void changeState(DrawableShape state){
@@ -65,6 +68,10 @@ public class Tools {
         this.yE = yE;
     }
 
+    public ArrayList<Shape> getSelectedNodes() {
+        return selectedNodes;
+    }
+
 
     public void setShapeLineColor(Color shapeLineColor){ this.shapeLineColor = shapeLineColor; }
 
@@ -75,5 +82,20 @@ public class Tools {
     public DrawableShape getShape(){ return shape;}
 
 
+    public void addSelectedNode(Shape selectedNode) {
+        this.selectedNodes.add(selectedNode);
+        //add a new node to the array selectedNode
+    }
+    public ArrayList<Shape> removeSelectedNode(Shape selectedNode) {
+        this.selectedNodes.remove(selectedNode);
+        return selectedNodes;
+        //remove all the nodes from the array selectedNode
+    }
+
+
+
+    public void clearSelectedNodes(){
+        this.selectedNodes.clear();
+    }
 
 }

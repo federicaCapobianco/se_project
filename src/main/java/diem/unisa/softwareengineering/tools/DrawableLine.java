@@ -7,9 +7,6 @@ import javafx.scene.shape.Shape;
 public class DrawableLine extends DrawableShape{
     private Shape line;
 
-    public DrawableLine(Line line){
-        super(line);
-    }
 
     public DrawableLine(){ }
 

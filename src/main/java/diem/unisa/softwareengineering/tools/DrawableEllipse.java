@@ -9,6 +9,7 @@ import static java.lang.Math.abs;
 public class DrawableEllipse extends DrawableShape{
 
     private Shape ellipse;
+
     @Override
     public Shape draw(double xS, double yS, double xE, double yE, Color lineColor, Color fillColor) {
         this.ellipse = new Ellipse(xS, yS, abs(xS-xE), abs(yS-yE)); //xS, yS, xE, yE
