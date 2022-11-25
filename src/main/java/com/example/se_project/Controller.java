@@ -22,7 +22,7 @@ public class Controller implements Initializable {
 
 
     @FXML
-    private Label tfLine;
+    private Label lineLabel;
 
     @FXML
     private Label fillLabel;
