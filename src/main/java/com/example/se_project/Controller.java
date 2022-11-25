@@ -6,6 +6,8 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -38,7 +40,6 @@ public class Controller implements Initializable {
     @FXML
     private MenuItem loadButton;
 
-
     @FXML
     private ColorPicker lineColorPicker;
 
@@ -69,18 +70,61 @@ public class Controller implements Initializable {
 
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
-        toolManager.setxS(mouseEvent.getX());
-        toolManager.setyS(mouseEvent.getY());
+        if(mouseEvent.getButton() == MouseButton.SECONDARY) {
+            Shape target = (Shape) mouseEvent.getTarget();
+            System.out.println(target);
+            toolManager.addSelectedNode(target);
+
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem deselect = new MenuItem("Deselect");
+            MenuItem delete = new MenuItem("Delete");
+            MenuItem move = new MenuItem("Move");
+            MenuItem lineColor = new MenuItem("Line color");
+            MenuItem fillColor = new MenuItem("Fill color");
+            MenuItem size = new MenuItem("Size");
+            MenuItem copy = new MenuItem("Copy");
+            MenuItem paste = new MenuItem("Paste");
+
+            contextMenu.getItems().addAll(deselect, delete, move, lineColor, fillColor, size, copy, paste);
+            contextMenu.show(target, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+
+            DropShadow dropShadow = new DropShadow();
+            dropShadow.setRadius(5.0);
+            dropShadow.setOffsetX(3.0);
+            dropShadow.setOffsetY(3.0);
+            dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
+
+            target.setEffect(dropShadow);
+
+            deselect.setOnAction((ActionEvent event) -> {
+                toolManager.removeSelectedNode(target);
+                target.setEffect(null);
+            });
+        }
+        else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
+            for(Shape shape : toolManager.getSelectedNodes()) {
+                shape.setEffect(null);
+            }
+            toolManager.clearSelectedNodes();
+            //iterate over selectedNodes
+            toolManager.setxS(mouseEvent.getX());
+            toolManager.setyS(mouseEvent.getY());
+        }
         //could draw a temporary shape here
     }
 
     @FXML
     public void mouseUp(MouseEvent mouseEvent) {
-        toolManager.setxE(mouseEvent.getX());
-        toolManager.setyE(mouseEvent.getY());
+        if(mouseEvent.getButton() == MouseButton.SECONDARY) {
+            System.out.println("Right click");
+        }
+        else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
+            toolManager.setxE(mouseEvent.getX());
+            toolManager.setyE(mouseEvent.getY());
 
-        Shape shape = toolManager.draw();
-        drawingPane.getChildren().add(shape);
+            Shape shape = toolManager.draw();
+            drawingPane.getChildren().add(shape);
+        }
     }
 
 
