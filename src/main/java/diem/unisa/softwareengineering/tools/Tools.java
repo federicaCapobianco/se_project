@@ -13,6 +13,8 @@ public class Tools {
 
     private Color shapeFillColor;
 
+    private DrawableShape selectedNode;
+
     //add a method changeState that instantiates the shape as for the passed parameter
     public void changeState(DrawableShape state){
         shape = state; //this will be line, circle, rectangle, etc.
@@ -20,9 +22,7 @@ public class Tools {
 
     //add a method draw that calls the draw method of the shape class
     public Shape draw(){
-
        return shape.draw(xS,yS,xE,yE,shapeLineColor, shapeFillColor);
-
     }
 
     public double getxS() {
