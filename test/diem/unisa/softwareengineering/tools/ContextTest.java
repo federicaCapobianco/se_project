@@ -1,15 +1,8 @@
 package diem.unisa.softwareengineering.tools;
 
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +10,7 @@ class ContextTest {
 
     @Test
     void testChangeState() {
-        Context handler = new Context();
+        Tools handler = new Tools();
         handler.changeState(new DrawableLine());
         assertInstanceOf(DrawableLine.class, handler.getShape());
 
@@ -30,7 +23,7 @@ class ContextTest {
 
     @Test
     void testDraw() {
-        Context handler = new Context();
+        Tools handler = new Tools();
         handler.changeState(new DrawableLine());
         assertInstanceOf(Shape.class, handler.draw());
 
@@ -43,7 +36,7 @@ class ContextTest {
 
     @Test
     void testGetSet() {
-        Context handler = new Context();
+        Tools handler = new Tools();
         handler.setxS(3.0);
         handler.setxE(4.0);
         handler.setyS(3.0);
@@ -56,14 +49,14 @@ class ContextTest {
 
     @Test
     void testGetSetLineColor(){
-        Context handler = new Context();
+        Tools handler = new Tools();
         handler.setShapeLineColor(Color.BLACK);
         assertEquals(Color.BLACK, handler.getShapeLineColor());
     }
 
     @Test
     void testGetSetFillColor(){
-        Context handler = new Context();
+        Tools handler = new Tools();
         handler.setShapeFillColor(Color.BLACK);
         assertEquals(Color.BLACK, handler.getShapeFillColor());
     }

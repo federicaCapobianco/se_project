@@ -45,8 +45,8 @@ public class Controller implements Initializable {
     @FXML
     private ColorPicker fillColorPicker;
 
-    private Context c;
-    private FileManager fm;
+    private Tools toolManager;
+    private FileManager fileManager;
     private FileChooser fileChooser;
     @FXML
     private Button ellipseButton;
@@ -54,43 +54,43 @@ public class Controller implements Initializable {
 
     @FXML
     private void setLine(ActionEvent actionEvent) {
-        c.changeState(new DrawableLine());
+        toolManager.changeState(new DrawableLine());
     }
 
     @FXML
     private void setEllipse(ActionEvent actionEvent) {
-        c.changeState(new DrawableEllipse());
+        toolManager.changeState(new DrawableEllipse());
     }
 
     @FXML
     public void setRectangle(ActionEvent actionEvent) {
-        c.changeState(new DrawableRectangle());
+        toolManager.changeState(new DrawableRectangle());
     }
 
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
-        c.setxS(mouseEvent.getX());
-        c.setyS(mouseEvent.getY());
+        toolManager.setxS(mouseEvent.getX());
+        toolManager.setyS(mouseEvent.getY());
         //could draw a temporary shape here
     }
 
     @FXML
     public void mouseUp(MouseEvent mouseEvent) {
-        c.setxE(mouseEvent.getX());
-        c.setyE(mouseEvent.getY());
+        toolManager.setxE(mouseEvent.getX());
+        toolManager.setyE(mouseEvent.getY());
 
-        Shape shape = c.draw();
+        Shape shape = toolManager.draw();
         drawingPane.getChildren().add(shape);
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        c = new Context();
-        fm = new FileManager(drawingPane);
+        toolManager = new Tools();
+        fileManager = new FileManager(drawingPane);
         fileChooser = new FileChooser();
-        c.setShapeLineColor(Color.BLACK);
-        c.setShapeFillColor(Color.TRANSPARENT);
+        toolManager.setShapeLineColor(Color.BLACK);
+        toolManager.setShapeFillColor(Color.TRANSPARENT);
     }
 
     @FXML
@@ -103,7 +103,7 @@ public class Controller implements Initializable {
         try {
             File file = fileChooser.showSaveDialog(stage);
             if (file != null) {
-                fm.saveFile(file);
+                fileManager.saveFile(file);
                 System.out.println(file.getName());
             }
         }
@@ -122,7 +122,7 @@ public class Controller implements Initializable {
         try {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
-                fm.loadFile(file);
+                fileManager.loadFile(file);
                 System.out.println(file.getName());
             }
         }
@@ -132,11 +132,11 @@ public class Controller implements Initializable {
     }
 
     public void setLineColor(ActionEvent actionEvent) {
-        c.setShapeLineColor(lineColorPicker.getValue());
+        toolManager.setShapeLineColor(lineColorPicker.getValue());
     }
 
     public void setFillColor(ActionEvent actionEvent) {
-        c.setShapeFillColor(fillColorPicker.getValue());
+        toolManager.setShapeFillColor(fillColorPicker.getValue());
     }
 
 }

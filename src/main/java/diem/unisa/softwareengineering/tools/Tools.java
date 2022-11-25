@@ -1,23 +1,9 @@
 package diem.unisa.softwareengineering.tools;
 
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
-import java.awt.*;
-import java.beans.DefaultPersistenceDelegate;
-import java.beans.Encoder;
-import java.beans.XMLDecoder;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.IOException;
-
-import java.beans.XMLEncoder;
-import java.nio.file.Files;
-
-public class Context {
+public class Tools {
     //add an instance of the Shape class
     private DrawableShape shape;
 
