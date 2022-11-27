@@ -6,7 +6,31 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Shape;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 class ToolsTest {
+    @Test
+    void testGetSet() {
+        Tools handler = new Tools();
+        handler.setxS(3.0);
+        handler.setxE(4.0);
+        handler.setyS(3.0);
+        handler.setyE(4.0);
+        handler.setShapeLineColor(Color.BLACK);
+        handler.setShapeFillColor(Color.BLACK);
+        assertEquals(3.0, handler.getxS());
+        assertEquals(4.0, handler.getxE());
+        assertEquals(3.0, handler.getyS());
+        assertEquals(4.0, handler.getyE());
+        assertEquals(Color.BLACK, handler.getShapeLineColor());
+        assertEquals(Color.BLACK, handler.getShapeFillColor());
+    }
 
     @Test
     void testChangeState() {
@@ -34,18 +58,6 @@ class ToolsTest {
         assertInstanceOf(Shape.class, handler.draw());
     }
 
-    @Test
-    void testGetSet() {
-        Tools handler = new Tools();
-        handler.setxS(3.0);
-        handler.setxE(4.0);
-        handler.setyS(3.0);
-        handler.setyE(4.0);
-        assertEquals(3.0, handler.getxS());
-        assertEquals(4.0, handler.getxE());
-        assertEquals(3.0, handler.getyS());
-        assertEquals(4.0, handler.getyE());
-    }
 
     @Test
     void testGetSetLineColor(){

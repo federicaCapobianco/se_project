@@ -3,6 +3,12 @@ package diem.unisa.softwareengineering.tools;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+/**
+ * A class that allows the user to set the current tool and draw a new shape on the canva as the user drags the mouse.
+ */
 public class Tools {
     //add an instance of the Shape class
     private DrawableShape shape;
@@ -13,6 +19,7 @@ public class Tools {
 
     private Color shapeFillColor;
 
+
     //add a method changeState that instantiates the shape as for the passed parameter
     public void changeState(DrawableShape state){
         shape = state; //this will be line, circle, rectangle, etc.
@@ -20,9 +27,7 @@ public class Tools {
 
     //add a method draw that calls the draw method of the shape class
     public Shape draw(){
-
        return shape.draw(xS,yS,xE,yE,shapeLineColor, shapeFillColor);
-
     }
 
     public double getxS() {
@@ -66,6 +71,8 @@ public class Tools {
     }
 
 
+
+
     public void setShapeLineColor(Color shapeLineColor){ this.shapeLineColor = shapeLineColor; }
 
     public void setShapeFillColor(Color shapeFillColor){
@@ -73,7 +80,5 @@ public class Tools {
     }
 
     public DrawableShape getShape(){ return shape;}
-
-
 
 }

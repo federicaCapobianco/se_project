@@ -7,6 +7,9 @@ import javafx.scene.shape.Shape;
 public class DrawableLine extends DrawableShape{
     private Shape line;
 
+
+    public DrawableLine(){ }
+
     @Override
     public Shape draw(double xS, double yS, double xE, double yE, Color lineColor, Color fillColor) {
         this.line = new Line(xS, yS, xE, yE);
