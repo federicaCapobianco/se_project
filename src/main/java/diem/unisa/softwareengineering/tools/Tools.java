@@ -6,6 +6,9 @@ import javafx.scene.shape.Shape;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * A class that allows the user to set the current tool and draw a new shape on the canva as the user drags the mouse.
+ */
 public class Tools {
     //add an instance of the Shape class
     private DrawableShape shape;
