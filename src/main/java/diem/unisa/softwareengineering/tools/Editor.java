@@ -4,6 +4,9 @@ import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 
+/**
+ * A class that allows to save the reference to all the right clicked(selected) nodes on the canva seen as shapes.
+ */
 public class Editor {
     private ArrayList<Shape> selectedNodes = new ArrayList<Shape>();
 

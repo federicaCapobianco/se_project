@@ -78,7 +78,4 @@ public class Tools {
 
     public DrawableShape getShape(){ return shape;}
 
-
-
-
 }

@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
@@ -28,8 +29,6 @@ public class Controller implements Initializable {
 
     @FXML
     private Button lineButton;
-    @FXML
-    private Pane drawingPane;
     @FXML
     private Button rectangleButton;
     @FXML
@@ -52,6 +51,8 @@ public class Controller implements Initializable {
     private FileManager fileManager;
     private FileChooser fileChooser;
     private Editor shapeEditor;
+    @FXML
+    private Pane drawingPane;
 
 
     @Override
@@ -79,11 +80,10 @@ public class Controller implements Initializable {
         toolManager.changeState(new DrawableRectangle());
     }
 
-    @FXML
+    @Deprecated
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
             Shape target = (Shape) mouseEvent.getTarget();
-            System.out.println(target);
             shapeEditor.addSelectedNode(target);
 
             ContextMenu contextMenu = new ContextMenu();
@@ -124,10 +124,9 @@ public class Controller implements Initializable {
         //could draw a temporary shape here
     }
 
-    @FXML
+    @Deprecated
     public void mouseUp(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
-            System.out.println("Right click");
         }
         else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
             toolManager.setxE(mouseEvent.getX());
@@ -189,4 +188,11 @@ public class Controller implements Initializable {
         toolManager.setShapeFillColor(fillColorPicker.getValue());
     }
 
+    @FXML
+    public void mouseDown(Event event) {
+    }
+
+    @FXML
+    public void mouseUp(Event event) {
+    }
 }
