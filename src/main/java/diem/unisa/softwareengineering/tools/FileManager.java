@@ -13,6 +13,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+/**
+ * A class that saves the array of shapes located in the pane to an xml file and then retreives it.
+ * The XML encoder has been properly set to accept the Color class constructor and save the color too, it might be necessary to update again.
+ */
 public class FileManager {
     private Pane canvas;
 

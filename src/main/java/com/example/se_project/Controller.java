@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
@@ -24,15 +25,10 @@ public class Controller implements Initializable {
 
 
     @FXML
-    private Label lineLabel;
-
-    @FXML
     private Label fillLabel;
 
     @FXML
     private Button lineButton;
-    @FXML
-    private Pane drawingPane;
     @FXML
     private Button rectangleButton;
     @FXML
@@ -46,12 +42,28 @@ public class Controller implements Initializable {
     @FXML
     private ColorPicker fillColorPicker;
 
+    @FXML
+    private Button ellipseButton;
+    @FXML
+    private Label tfLine;
+
     private Tools toolManager;
     private FileManager fileManager;
     private FileChooser fileChooser;
+    private Editor shapeEditor;
     @FXML
-    private Button ellipseButton;
+    private Pane drawingPane;
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        toolManager = new Tools();
+        fileManager = new FileManager(drawingPane);
+        fileChooser = new FileChooser();
+        shapeEditor = new Editor();
+        toolManager.setShapeLineColor(Color.BLACK);
+        toolManager.setShapeFillColor(Color.TRANSPARENT);
+    }
 
     @FXML
     private void setLine(ActionEvent actionEvent) {
@@ -68,12 +80,11 @@ public class Controller implements Initializable {
         toolManager.changeState(new DrawableRectangle());
     }
 
-    @FXML
+    @Deprecated
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
             Shape target = (Shape) mouseEvent.getTarget();
-            System.out.println(target);
-            toolManager.addSelectedNode(target);
+            shapeEditor.addSelectedNode(target);
 
             ContextMenu contextMenu = new ContextMenu();
             MenuItem deselect = new MenuItem("Deselect");
@@ -97,15 +108,15 @@ public class Controller implements Initializable {
             target.setEffect(dropShadow);
 
             deselect.setOnAction((ActionEvent event) -> {
-                toolManager.removeSelectedNode(target);
+                shapeEditor.removeSelectedNode(target);
                 target.setEffect(null);
             });
         }
         else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
-            for(Shape shape : toolManager.getSelectedNodes()) {
+            for(Shape shape : shapeEditor.getSelectedNodes()) {
                 shape.setEffect(null);
             }
-            toolManager.clearSelectedNodes();
+            shapeEditor.clearSelectedNodes();
             //iterate over selectedNodes
             toolManager.setxS(mouseEvent.getX());
             toolManager.setyS(mouseEvent.getY());
@@ -113,10 +124,9 @@ public class Controller implements Initializable {
         //could draw a temporary shape here
     }
 
-    @FXML
+    @Deprecated
     public void mouseUp(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
-            System.out.println("Right click");
         }
         else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
             toolManager.setxE(mouseEvent.getX());
@@ -128,14 +138,7 @@ public class Controller implements Initializable {
     }
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        toolManager = new Tools();
-        fileManager = new FileManager(drawingPane);
-        fileChooser = new FileChooser();
-        toolManager.setShapeLineColor(Color.BLACK);
-        toolManager.setShapeFillColor(Color.TRANSPARENT);
-    }
+
 
     @FXML
     public void saveFile(ActionEvent actionEvent) {
@@ -185,4 +188,11 @@ public class Controller implements Initializable {
         toolManager.setShapeFillColor(fillColorPicker.getValue());
     }
 
+    @FXML
+    public void mouseDown(Event event) {
+    }
+
+    @FXML
+    public void mouseUp(Event event) {
+    }
 }
