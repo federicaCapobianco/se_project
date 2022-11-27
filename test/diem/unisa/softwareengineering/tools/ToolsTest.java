@@ -1,6 +1,11 @@
 package diem.unisa.softwareengineering.tools;
 
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import org.junit.jupiter.api.Test;
@@ -28,7 +33,7 @@ class ToolsTest {
     }
 
     @Test
-    void changeState() {
+    void testChangeState() {
         Tools handler = new Tools();
         handler.changeState(new DrawableLine());
         assertInstanceOf(DrawableLine.class, handler.getShape());
@@ -41,7 +46,7 @@ class ToolsTest {
     }
 
     @Test
-    void draw() {
+    void testDraw() {
         Tools handler = new Tools();
         handler.changeState(new DrawableLine());
         assertInstanceOf(Shape.class, handler.draw());
@@ -51,6 +56,21 @@ class ToolsTest {
 
         handler.changeState(new DrawableEllipse());
         assertInstanceOf(Shape.class, handler.draw());
+    }
+
+
+    @Test
+    void testGetSetLineColor(){
+        Tools handler = new Tools();
+        handler.setShapeLineColor(Color.BLACK);
+        assertEquals(Color.BLACK, handler.getShapeLineColor());
+    }
+
+    @Test
+    void testGetSetFillColor(){
+        Tools handler = new Tools();
+        handler.setShapeFillColor(Color.BLACK);
+        assertEquals(Color.BLACK, handler.getShapeFillColor());
     }
 
 }
