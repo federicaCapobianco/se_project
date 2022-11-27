@@ -53,33 +53,4 @@ class ToolsTest {
         assertInstanceOf(Shape.class, handler.draw());
     }
 
-    @Test
-    void getSelectedNodes() {
-        Tools handler = new Tools();
-        assertInstanceOf(ArrayList.class, handler.getSelectedNodes());
-    }
-
-    @Test
-    void addSelectedNode() {
-        Tools handler = new Tools();
-        handler.addSelectedNode(new Line());
-        assertEquals(1, handler.getSelectedNodes().size());
-    }
-
-    @Test
-    void removeSelectedNode() {
-        Tools handler = new Tools();
-        Line line = new Line();
-        handler.addSelectedNode(line);
-        handler.removeSelectedNode(line);
-        assertEquals(0, handler.getSelectedNodes().size());
-    }
-
-    @Test
-    void clearSelectedNodes() {
-        Tools handler = new Tools();
-        handler.addSelectedNode(new Line());
-        handler.clearSelectedNodes();
-        assertEquals(0, handler.getSelectedNodes().size());
-    }
 }

@@ -16,7 +16,6 @@ public class Tools {
 
     private Color shapeFillColor;
 
-    private ArrayList<Shape> selectedNodes = new ArrayList<Shape>();
 
     //add a method changeState that instantiates the shape as for the passed parameter
     public void changeState(DrawableShape state){
@@ -68,9 +67,7 @@ public class Tools {
         this.yE = yE;
     }
 
-    public ArrayList<Shape> getSelectedNodes() {
-        return selectedNodes;
-    }
+
 
 
     public void setShapeLineColor(Color shapeLineColor){ this.shapeLineColor = shapeLineColor; }
@@ -82,20 +79,6 @@ public class Tools {
     public DrawableShape getShape(){ return shape;}
 
 
-    public void addSelectedNode(Shape selectedNode) {
-        this.selectedNodes.add(selectedNode);
-        //add a new node to the array selectedNode
-    }
-    public ArrayList<Shape> removeSelectedNode(Shape selectedNode) {
-        this.selectedNodes.remove(selectedNode);
-        return selectedNodes;
-        //remove all the nodes from the array selectedNode
-    }
 
-
-
-    public void clearSelectedNodes(){
-        this.selectedNodes.clear();
-    }
 
 }

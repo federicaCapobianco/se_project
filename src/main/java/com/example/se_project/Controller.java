@@ -24,9 +24,6 @@ public class Controller implements Initializable {
 
 
     @FXML
-    private Label lineLabel;
-
-    @FXML
     private Label fillLabel;
 
     @FXML
@@ -46,12 +43,26 @@ public class Controller implements Initializable {
     @FXML
     private ColorPicker fillColorPicker;
 
+    @FXML
+    private Button ellipseButton;
+    @FXML
+    private Label tfLine;
+
     private Tools toolManager;
     private FileManager fileManager;
     private FileChooser fileChooser;
-    @FXML
-    private Button ellipseButton;
+    private Editor shapeEditor;
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        toolManager = new Tools();
+        fileManager = new FileManager(drawingPane);
+        fileChooser = new FileChooser();
+        shapeEditor = new Editor();
+        toolManager.setShapeLineColor(Color.BLACK);
+        toolManager.setShapeFillColor(Color.TRANSPARENT);
+    }
 
     @FXML
     private void setLine(ActionEvent actionEvent) {
@@ -73,7 +84,7 @@ public class Controller implements Initializable {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
             Shape target = (Shape) mouseEvent.getTarget();
             System.out.println(target);
-            toolManager.addSelectedNode(target);
+            shapeEditor.addSelectedNode(target);
 
             ContextMenu contextMenu = new ContextMenu();
             MenuItem deselect = new MenuItem("Deselect");
@@ -97,15 +108,15 @@ public class Controller implements Initializable {
             target.setEffect(dropShadow);
 
             deselect.setOnAction((ActionEvent event) -> {
-                toolManager.removeSelectedNode(target);
+                shapeEditor.removeSelectedNode(target);
                 target.setEffect(null);
             });
         }
         else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
-            for(Shape shape : toolManager.getSelectedNodes()) {
+            for(Shape shape : shapeEditor.getSelectedNodes()) {
                 shape.setEffect(null);
             }
-            toolManager.clearSelectedNodes();
+            shapeEditor.clearSelectedNodes();
             //iterate over selectedNodes
             toolManager.setxS(mouseEvent.getX());
             toolManager.setyS(mouseEvent.getY());
@@ -128,14 +139,7 @@ public class Controller implements Initializable {
     }
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        toolManager = new Tools();
-        fileManager = new FileManager(drawingPane);
-        fileChooser = new FileChooser();
-        toolManager.setShapeLineColor(Color.BLACK);
-        toolManager.setShapeFillColor(Color.TRANSPARENT);
-    }
+
 
     @FXML
     public void saveFile(ActionEvent actionEvent) {
