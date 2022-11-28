@@ -22,7 +22,7 @@ Below you can check our documentation, in particular:
 
 * Second sprint
 
-    * [Sprint Backlog]()
+    * [Sprint Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/e_delpezzo_studenti_unisa_it/Ee4dgBR3mOtNoKHUuNQwYvEB5y63Oqt_HkIITklnTxFyVA?e=C09RF9)
 
     * [Sprint Review]()
 
