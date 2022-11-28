@@ -14,13 +14,13 @@ Below you can check our documentation, in particular:
 
 * Sprint
 
-**First sprint
+    *First sprint:
 
-* [First Sprint Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/f_pastorepalumbo_studenti_unisa_it/ESmcFHM4kD1AvBBIhpwRPSMB-63uh9k1obcnjnS_y1NHeg?e=Pc85P7)
+        * [First Sprint Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/f_pastorepalumbo_studenti_unisa_it/ESmcFHM4kD1AvBBIhpwRPSMB-63uh9k1obcnjnS_y1NHeg?e=Pc85P7)
 
-* [First Sprint Review](https://unisalerno-my.sharepoint.com/:w:/g/personal/f_pastorepalumbo_studenti_unisa_it/EaHwK4-oa4ZCgixW8vzvB1oBHtES5WEYU5cLV-W8d6RGnw?e=GOVNFk)
+        * [First Sprint Review](https://unisalerno-my.sharepoint.com/:w:/g/personal/f_pastorepalumbo_studenti_unisa_it/EaHwK4-oa4ZCgixW8vzvB1oBHtES5WEYU5cLV-W8d6RGnw?e=GOVNFk)
 
-* [First Sprint Retrospective](https://unisalerno-my.sharepoint.com/:w:/g/personal/f_pastorepalumbo_studenti_unisa_it/EemCe7p-RJZDrHAYp1PsBmABoFHo2C7Vkc6X3WARYPoVoQ?e=7vwC4A)
+        * [First Sprint Retrospective](https://unisalerno-my.sharepoint.com/:w:/g/personal/f_pastorepalumbo_studenti_unisa_it/EemCe7p-RJZDrHAYp1PsBmABoFHo2C7Vkc6X3WARYPoVoQ?e=7vwC4A)
 
 ### Team members
 
