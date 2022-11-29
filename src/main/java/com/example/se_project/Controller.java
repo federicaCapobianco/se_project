@@ -111,24 +111,12 @@ public class Controller implements Initializable {
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
-            //deselect the previous shape
-            if(shapeEditor.getSelectedNode() != null) {
-                shapeEditor.getSelectedNode().setEffect(null);
-                shapeEditor.clearSelectedNode();
-            }
+
             selectionPointX = mouseEvent.getX();
             selectionPointY = mouseEvent.getY();
             Node target = (Node) mouseEvent.getTarget();
 
-            if(target instanceof Shape) {
-                target.setEffect(null);
-                shapeEditor.addSelectedNode((Shape) target);
-                shapeEditor.getSelectedNode().setEffect(dropShadow);
-            }
-            //if target is Pane don't select anything
-            else if(target instanceof Pane) {
-                shapeEditor.clearSelectedNode();
-            }
+            shapeEditor.selectShape((Node)target, dropShadow);
 
             contextMenu.getItems().addAll(deselect, delete, move, lineColor, fillColor, size, copy, paste);
             contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
@@ -141,53 +129,15 @@ public class Controller implements Initializable {
 
 
             deselect.setOnAction((ActionEvent event) -> {
-                shapeEditor.clearSelectedNode();
-                target.setEffect(null);
+                shapeEditor.deselectShape(target);
             });
 
             copy.setOnAction((ActionEvent event) -> {
-                System.out.println("copy");
-                //get the file named copy.xml
-                File file = new File("copy.xml");
-                target.setEffect(null);
-                try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(Files.newOutputStream(file.toPath())))) {
-                    encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
-                    encoder.writeObject(target);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                ClipboardContent content = new ClipboardContent();
-                List<File> files = List.of(file);
-                content.putFiles(files);
-
-                clipboard.setContent(content);
-
-                System.out.println("done copy");
+                shapeEditor.copyShape(target, clipboard);
             });
 
             paste.setOnAction((ActionEvent event) -> {
-                System.out.println("paste");
-                List<File> files = clipboard.getFiles();
-                try (XMLDecoder decoder = new XMLDecoder(
-                        new BufferedInputStream(
-                                Files.newInputStream(files.get(0).toPath())))) {
-
-                    decoder.setExceptionListener(e -> {
-                        throw new RuntimeException(e);
-                    });
-
-                    Shape nodeToAdd = (Shape) decoder.readObject();
-
-                    nodeToAdd.relocate(selectionPointX, selectionPointY);
-                    System.out.println("node: "+nodeToAdd+"x: "+nodeToAdd.getTranslateX()+" y: "+nodeToAdd.getTranslateY());
-                    drawingPane.getChildren().add(nodeToAdd);
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
-                System.out.println("done paste");
+                shapeEditor.pasteShape(clipboard, drawingPane, selectionPointX, selectionPointY);
             });
         }
         else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
