@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseButton;
@@ -83,8 +84,18 @@ public class Controller implements Initializable {
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
-            Shape target = (Shape) mouseEvent.getTarget();
-            shapeEditor.addSelectedNode(target);                  ///////////////////////////////////
+            DropShadow dropShadow = new DropShadow();
+            dropShadow.setRadius(5.0);
+            dropShadow.setOffsetX(3.0);
+            dropShadow.setOffsetY(3.0);
+            dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
+            Node target = (Node) mouseEvent.getTarget();
+
+            if(target instanceof Shape) {
+                target.setEffect(null);
+                shapeEditor.addSelectedNode((Shape) target);
+                target.setEffect(dropShadow);
+            }               ///////////////////////////////////
 
             ContextMenu contextMenu = new ContextMenu();
             MenuItem deselect = new MenuItem("Deselect");
@@ -97,18 +108,14 @@ public class Controller implements Initializable {
             MenuItem paste = new MenuItem("Paste");
 
             contextMenu.getItems().addAll(deselect, delete, move, lineColor, fillColor, size, copy, paste);
-            contextMenu.show(target, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+            contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
 
-            DropShadow dropShadow = new DropShadow();
-            dropShadow.setRadius(5.0);
-            dropShadow.setOffsetX(3.0);
-            dropShadow.setOffsetY(3.0);
-            dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
+
 
             target.setEffect(dropShadow);
 
             deselect.setOnAction((ActionEvent event) -> {
-                shapeEditor.removeSelectedNode(target);
+                shapeEditor.removeSelectedNode((Shape)target);
                 target.setEffect(null);
             });
 

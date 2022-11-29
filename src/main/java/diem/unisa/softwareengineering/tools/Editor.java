@@ -54,8 +54,11 @@ public class  Editor {
     }
 
     public void unduCommand() {
-        Command c = commandStack.pop();
-        c.undo();
+        //check if the stack is empty
+        if (!commandStack.isEmpty()) {
+            commandStack.pop().undo();
+        }
+
     }
 
 }
