@@ -104,17 +104,21 @@ public class Controller implements Initializable {
     }
 
 
-
+    double selectionPointX;
+    double selectionPointY;
 
 
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
+            selectionPointX = mouseEvent.getX();
+            selectionPointY = mouseEvent.getY();
             Node target = (Node) mouseEvent.getTarget();
 
             if(target instanceof Shape) {
                 target.setEffect(null);
-                shapeEditor.addSelectedNode((Shape)target);
+                shapeEditor.addSelectedNode((Shape) target);
+                target.setEffect(dropShadow);
             }
 
             contextMenu.getItems().addAll(deselect, delete, move, lineColor, fillColor, size, copy, paste);
@@ -125,17 +129,18 @@ public class Controller implements Initializable {
             dropShadow.setOffsetY(3.0);
             dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
 
-            target.setEffect(dropShadow);
+
 
             deselect.setOnAction((ActionEvent event) -> {
-                shapeEditor.removeSelectedNode((Shape)target);
                 target.setEffect(null);
+                shapeEditor.removeSelectedNode((Shape)target);
             });
 
             copy.setOnAction((ActionEvent event) -> {
                 System.out.println("copy");
                 //get the file named copy.xml
                 File file = new File("copy.xml");
+                target.setEffect(null);
                 try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(Files.newOutputStream(file.toPath())))) {
                     encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
                     encoder.writeObject(target);
@@ -162,12 +167,9 @@ public class Controller implements Initializable {
 
                     Shape nodeToAdd = (Shape) decoder.readObject();
 
-                    //move the node to the mouse position
-                    nodeToAdd.setTranslateX(nodeToAdd.getTranslateX()+mouseEvent.getX());
-                    nodeToAdd.setTranslateY(nodeToAdd.getTranslateY()+mouseEvent.getY());
+                    nodeToAdd.relocate(selectionPointX, selectionPointY);
                     System.out.println("node: "+nodeToAdd+"x: "+nodeToAdd.getTranslateX()+" y: "+nodeToAdd.getTranslateY());
                     drawingPane.getChildren().add(nodeToAdd);
-                    drawingPane.getChildren().add(new Rectangle(100,100,Color.RED));
                 }
                 catch (Exception e) {
                     e.printStackTrace();
