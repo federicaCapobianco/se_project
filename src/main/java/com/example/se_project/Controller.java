@@ -84,12 +84,12 @@ public class Controller implements Initializable {
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
             Shape target = (Shape) mouseEvent.getTarget();
-            shapeEditor.addSelectedNode(target);
+            shapeEditor.addSelectedNode(target);                  ///////////////////////////////////
 
             ContextMenu contextMenu = new ContextMenu();
             MenuItem deselect = new MenuItem("Deselect");
             MenuItem delete = new MenuItem("Delete");
-            MenuItem move = new MenuItem("Move");
+            MenuItem move = new MenuItem("Undu");
             MenuItem lineColor = new MenuItem("Line color");
             MenuItem fillColor = new MenuItem("Fill color");
             MenuItem size = new MenuItem("Size");
@@ -111,6 +111,17 @@ public class Controller implements Initializable {
                 shapeEditor.removeSelectedNode(target);
                 target.setEffect(null);
             });
+
+            delete.setOnAction((ActionEvent event) -> {
+                Command cmd = new DeleteCommand( shapeEditor.getSelectedNodes()/* reference alle figure selezionate */, drawingPane );
+                shapeEditor.executeCommand(cmd);
+                //shapeEditor.clearSelectedNodes();
+            });
+
+            move.setOnAction((ActionEvent event) -> {
+                shapeEditor.unduCommand();
+            });
+
         }
         else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
             for(Shape shape : shapeEditor.getSelectedNodes()) {

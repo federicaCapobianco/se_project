@@ -11,6 +11,8 @@ import java.util.Stack;
 public class  Editor {
     private ArrayList<Shape> selectedNodes = new ArrayList<Shape>();
 
+    private Shape figSelezionata;
+
     private Command c; //se ho lo stack qui a che serve il reference c? DA RIVEDERE
 
     private Stack<Command> commandStack = new Stack<Command>();
@@ -18,13 +20,22 @@ public class  Editor {
     public ArrayList<Shape> getSelectedNodes() {
         return selectedNodes;
     }
+    public Shape getSelectedFigura(){   ///////////////////////////////////////
+        return figSelezionata;
+    }
 
     public void addSelectedNode(Shape selectedNode) {
         this.selectedNodes.add(selectedNode);
         //add a new node to the array selectedNode
     }
+
+    public void addSelectedFigura(Shape selectedNode) {     /////////////////////////////////////////
+        this.figSelezionata = selectedNode;
+        //add a new node to the array selectedNode
+    }
+
     public ArrayList<Shape> removeSelectedNode(Shape selectedNode) {
-        this.selectedNodes.remove(selectedNode);
+        selectedNodes.remove(selectedNode);
         return selectedNodes;
         //remove all the nodes from the array selectedNode
     }
