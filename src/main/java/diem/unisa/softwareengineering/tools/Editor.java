@@ -9,28 +9,22 @@ import java.util.Stack;
  * A class that allows to save the reference to all the right clicked(selected) nodes on the canva seen as shapes.
  */
 public class  Editor {
-    private ArrayList<Shape> selectedNodes = new ArrayList<Shape>();
+    private Shape selectedNode;
 
     private Command c; //se ho lo stack qui a che serve il reference c? DA RIVEDERE
 
     private Stack<Command> commandStack = new Stack<Command>();
 
-    public ArrayList<Shape> getSelectedNodes() {
-        return selectedNodes;
+    public Shape getSelectedNode() {
+        return selectedNode;
     }
 
     public void addSelectedNode(Shape selectedNode) {
-        this.selectedNodes.add(selectedNode);
-        //add a new node to the array selectedNode
-    }
-    public ArrayList<Shape> removeSelectedNode(Shape selectedNode) {
-        this.selectedNodes.remove(selectedNode);
-        return selectedNodes;
-        //remove all the nodes from the array selectedNode
+        this.selectedNode = selectedNode;
     }
 
-    public void clearSelectedNodes(){
-        this.selectedNodes.clear();
+    public void clearSelectedNode(){
+        this.selectedNode = null;
     }
 
     public void setCommand(Command c) {
