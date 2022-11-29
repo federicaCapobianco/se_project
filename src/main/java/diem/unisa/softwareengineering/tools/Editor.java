@@ -19,7 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class that allows to save the reference to all the right clicked(selected) nodes on the canva seen as shapes.
+ * A class that allows to save the reference to a right clicked(selected) node on the canva seen as shapes.
+ * Editor also handles copy and paste operations.
  */
 public class Editor {
     private Shape selectedNode;
