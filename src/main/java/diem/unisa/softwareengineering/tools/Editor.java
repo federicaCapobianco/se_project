@@ -59,7 +59,8 @@ public class Editor {
         this.clearSelectedNode();
     }
 
-    public void copyShape(Node shape, Clipboard clipboard){
+    public void copyShape(Node shape){
+        Clipboard clipboard = Clipboard.getSystemClipboard();
         File file = new File("copy.xml");
         shape.setEffect(null);
         try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(Files.newOutputStream(file.toPath())))) {
@@ -75,7 +76,8 @@ public class Editor {
         clipboard.setContent(content);
     }
 
-    public void pasteShape(Clipboard clipboard, Pane drawingPane, double selectionPointX, double selectionPointY){
+    public Shape pasteShape(Pane drawingPane, double selectionPointX, double selectionPointY){
+        Clipboard clipboard = Clipboard.getSystemClipboard();
         List<File> files = clipboard.getFiles();
         try (XMLDecoder decoder = new XMLDecoder(
                 new BufferedInputStream(
@@ -90,9 +92,11 @@ public class Editor {
             nodeToAdd.relocate(selectionPointX, selectionPointY);
             System.out.println("node: "+nodeToAdd+"x: "+nodeToAdd.getTranslateX()+" y: "+nodeToAdd.getTranslateY());
             drawingPane.getChildren().add(nodeToAdd);
+            return nodeToAdd;
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

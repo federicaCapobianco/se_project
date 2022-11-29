@@ -133,12 +133,13 @@ public class Controller implements Initializable {
             });
 
             copy.setOnAction((ActionEvent event) -> {
-                shapeEditor.copyShape(target, clipboard);
+                shapeEditor.copyShape(target);
             });
 
             paste.setOnAction((ActionEvent event) -> {
-                shapeEditor.pasteShape(clipboard, drawingPane, selectionPointX, selectionPointY);
+                shapeEditor.pasteShape(drawingPane, selectionPointX, selectionPointY);
             });
+
         }
         else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
             toolManager.setxS(mouseEvent.getX());
