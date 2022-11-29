@@ -111,6 +111,11 @@ public class Controller implements Initializable {
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
+            //deselect the previous shape
+            if(shapeEditor.getSelectedNode() != null) {
+                shapeEditor.getSelectedNode().setEffect(null);
+                shapeEditor.clearSelectedNode();
+            }
             selectionPointX = mouseEvent.getX();
             selectionPointY = mouseEvent.getY();
             Node target = (Node) mouseEvent.getTarget();
@@ -118,11 +123,16 @@ public class Controller implements Initializable {
             if(target instanceof Shape) {
                 target.setEffect(null);
                 shapeEditor.addSelectedNode((Shape) target);
-                target.setEffect(dropShadow);
+                shapeEditor.getSelectedNode().setEffect(dropShadow);
+            }
+            //if target is Pane don't select anything
+            else if(target instanceof Pane) {
+                shapeEditor.clearSelectedNode();
             }
 
             contextMenu.getItems().addAll(deselect, delete, move, lineColor, fillColor, size, copy, paste);
             contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+
 
             dropShadow.setRadius(5.0);
             dropShadow.setOffsetX(3.0);
@@ -130,10 +140,9 @@ public class Controller implements Initializable {
             dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
 
 
-
             deselect.setOnAction((ActionEvent event) -> {
+                shapeEditor.clearSelectedNode();
                 target.setEffect(null);
-                shapeEditor.removeSelectedNode((Shape)target);
             });
 
             copy.setOnAction((ActionEvent event) -> {
@@ -151,6 +160,8 @@ public class Controller implements Initializable {
                 List<File> files = List.of(file);
                 content.putFiles(files);
 
+                clipboard.setContent(content);
+
                 System.out.println("done copy");
             });
 
@@ -159,7 +170,7 @@ public class Controller implements Initializable {
                 List<File> files = clipboard.getFiles();
                 try (XMLDecoder decoder = new XMLDecoder(
                         new BufferedInputStream(
-                                Files.newInputStream(new File("copy.xml").toPath())))) {
+                                Files.newInputStream(files.get(0).toPath())))) {
 
                     decoder.setExceptionListener(e -> {
                         throw new RuntimeException(e);
@@ -180,15 +191,12 @@ public class Controller implements Initializable {
             });
         }
         else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
-            for(Shape shape : shapeEditor.getSelectedNodes()) {
-                shape.setEffect(null);
-            }
-            shapeEditor.clearSelectedNodes();
-            //iterate over selectedNodes
             toolManager.setxS(mouseEvent.getX());
             toolManager.setyS(mouseEvent.getY());
+
+            shapeEditor.getSelectedNode().setEffect(null);
+            shapeEditor.clearSelectedNode();
         }
-        //could draw a temporary shape here
     }
 
     @FXML
