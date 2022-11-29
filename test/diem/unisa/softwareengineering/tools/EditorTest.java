@@ -37,4 +37,12 @@ class EditorTest {
         editor.clearSelectedNodes();
         assertEquals(0, editor.getSelectedNodes().size());
     }
+
+    @Test
+    void executeCommand() {
+    }
+
+    @Test
+    void unduCommand() {
+    }
 }

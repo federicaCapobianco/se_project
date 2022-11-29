@@ -84,23 +84,32 @@ public class Controller implements Initializable {
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
+
             DropShadow dropShadow = new DropShadow();
             dropShadow.setRadius(5.0);
             dropShadow.setOffsetX(3.0);
             dropShadow.setOffsetY(3.0);
             dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
-            Node target = (Node) mouseEvent.getTarget();
 
+            if(shapeEditor.getSelectedNode() != null) {
+                shapeEditor.getSelectedNode().setEffect(null);
+            }
+
+            Node target = (Node)mouseEvent.getTarget();
             if(target instanceof Shape) {
-                target.setEffect(null);
-                shapeEditor.addSelectedNode((Shape) target);
-                target.setEffect(dropShadow);
-            }               ///////////////////////////////////
+                shapeEditor.addSelectedNode((Shape) mouseEvent.getTarget());
+                shapeEditor.getSelectedNode().setEffect(dropShadow);
+            }
+            //if target is Pane do not highlight anything
+            if(target instanceof Pane) {
+                shapeEditor.clearSelectedNode();
+            }
+
 
             ContextMenu contextMenu = new ContextMenu();
             MenuItem deselect = new MenuItem("Deselect");
             MenuItem delete = new MenuItem("Delete");
-            MenuItem move = new MenuItem("Undu");
+            MenuItem move = new MenuItem("UNDUUUUU");
             MenuItem lineColor = new MenuItem("Line color");
             MenuItem fillColor = new MenuItem("Fill color");
             MenuItem size = new MenuItem("Size");
@@ -115,29 +124,27 @@ public class Controller implements Initializable {
             target.setEffect(dropShadow);
 
             deselect.setOnAction((ActionEvent event) -> {
-                shapeEditor.removeSelectedNode((Shape)target);
+                shapeEditor.clearSelectedNode();
                 target.setEffect(null);
             });
 
             delete.setOnAction((ActionEvent event) -> {
-                Command cmd = new DeleteCommand( shapeEditor.getSelectedNodes()/* reference alle figure selezionate */, drawingPane );
+                Command cmd = new DeleteCommand( shapeEditor.getSelectedNode()/* reference alle figure selezionate */, drawingPane );
                 shapeEditor.executeCommand(cmd);
                 //shapeEditor.clearSelectedNodes();
             });
 
             move.setOnAction((ActionEvent event) -> {
-                shapeEditor.unduCommand();
+                shapeEditor.undoCommand();
             });
 
         }
         else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
-            for(Shape shape : shapeEditor.getSelectedNodes()) {
-                shape.setEffect(null);
-            }
-            shapeEditor.clearSelectedNodes();
-            //iterate over selectedNodes
             toolManager.setxS(mouseEvent.getX());
             toolManager.setyS(mouseEvent.getY());
+
+            shapeEditor.getSelectedNode().setEffect(null);
+            shapeEditor.clearSelectedNode();
         }
         //could draw a temporary shape here
     }
@@ -154,9 +161,6 @@ public class Controller implements Initializable {
             drawingPane.getChildren().add(shape);
         }
     }
-
-
-
 
     @FXML
     public void saveFile(ActionEvent actionEvent) {

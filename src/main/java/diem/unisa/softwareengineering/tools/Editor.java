@@ -9,39 +9,23 @@ import java.util.Stack;
  * A class that allows to save the reference to all the right clicked(selected) nodes on the canva seen as shapes.
  */
 public class  Editor {
-    private ArrayList<Shape> selectedNodes = new ArrayList<Shape>();
-
-    private Shape figSelezionata;
+    private Shape selectedNodes;
 
     private Command c; //se ho lo stack qui a che serve il reference c? DA RIVEDERE
 
     private Stack<Command> commandStack = new Stack<Command>();
 
-    public ArrayList<Shape> getSelectedNodes() {
+    public Shape getSelectedNode() {
         return selectedNodes;
-    }
-    public Shape getSelectedFigura(){   ///////////////////////////////////////
-        return figSelezionata;
     }
 
     public void addSelectedNode(Shape selectedNode) {
-        this.selectedNodes.add(selectedNode);
+        this.selectedNodes = selectedNode;
         //add a new node to the array selectedNode
     }
 
-    public void addSelectedFigura(Shape selectedNode) {     /////////////////////////////////////////
-        this.figSelezionata = selectedNode;
-        //add a new node to the array selectedNode
-    }
-
-    public ArrayList<Shape> removeSelectedNode(Shape selectedNode) {
-        selectedNodes.remove(selectedNode);
-        return selectedNodes;
-        //remove all the nodes from the array selectedNode
-    }
-
-    public void clearSelectedNodes(){
-        this.selectedNodes.clear();
+    public void clearSelectedNode(){
+        this.selectedNodes = null;
     }
 
     public void setCommand(Command c) {
@@ -53,12 +37,9 @@ public class  Editor {
         c.execute();
     }
 
-    public void unduCommand() {
-        //check if the stack is empty
-        if (!commandStack.isEmpty()) {
-            commandStack.pop().undo();
-        }
-
+    public void undoCommand() {
+        Command c = commandStack.pop();
+        c.undo();
     }
 
 }
