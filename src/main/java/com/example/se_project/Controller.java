@@ -80,7 +80,7 @@ public class Controller implements Initializable {
         toolManager.changeState(new DrawableRectangle());
     }
 
-    @Deprecated
+    @FXML
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
             Shape target = (Shape) mouseEvent.getTarget();
@@ -124,7 +124,7 @@ public class Controller implements Initializable {
         //could draw a temporary shape here
     }
 
-    @Deprecated
+    @FXML
     public void mouseUp(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
         }
@@ -188,11 +188,4 @@ public class Controller implements Initializable {
         toolManager.setShapeFillColor(fillColorPicker.getValue());
     }
 
-    @FXML
-    public void mouseDown(Event event) {
-    }
-
-    @FXML
-    public void mouseUp(Event event) {
-    }
 }
