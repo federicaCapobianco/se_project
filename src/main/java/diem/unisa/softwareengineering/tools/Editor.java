@@ -33,10 +33,18 @@ public class  Editor {
         this.selectedNodes.clear();
     }
 
-    public void setCommand() { }
+    public void setCommand(Command c) {
+        this.c = c;
+    }
 
-    public void executeCommand() { }
+    public void executeCommand(Command c) {
+        commandStack.push(c);
+        c.execute();
+    }
 
-    public void unduCommand() { }
+    public void unduCommand() {
+        Command c = commandStack.pop();
+        c.undo();
+    }
 
 }
