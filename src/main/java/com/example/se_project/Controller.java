@@ -135,7 +135,7 @@ public class Controller implements Initializable {
             });
 
             move.setOnAction((ActionEvent event) -> {
-                shapeEditor.undoCommand();
+
             });
 
         }
