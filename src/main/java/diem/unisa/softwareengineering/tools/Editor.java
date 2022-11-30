@@ -35,15 +35,15 @@ public class  Editor {
     
 
     public Shape getSelectedNode() {
-        return selectedNodes;
+        return selectedNode;
     }
 
     public void addSelectedNode(Shape selectedNode) {
-        this.selectedNodes = selectedNode;
+        this.selectedNode = selectedNode;
     }
 
     public void clearSelectedNode(){
-        this.selectedNodes = null;
+        this.selectedNode = null;
     }
 
 

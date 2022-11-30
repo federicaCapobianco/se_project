@@ -62,10 +62,6 @@ public class Controller implements Initializable {
     ContextMenu contextMenu = new ContextMenu();
     MenuItem deselect = new MenuItem("Deselect");
     MenuItem delete = new MenuItem("Delete");
-    MenuItem move = new MenuItem("Move");
-    MenuItem lineColor = new MenuItem("Line color");
-    MenuItem fillColor = new MenuItem("Fill color");
-    MenuItem size = new MenuItem("Size");
     MenuItem copy = new MenuItem("Copy");
     MenuItem paste = new MenuItem("Paste");
     DropShadow dropShadow = new DropShadow();
@@ -117,7 +113,7 @@ public class Controller implements Initializable {
 
             shapeEditor.selectShape((Node)target, dropShadow);
             
-            contextMenu.getItems().addAll(deselect, delete, move, lineColor, fillColor, size, copy, paste);
+            contextMenu.getItems().addAll(deselect, delete, copy, paste);
             contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
 
 
