@@ -17,13 +17,21 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
+
 
 /**
  * A class that allows to save the reference to a right clicked(selected) node on the canva seen as shapes.
  * Editor also handles copy and paste operations.
  */
-public class Editor {
+
+public class  Editor {
     private Shape selectedNode;
+
+    private Command c;
+
+    private Stack<Command> commandStack = new Stack<Command>();
+    
 
     public Shape getSelectedNode() {
         return selectedNode;
@@ -31,7 +39,6 @@ public class Editor {
 
     public void addSelectedNode(Shape selectedNode) {
         this.selectedNode = selectedNode;
-        //add a new node to the array selectedNode
     }
 
     public void clearSelectedNode(){
@@ -100,4 +107,23 @@ public class Editor {
         }
         return null;
     }
+
+    public void clearSelectedNode(){
+        this.selectedNode = null;
+    }
+
+    public void setCommand(Command c) {
+        this.c = c;
+    }
+
+    public void executeCommand(Command c) {
+        commandStack.push(c);
+        c.execute();
+    }
+
+    public void unduCommand() {
+        Command c = commandStack.pop();
+        c.undo();
+    }
+
 }

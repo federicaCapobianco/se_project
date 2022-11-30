@@ -103,7 +103,6 @@ public class Controller implements Initializable {
         toolManager.changeState(new DrawableRectangle());
     }
 
-
     double selectionPointX;
     double selectionPointY;
 
@@ -112,12 +111,13 @@ public class Controller implements Initializable {
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
 
+
             selectionPointX = mouseEvent.getX();
             selectionPointY = mouseEvent.getY();
             Node target = (Node) mouseEvent.getTarget();
 
             shapeEditor.selectShape((Node)target, dropShadow);
-
+            
             contextMenu.getItems().addAll(deselect, delete, move, lineColor, fillColor, size, copy, paste);
             contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
 
@@ -126,7 +126,6 @@ public class Controller implements Initializable {
             dropShadow.setOffsetX(3.0);
             dropShadow.setOffsetY(3.0);
             dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
-
 
             deselect.setOnAction((ActionEvent event) -> {
                 shapeEditor.deselectShape(target);
@@ -160,47 +159,6 @@ public class Controller implements Initializable {
 
             Shape shape = toolManager.draw();
             drawingPane.getChildren().add(shape);
-        }
-    }
-
-
-
-
-    @FXML
-    public void saveFile(ActionEvent actionEvent) {
-        Window stage = drawingPane.getScene().getWindow();
-        fileChooser.setTitle("Save file");
-        fileChooser.setInitialFileName("drawing");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-
-        try {
-            File file = fileChooser.showSaveDialog(stage);
-            if (file != null) {
-                fileManager.saveFile(file);
-                System.out.println(file.getName());
-            }
-        }
-        catch (Exception e){
-            System.out.println(e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    public void loadFile(ActionEvent actionEvent) {
-        Window stage = drawingPane.getScene().getWindow();
-        fileChooser.setTitle("Save file");
-        fileChooser.setInitialFileName("drawing");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-
-        try {
-            File file = fileChooser.showOpenDialog(stage);
-            if (file != null) {
-                fileManager.loadFile(file);
-                System.out.println(file.getName());
-            }
-        }
-        catch (Exception e){
-            System.out.println(e.getLocalizedMessage());
         }
     }
 
