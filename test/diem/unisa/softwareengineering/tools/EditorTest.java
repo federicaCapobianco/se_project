@@ -11,7 +11,7 @@ import java.util.Stack;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EditorTest {
-/*
+
     @Test
     void testGetSelectedNodes() {
         Editor editor = new Editor();
@@ -40,7 +40,7 @@ class EditorTest {
         editor.clearSelectedNodes();
         assertEquals(0, editor.getSelectedNodes().size());
     }
-*/
+
     @Test
     void testExecuteCommand() {
         //Crea uno stack vuoto

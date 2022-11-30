@@ -11,7 +11,7 @@ import java.util.Stack;
 public class  Editor {
     private Shape selectedNodes;
 
-    private Command c; //se ho lo stack qui a che serve il reference c? DA RIVEDERE
+    private Command c;
 
     private Stack<Command> commandStack = new Stack<Command>();
 

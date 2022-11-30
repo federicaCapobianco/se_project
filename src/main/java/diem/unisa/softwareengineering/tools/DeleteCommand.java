@@ -25,6 +25,3 @@ public class DeleteCommand extends Command{
 
     }
 }
-
-
-//shapeEditor.clearSelectedNodes();
