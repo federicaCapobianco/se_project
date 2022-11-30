@@ -42,4 +42,7 @@ public class  Editor {
         c.undo();
     }
 
+    public Stack<Command> getCommandStack() {
+        return commandStack;
+    }
 }

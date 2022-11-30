@@ -1,5 +1,8 @@
 package diem.unisa.softwareengineering.tools;
 
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Shape;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,13 +10,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class DeleteCommandTest {
 
     @Test
-    void execute(){
-        //TODO implement test for execute method of DeleteCommand class
-
+    void testExecute(){
+        Pane p = new Pane();
+        Shape shape = new Line(10,15,20,35);
+        p.getChildren().add(shape);
+        Command cmd = new DeleteCommand( shape, p );
+        cmd.execute();
+        assertFalse(p.getChildren().contains(shape));
     }
 
     @Test
-    void undo() {
+    void testUndo() {
 
     }
 }
