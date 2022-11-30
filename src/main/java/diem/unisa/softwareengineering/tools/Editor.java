@@ -26,6 +26,7 @@ import java.util.Stack;
  */
 
 public class  Editor {
+
     private Shape selectedNode;
 
     private Command c;
@@ -34,16 +35,17 @@ public class  Editor {
     
 
     public Shape getSelectedNode() {
-        return selectedNode;
+        return selectedNodes;
     }
 
     public void addSelectedNode(Shape selectedNode) {
-        this.selectedNode = selectedNode;
+        this.selectedNodes = selectedNode;
     }
 
     public void clearSelectedNode(){
-        this.selectedNode = null;
+        this.selectedNodes = null;
     }
+
 
     public void selectShape(Node shape, DropShadow dropShadow){
         if(this.getSelectedNode() != null) {
@@ -117,9 +119,12 @@ public class  Editor {
         c.execute();
     }
 
-    public void unduCommand() {
+    public void undoCommand() {
         Command c = commandStack.pop();
         c.undo();
     }
 
+    public Stack<Command> getCommandStack() {
+        return commandStack;
+    }
 }

@@ -110,8 +110,7 @@ public class Controller implements Initializable {
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
-
-
+        
             selectionPointX = mouseEvent.getX();
             selectionPointY = mouseEvent.getY();
             Node target = (Node) mouseEvent.getTarget();
@@ -127,6 +126,7 @@ public class Controller implements Initializable {
             dropShadow.setOffsetY(3.0);
             dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
 
+
             deselect.setOnAction((ActionEvent event) -> {
                 shapeEditor.deselectShape(target);
             });
@@ -137,6 +137,12 @@ public class Controller implements Initializable {
 
             paste.setOnAction((ActionEvent event) -> {
                 shapeEditor.pasteShape(drawingPane, selectionPointX, selectionPointY);
+
+            });
+            
+            delete.setOnAction((ActionEvent event) -> {
+                Command cmd = new DeleteCommand( shapeEditor.getSelectedNode()/* reference alle figure selezionate */, drawingPane );
+                shapeEditor.executeCommand(cmd);
             });
 
         }
