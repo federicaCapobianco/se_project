@@ -6,10 +6,12 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
+import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -17,13 +19,20 @@ import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
+import java.beans.DefaultPersistenceDelegate;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 
 public class Controller implements Initializable {
-
 
     @FXML
     private Label fillLabel;
@@ -47,13 +56,25 @@ public class Controller implements Initializable {
     private Button ellipseButton;
     @FXML
     private Label tfLine;
+    @FXML
+    private Pane drawingPane;
+
+    ContextMenu contextMenu = new ContextMenu();
+    MenuItem deselect = new MenuItem("Deselect");
+    MenuItem delete = new MenuItem("Delete");
+    MenuItem move = new MenuItem("Move");
+    MenuItem lineColor = new MenuItem("Line color");
+    MenuItem fillColor = new MenuItem("Fill color");
+    MenuItem size = new MenuItem("Size");
+    MenuItem copy = new MenuItem("Copy");
+    MenuItem paste = new MenuItem("Paste");
+    DropShadow dropShadow = new DropShadow();
 
     private Tools toolManager;
     private FileManager fileManager;
     private FileChooser fileChooser;
     private Editor shapeEditor;
-    @FXML
-    private Pane drawingPane;
+    private final Clipboard clipboard = Clipboard.getSystemClipboard();
 
 
     @Override
@@ -62,6 +83,7 @@ public class Controller implements Initializable {
         fileManager = new FileManager(drawingPane);
         fileChooser = new FileChooser();
         shapeEditor = new Editor();
+
         toolManager.setShapeLineColor(Color.BLACK);
         toolManager.setShapeFillColor(Color.TRANSPARENT);
     }
@@ -81,53 +103,42 @@ public class Controller implements Initializable {
         toolManager.changeState(new DrawableRectangle());
     }
 
+    double selectionPointX;
+    double selectionPointY;
+
+
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseButton.SECONDARY) {
 
-            DropShadow dropShadow = new DropShadow();
+
+            selectionPointX = mouseEvent.getX();
+            selectionPointY = mouseEvent.getY();
+            Node target = (Node) mouseEvent.getTarget();
+
+            shapeEditor.selectShape((Node)target, dropShadow);
+            
+            contextMenu.getItems().addAll(deselect, delete, move, lineColor, fillColor, size, copy, paste);
+            contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+
+
             dropShadow.setRadius(5.0);
             dropShadow.setOffsetX(3.0);
             dropShadow.setOffsetY(3.0);
             dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
 
-            if(shapeEditor.getSelectedNode() != null) {
-                shapeEditor.getSelectedNode().setEffect(null);
-            }
-
-
-            Node target = (Node)mouseEvent.getTarget();
-            if(target instanceof Shape) {
-                shapeEditor.addSelectedNode((Shape) mouseEvent.getTarget());
-                shapeEditor.getSelectedNode().setEffect(dropShadow);
-            }
-            //if target is Pane do not highlight anything
-            if(target instanceof Pane) {
-                shapeEditor.clearSelectedNode();
-            }
-
-
-            ContextMenu contextMenu = new ContextMenu();
-            MenuItem deselect = new MenuItem("Deselect");
-            MenuItem delete = new MenuItem("Delete");
-            MenuItem move = new MenuItem("Move");
-            MenuItem lineColor = new MenuItem("Line color");
-            MenuItem fillColor = new MenuItem("Fill color");
-            MenuItem size = new MenuItem("Size");
-            MenuItem copy = new MenuItem("Copy");
-            MenuItem paste = new MenuItem("Paste");
-
-            contextMenu.getItems().addAll(deselect, delete, move, lineColor, fillColor, size, copy, paste);
-            contextMenu.show(target, mouseEvent.getScreenX(), mouseEvent.getScreenY());
-
-
-
-            target.setEffect(dropShadow);
-
             deselect.setOnAction((ActionEvent event) -> {
-                shapeEditor.clearSelectedNode();
-                target.setEffect(null);
+                shapeEditor.deselectShape(target);
             });
+
+            copy.setOnAction((ActionEvent event) -> {
+                shapeEditor.copyShape(target);
+            });
+
+            paste.setOnAction((ActionEvent event) -> {
+                shapeEditor.pasteShape(drawingPane, selectionPointX, selectionPointY);
+            });
+
         }
         else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
             toolManager.setxS(mouseEvent.getX());
@@ -135,10 +146,7 @@ public class Controller implements Initializable {
 
             shapeEditor.getSelectedNode().setEffect(null);
             shapeEditor.clearSelectedNode();
-            //iterate over selectedNodes
-
         }
-        //could draw a temporary shape here
     }
 
     @FXML
@@ -151,47 +159,6 @@ public class Controller implements Initializable {
 
             Shape shape = toolManager.draw();
             drawingPane.getChildren().add(shape);
-        }
-    }
-
-
-
-
-    @FXML
-    public void saveFile(ActionEvent actionEvent) {
-        Window stage = drawingPane.getScene().getWindow();
-        fileChooser.setTitle("Save file");
-        fileChooser.setInitialFileName("drawing");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-
-        try {
-            File file = fileChooser.showSaveDialog(stage);
-            if (file != null) {
-                fileManager.saveFile(file);
-                System.out.println(file.getName());
-            }
-        }
-        catch (Exception e){
-            System.out.println(e.getLocalizedMessage());
-        }
-    }
-
-    @FXML
-    public void loadFile(ActionEvent actionEvent) {
-        Window stage = drawingPane.getScene().getWindow();
-        fileChooser.setTitle("Save file");
-        fileChooser.setInitialFileName("drawing");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
-
-        try {
-            File file = fileChooser.showOpenDialog(stage);
-            if (file != null) {
-                fileManager.loadFile(file);
-                System.out.println(file.getName());
-            }
-        }
-        catch (Exception e){
-            System.out.println(e.getLocalizedMessage());
         }
     }
 
