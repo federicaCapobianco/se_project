@@ -108,10 +108,6 @@ public class  Editor {
         return null;
     }
 
-    public void clearSelectedNode(){
-        this.selectedNode = null;
-    }
-
     public void setCommand(Command c) {
         this.c = c;
     }
