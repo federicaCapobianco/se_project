@@ -212,4 +212,9 @@ public class Controller implements Initializable {
         }
     }
 
+    public void setPlusSize(ActionEvent actionEvent) {
+    }
+
+    public void setMinusSize(ActionEvent actionEvent) {
+    }
 }
