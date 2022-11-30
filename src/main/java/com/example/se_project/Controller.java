@@ -1,6 +1,8 @@
 package com.example.se_project;
 
 import diem.unisa.softwareengineering.tools.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -72,6 +74,8 @@ public class Controller implements Initializable {
     private Editor shapeEditor;
     private final Clipboard clipboard = Clipboard.getSystemClipboard();
 
+    private BooleanProperty drawMode;
+    private BooleanProperty toolMode;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,20 +86,32 @@ public class Controller implements Initializable {
 
         toolManager.setShapeLineColor(Color.BLACK);
         toolManager.setShapeFillColor(Color.TRANSPARENT);
+
+        drawMode = new SimpleBooleanProperty();
+        drawMode.set(false);
+
+        toolMode = new SimpleBooleanProperty();
+        toolMode.set(false);
     }
 
     @FXML
     private void setLine(ActionEvent actionEvent) {
+        drawMode.set(true);
+        toolMode.set(false);
         toolManager.changeState(new DrawableLine());
     }
 
     @FXML
     private void setEllipse(ActionEvent actionEvent) {
+        drawMode.set(true);
+        toolMode.set(false);
         toolManager.changeState(new DrawableEllipse());
     }
 
     @FXML
     public void setRectangle(ActionEvent actionEvent) {
+        drawMode.set(true);
+        toolMode.set(false);
         toolManager.changeState(new DrawableRectangle());
     }
 
@@ -105,62 +121,64 @@ public class Controller implements Initializable {
 
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
-        if(mouseEvent.getButton() == MouseButton.SECONDARY) {
-        
-            selectionPointX = mouseEvent.getX();
-            selectionPointY = mouseEvent.getY();
-            Node target = (Node) mouseEvent.getTarget();
 
-            shapeEditor.selectShape((Node)target, dropShadow);
-            
-            contextMenu.getItems().addAll(deselect, delete, copy, paste);
-            contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+            if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+
+                selectionPointX = mouseEvent.getX();
+                selectionPointY = mouseEvent.getY();
+                Node target = (Node) mouseEvent.getTarget();
+
+                shapeEditor.selectShape((Node) target, dropShadow);
+
+                contextMenu.getItems().addAll(deselect, delete, copy, paste);
+                contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+
+                dropShadow.setRadius(5.0);
+                dropShadow.setOffsetX(3.0);
+                dropShadow.setOffsetY(3.0);
+                dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
 
 
-            dropShadow.setRadius(5.0);
-            dropShadow.setOffsetX(3.0);
-            dropShadow.setOffsetY(3.0);
-            dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
+                deselect.setOnAction((ActionEvent event) -> {
+                    shapeEditor.deselectShape(target);
+                });
 
+                copy.setOnAction((ActionEvent event) -> {
+                    shapeEditor.copyShape(target);
+                });
 
-            deselect.setOnAction((ActionEvent event) -> {
-                shapeEditor.deselectShape(target);
-            });
+                paste.setOnAction((ActionEvent event) -> {
+                    shapeEditor.pasteShape(drawingPane, selectionPointX, selectionPointY);
+                });
 
-            copy.setOnAction((ActionEvent event) -> {
-                shapeEditor.copyShape(target);
-            });
+                delete.setOnAction((ActionEvent event) -> {
+                    Command cmd = new DeleteCommand(shapeEditor.getSelectedNode(), drawingPane);
+                    shapeEditor.executeCommand(cmd);
+                });
 
-            paste.setOnAction((ActionEvent event) -> {
-                shapeEditor.pasteShape(drawingPane, selectionPointX, selectionPointY);
-
-            });
-            
-            delete.setOnAction((ActionEvent event) -> {
-                Command cmd = new DeleteCommand( shapeEditor.getSelectedNode()/* reference alle figure selezionate */, drawingPane );
-                shapeEditor.executeCommand(cmd);
-            });
-
-        }
-        else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
-            toolManager.setxS(mouseEvent.getX());
-            toolManager.setyS(mouseEvent.getY());
-
-            shapeEditor.getSelectedNode().setEffect(null);
-            shapeEditor.clearSelectedNode();
-        }
+            } else if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+                contextMenu.hide();
+                if(drawMode.get() == true && toolMode.get() == false) {
+                    toolManager.setxS(mouseEvent.getX());
+                    toolManager.setyS(mouseEvent.getY());
+                    shapeEditor.getSelectedNode().setEffect(null);
+                    shapeEditor.clearSelectedNode();
+                }
+            }
     }
 
     @FXML
     public void mouseUp(MouseEvent mouseEvent) {
-        if(mouseEvent.getButton() == MouseButton.SECONDARY) {
-        }
-        else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
-            toolManager.setxE(mouseEvent.getX());
-            toolManager.setyE(mouseEvent.getY());
+        if(drawMode.get() == true && toolMode.get() == false) {
+            if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+            } else if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+                contextMenu.hide();
+                toolManager.setxE(mouseEvent.getX());
+                toolManager.setyE(mouseEvent.getY());
 
-            Shape shape = toolManager.draw();
-            drawingPane.getChildren().add(shape);
+                Shape shape = toolManager.draw();
+                drawingPane.getChildren().add(shape);
+            }
         }
     }
 
@@ -211,5 +229,26 @@ public class Controller implements Initializable {
             System.out.println(e.getLocalizedMessage());
         }
     }
+
+    @FXML
+    public void setMove(ActionEvent actionEvent) {
+        drawMode.set(false);
+        toolMode.set(true);
+    }
+
+    @FXML
+    public void moveFigure(MouseEvent mouseEvent) {
+        if (drawMode.getValue() == false && toolMode.getValue() == true){
+        if(mouseEvent.getButton() == MouseButton.PRIMARY) {
+            Command cmd = new MoveCommand(shapeEditor.getSelectedNode(), drawingPane, mouseEvent.getX(), mouseEvent.getY());
+            shapeEditor.executeCommand(cmd);
+        }
+        }
+    }
+
+
+
+
+
 
 }
