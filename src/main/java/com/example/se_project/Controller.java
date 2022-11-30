@@ -64,6 +64,8 @@ public class Controller implements Initializable {
     MenuItem delete = new MenuItem("Delete");
     MenuItem copy = new MenuItem("Copy");
     MenuItem paste = new MenuItem("Paste");
+
+    MenuItem changeFill = new MenuItem("Change fill");
     DropShadow dropShadow = new DropShadow();
 
     private Tools toolManager;
@@ -113,7 +115,8 @@ public class Controller implements Initializable {
 
             shapeEditor.selectShape((Node)target, dropShadow);
             
-            contextMenu.getItems().addAll(deselect, delete, copy, paste);
+            contextMenu.getItems().addAll(deselect, delete, copy, paste, changeFill);
+
             contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
 
 
@@ -141,6 +144,11 @@ public class Controller implements Initializable {
                 shapeEditor.executeCommand(cmd);
             });
 
+            changeFill.setOnAction((ActionEvent event) -> {
+                Command cmd = new ChangeLineColorCommand( shapeEditor.getSelectedNode(), drawingPane, new ColorPicker() );
+                shapeEditor.executeCommand(cmd);
+            });
+
         }
         else if(mouseEvent.getButton() == MouseButton.PRIMARY) {
             toolManager.setxS(mouseEvent.getX());
@@ -148,6 +156,7 @@ public class Controller implements Initializable {
 
             shapeEditor.getSelectedNode().setEffect(null);
             shapeEditor.clearSelectedNode();
+
         }
     }
 
@@ -173,6 +182,8 @@ public class Controller implements Initializable {
     public void setFillColor(ActionEvent actionEvent) {
         toolManager.setShapeFillColor(fillColorPicker.getValue());
     }
+
+
 
     @FXML
     public void saveFile(ActionEvent actionEvent) {
