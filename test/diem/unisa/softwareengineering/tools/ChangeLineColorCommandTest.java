@@ -6,16 +6,25 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ChangeLineColorCommandTest {
+import javafx.application.Platform;
 
+
+
+class ChangeLineColorCommandTest {
+    @BeforeAll
+    static void initJfxRuntime() {
+        Platform.startup(() -> {});
+    }
     @Test
     void testExecute(){
+
         Pane p = new Pane();
         Shape shape = new Rectangle(10,18,10,18);
         p.getChildren().add(shape);
