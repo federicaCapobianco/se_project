@@ -66,11 +66,12 @@
                </graphic>
             </Button>
             <Label layoutX="54.0" layoutY="4.0" text="Tools" />
-            <Label layoutX="973.0" layoutY="3.0" text="Strument" />
+            <Label layoutX="973.0" layoutY="3.0" text="Actions" />
             <Line endX="-99.99998474121094" endY="78.99999237060547" layoutX="1210.0" layoutY="7.0" opacity="0.09" startX="-99.99998474121094" startY="-6.999997615814209" />
             <Label layoutX="1181.0" layoutY="3.0" text="Size" />
             <Line endX="1231.0" endY="-7.000007629394531" layoutX="49.0" layoutY="93.0" opacity="0.19" startX="-117.00000762939453" startY="-7.000007629394531" />
             <ToggleButton fx:id="moveToggle" layoutX="59.0" layoutY="36.0" mnemonicParsing="false" text="Move" />
+            <Button layoutX="967.0" layoutY="30.0" mnemonicParsing="false" onAction="#setUndo" text="Undo" />
          </children>
       </Pane>
       <Pane fx:id="drawingPane" onMousePressed="#mouseDown" onMouseReleased="#mouseUp" onTouchPressed="#mouseDown" onTouchReleased="#mouseUp" prefHeight="607.0" prefWidth="1280.0">

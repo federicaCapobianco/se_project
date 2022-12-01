@@ -227,11 +227,7 @@ public class Controller implements Initializable {
     }
 
 
-
-
-
-
-
-
-
+    public void setUndo(ActionEvent actionEvent) {
+        shapeEditor.undoCommand();
+    }
 }
