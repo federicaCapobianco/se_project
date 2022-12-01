@@ -19,6 +19,7 @@ public class MinusSizeCommand extends Command{
 
     @Override
     public void undo() {
-
+        shape.setScaleX(shape.getScaleX()+0.1);
+        shape.setScaleY(shape.getScaleY()+0.1);
     }
 }
