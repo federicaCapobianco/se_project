@@ -180,6 +180,8 @@ public class Controller implements Initializable {
     @FXML
     public void setFillColor(ActionEvent actionEvent) {
         toolManager.setShapeFillColor(fillColorPicker.getValue());
+        Command cmd = new ChangeFillColorCommand( shapeEditor.getSelectedNode(), drawingPane, fillColorPicker );
+        shapeEditor.executeCommand(cmd);
     }
 
 
