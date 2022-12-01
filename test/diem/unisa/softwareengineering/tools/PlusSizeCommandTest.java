@@ -46,7 +46,7 @@ class PlusSizeCommandTest {
         prevX = line.getScaleX();
         prevY = line.getScaleY();
         cmd = new PlusSizeCommand(line);
-        cmd.execute();
+        cmd.undo();
         assertTrue(line.getScaleX() < prevX);
         assertTrue(line.getScaleY() < prevY);
 
@@ -54,7 +54,7 @@ class PlusSizeCommandTest {
         prevX = rect.getScaleX();
         prevY = rect.getScaleY();
         cmd = new PlusSizeCommand(rect);
-        cmd.execute();
+        cmd.undo();
         assertTrue(rect.getScaleX() < prevX);
         assertTrue(rect.getScaleY() < prevY);
 
@@ -62,7 +62,7 @@ class PlusSizeCommandTest {
         prevX = ellipse.getScaleX();
         prevY = ellipse.getScaleY();
         cmd = new PlusSizeCommand(ellipse);
-        cmd.execute();
+        cmd.undo();
         assertTrue(ellipse.getScaleX() < prevX);
         assertTrue(ellipse.getScaleY() < prevY);
     }
