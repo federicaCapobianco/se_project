@@ -171,15 +171,19 @@ public class Controller implements Initializable {
 
     @FXML
     public void setLineColor(ActionEvent actionEvent) {
+        Color colorInit = toolManager.getShapeLineColor();
+        System.out.println("base color: " + colorInit);
         toolManager.setShapeLineColor(lineColorPicker.getValue());
-        Command cmd = new ChangeLineColorCommand( shapeEditor.getSelectedNode(), drawingPane, lineColorPicker );
+        Command cmd = new ChangeLineColorCommand( shapeEditor.getSelectedNode(), drawingPane, lineColorPicker, colorInit);
         shapeEditor.executeCommand(cmd);
+        System.out.println("change color: " + toolManager.getShapeLineColor());
 
     }
 
     @FXML
     public void setFillColor(ActionEvent actionEvent) {
         toolManager.setShapeFillColor(fillColorPicker.getValue());
+
         Command cmd = new ChangeFillColorCommand( shapeEditor.getSelectedNode(), drawingPane, fillColorPicker );
         shapeEditor.executeCommand(cmd);
     }

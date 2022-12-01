@@ -33,6 +33,7 @@ class ChangeLineColorCommandTest {
         Command cmd = new ChangeFillColorCommand( shape, p, colorPicker );
         cmd.execute();
 
+
     }
 
     @Test
