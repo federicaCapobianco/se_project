@@ -12,7 +12,6 @@ class MoveCommandTest {
 
     @Test
     void testExecute() {
-        //SPOSTO LA FIGURA IN UN PUNTO X,Y MIO E VEDO SE LA POSIZIONE SI TROVA
         Pane p = new Pane();
         Shape shape = new Line(15,15,20,20);
         p.getChildren().add(shape);
