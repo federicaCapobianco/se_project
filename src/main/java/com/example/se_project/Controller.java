@@ -74,8 +74,8 @@ public class Controller implements Initializable {
     private Editor shapeEditor;
     private final Clipboard clipboard = Clipboard.getSystemClipboard();
 
-    private BooleanProperty drawMode;
-    private BooleanProperty toolMode;
+    @FXML
+    private ToggleButton moveToggle;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -87,31 +87,23 @@ public class Controller implements Initializable {
         toolManager.setShapeLineColor(Color.BLACK);
         toolManager.setShapeFillColor(Color.TRANSPARENT);
 
-        drawMode = new SimpleBooleanProperty();
-        drawMode.set(false);
-
-        toolMode = new SimpleBooleanProperty();
-        toolMode.set(false);
+        lineButton.disableProperty().bind(moveToggle.selectedProperty());
+        rectangleButton.disableProperty().bind(moveToggle.selectedProperty());
+        ellipseButton.disableProperty().bind(moveToggle.selectedProperty());
     }
 
     @FXML
     private void setLine(ActionEvent actionEvent) {
-        drawMode.set(true);
-        toolMode.set(false);
         toolManager.changeState(new DrawableLine());
     }
 
     @FXML
     private void setEllipse(ActionEvent actionEvent) {
-        drawMode.set(true);
-        toolMode.set(false);
         toolManager.changeState(new DrawableEllipse());
     }
 
     @FXML
     public void setRectangle(ActionEvent actionEvent) {
-        drawMode.set(true);
-        toolMode.set(false);
         toolManager.changeState(new DrawableRectangle());
     }
 
@@ -158,7 +150,11 @@ public class Controller implements Initializable {
 
             } else if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                 contextMenu.hide();
-                if(drawMode.get() == true && toolMode.get() == false) {
+                if(moveToggle.isSelected()){
+                    Command cmd = new MoveCommand(shapeEditor.getSelectedNode(), drawingPane, mouseEvent.getX(), mouseEvent.getY());
+                    shapeEditor.executeCommand(cmd);
+                }
+                else {
                     toolManager.setxS(mouseEvent.getX());
                     toolManager.setyS(mouseEvent.getY());
                     shapeEditor.getSelectedNode().setEffect(null);
@@ -169,7 +165,7 @@ public class Controller implements Initializable {
 
     @FXML
     public void mouseUp(MouseEvent mouseEvent) {
-        if(drawMode.get() == true && toolMode.get() == false) {
+        if(!moveToggle.isSelected()){
             if (mouseEvent.getButton() == MouseButton.SECONDARY) {
             } else if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                 contextMenu.hide();
@@ -230,21 +226,8 @@ public class Controller implements Initializable {
         }
     }
 
-    @FXML
-    public void setMove(ActionEvent actionEvent) {
-        drawMode.set(false);
-        toolMode.set(true);
-    }
 
-    @FXML
-    public void moveFigure(MouseEvent mouseEvent) {
-        if (drawMode.getValue() == false && toolMode.getValue() == true){
-        if(mouseEvent.getButton() == MouseButton.PRIMARY) {
-            Command cmd = new MoveCommand(shapeEditor.getSelectedNode(), drawingPane, mouseEvent.getX(), mouseEvent.getY());
-            shapeEditor.executeCommand(cmd);
-        }
-        }
-    }
+
 
 
 
