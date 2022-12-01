@@ -20,11 +20,15 @@ public class MoveCommand extends Command{
 
     @Override
     public void execute() {
-        shape.relocate(x, y);
-        //shape.translateXProperty().set(x);
-        //shape.translateYProperty().set(y);
-        //shape.setLayoutX(x);
-        //shape.setLayoutY(y);
+        //shape.relocate(x, y);
+        //System.out.println("x: " + shape.getTranslateX() + " y: " + shape.getTranslateY());
+        //shape.setTranslateX(x);
+        //shape.setTranslateY(y);
+        //System.out.println("x: " + shape.getTranslateX() + " y: " + shape.getTranslateY());
+
+//        shape.translateYProperty().set(y);
+       shape.setLayoutX(x - shape.getLayoutBounds().getMinX());
+       shape.setLayoutY(y - shape.getLayoutBounds().getMinY());
     }
 
     @Override

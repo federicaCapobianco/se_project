@@ -14,12 +14,12 @@ class MoveCommandTest {
     void testExecute() {
         //SPOSTO LA FIGURA IN UN PUNTO X,Y MIO E VEDO SE LA POSIZIONE SI TROVA
         Pane p = new Pane();
-        Shape shape = new Line(10,15,20,35);
+        Shape shape = new Line(15,15,20,20);
         p.getChildren().add(shape);
-        Command cmd = new MoveCommand( shape, p,50.0,50.0 );
+        Command cmd = new MoveCommand( shape, p,40.0,40.0 );
         cmd.execute();
-        assertEquals(50.0, shape.getLayoutX());
-        assertEquals(50.0, shape.getLayoutY());  //se muovo il centro non dovrei avere problemi
+        assertEquals(40 - shape.getLayoutBounds().getMinX(), shape.getLayoutX());
+        assertEquals(40 - shape.getLayoutBounds().getMinY(), shape.getLayoutY());
     }
 
     @Test
