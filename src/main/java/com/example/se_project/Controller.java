@@ -2,33 +2,20 @@ package com.example.se_project;
 
 import diem.unisa.softwareengineering.tools.*;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
-import java.beans.DefaultPersistenceDelegate;
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.net.URL;
-import java.nio.file.Files;
-import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 
@@ -58,6 +45,12 @@ public class Controller implements Initializable {
     private Label tfLine;
     @FXML
     private Pane drawingPane;
+
+    @FXML
+    private Button plusSizeButton;
+
+    @FXML
+    private Button minusSizeButton;
 
     ContextMenu contextMenu = new ContextMenu();
     MenuItem deselect = new MenuItem("Deselect");
@@ -212,4 +205,13 @@ public class Controller implements Initializable {
         }
     }
 
+    public void setPlusSize(ActionEvent actionEvent) {
+        Command cmd = new PlusSizeCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+
+    public void setMinusSize(ActionEvent actionEvent) {
+        Command cmd = new MinusSizeCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
 }
