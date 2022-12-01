@@ -212,4 +212,8 @@ public class Controller implements Initializable {
         }
     }
 
+    public void setUndo(ActionEvent actionEvent) {
+        //dovrebbe essere legata d un Command, changeSomething, non la copy
+        shapeEditor.undoCommand();
+    }
 }
