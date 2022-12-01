@@ -206,12 +206,12 @@ public class Controller implements Initializable {
     }
 
     public void setPlusSize(ActionEvent actionEvent) {
-        Command cmd = new PlusSizeCommand(shapeEditor.getSelectedNode()/* reference alle figure selezionate */, drawingPane );
+        Command cmd = new PlusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
     public void setMinusSize(ActionEvent actionEvent) {
-        Command cmd = new MinusSizeCommand(shapeEditor.getSelectedNode()/* reference alle figure selezionate */, drawingPane );
+        Command cmd = new MinusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 }

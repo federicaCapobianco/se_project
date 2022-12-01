@@ -6,11 +6,9 @@ import javafx.scene.shape.Shape;
 public class MinusSizeCommand extends Command{
 
     private Shape shape;
-    private Pane canva;
 
-    public MinusSizeCommand(Shape shape, Pane canva){
+    public MinusSizeCommand(Shape shape){
         this.shape = shape;
-        this.canva = canva;
     }
 
     @Override
