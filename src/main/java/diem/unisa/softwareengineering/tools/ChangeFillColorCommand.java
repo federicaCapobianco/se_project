@@ -28,6 +28,6 @@ public class ChangeFillColorCommand extends Command {
 
     @Override
     public void undo() {
-        shape.setStroke(colorInit);
+        shape.setFill(colorInit);
     }
 }

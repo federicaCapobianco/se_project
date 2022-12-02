@@ -22,6 +22,8 @@ class ChangeLineColorCommandTest {
     static void initJfxRuntime() {
         Platform.startup(() -> {});
     }
+
+    Color colorInit = Color.BLUE;
     @Test
     void testExecute(){
 
@@ -30,7 +32,6 @@ class ChangeLineColorCommandTest {
         p.getChildren().add(shape);
         ColorPicker colorPicker = new ColorPicker();
         colorPicker.setValue(Color.RED);
-        Color colorInit = Color.BLUE;
         Command cmd = new ChangeLineColorCommand( shape, p, colorPicker, colorInit );
         cmd.execute();
         assertEquals(shape.getStroke(), colorPicker.getValue());
@@ -38,6 +39,13 @@ class ChangeLineColorCommandTest {
 
     @Test
     void testUndo() {
-
+        Pane p = new Pane();
+        Shape shape = new Rectangle(10,18,10,18);
+        p.getChildren().add(shape);
+        ColorPicker colorPicker = new ColorPicker();
+        colorPicker.setValue(Color.RED);
+        Command cmd = new ChangeLineColorCommand( shape, p, colorPicker, colorInit );
+        cmd.undo();
+        assertEquals(shape.getStroke(), colorInit);
     }
 }
