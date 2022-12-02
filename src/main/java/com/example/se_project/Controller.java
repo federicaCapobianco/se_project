@@ -232,4 +232,8 @@ public class Controller implements Initializable {
         Command cmd = new MinusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
+
+    public void setToBack(ActionEvent actionEvent) {
+
+    }
 }
