@@ -3,6 +3,7 @@ package diem.unisa.softwareengineering.tools;
 import javafx.application.Platform;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,9 +23,11 @@ class ChangeFillColorCommandTest {
         Shape shape = new Rectangle(10,18,10,18);
         p.getChildren().add(shape);
         ColorPicker colorPicker = new ColorPicker();
-        colorPicker.getCustomColors();
-        Command cmd = new ChangeFillColorCommand( shape, p, colorPicker );
+        colorPicker.setValue(Color.RED);
+        Color colorInit = Color.BLUE;
+        Command cmd = new ChangeFillColorCommand( shape, p, colorPicker, colorInit );
         cmd.execute();
+        assertEquals(shape.getFill(), colorPicker.getValue());
     }
 
     @Test

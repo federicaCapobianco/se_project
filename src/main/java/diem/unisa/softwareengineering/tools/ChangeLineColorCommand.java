@@ -22,9 +22,7 @@ public class ChangeLineColorCommand extends Command {
 
     @Override
     public void execute() {
-        System.out.println("color prima della modifica: " + colorInit);
         shape.setStroke(lineColorPicker.getValue());
-        System.out.println("color dopo la modifica: " + lineColorPicker.getValue());
     }
 
     @Override
