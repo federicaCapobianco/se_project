@@ -234,6 +234,7 @@ public class Controller implements Initializable {
     }
 
     public void setToBack(ActionEvent actionEvent) {
-
+        Command cmd = new ToBackCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
     }
 }
