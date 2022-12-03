@@ -1,5 +1,7 @@
 package diem.unisa.softwareengineering.tools;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.Clipboard;
