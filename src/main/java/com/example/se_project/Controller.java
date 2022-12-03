@@ -59,6 +59,7 @@ public class Controller implements Initializable {
     MenuItem delete = new MenuItem("Delete");
     MenuItem copy = new MenuItem("Copy");
     MenuItem paste = new MenuItem("Paste");
+
     DropShadow dropShadow = new DropShadow();
 
     private Tools toolManager;
@@ -69,6 +70,8 @@ public class Controller implements Initializable {
 
     @FXML
     private ToggleButton moveToggle;
+    @FXML
+    private Button toFrontButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -173,13 +176,22 @@ public class Controller implements Initializable {
 
     @FXML
     public void setLineColor(ActionEvent actionEvent) {
+        Color colorInit = toolManager.getShapeLineColor();
         toolManager.setShapeLineColor(lineColorPicker.getValue());
+        Command cmd = new ChangeLineColorCommand( shapeEditor.getSelectedNode(), drawingPane, lineColorPicker, colorInit);
+        shapeEditor.executeCommand(cmd);
+
     }
 
     @FXML
     public void setFillColor(ActionEvent actionEvent) {
+        Color colorInit = toolManager.getShapeFillColor();
         toolManager.setShapeFillColor(fillColorPicker.getValue());
+        Command cmd = new ChangeFillColorCommand( shapeEditor.getSelectedNode(), drawingPane, fillColorPicker, colorInit );
+        shapeEditor.executeCommand(cmd);
     }
+
+
 
     @FXML
     public void saveFile(ActionEvent actionEvent) {
@@ -223,18 +235,27 @@ public class Controller implements Initializable {
     public void setUndo(ActionEvent actionEvent) {
         shapeEditor.undoCommand();
     }
+    @FXML
     public void setPlusSize(ActionEvent actionEvent) {
         Command cmd = new PlusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
+    @FXML
     public void setMinusSize(ActionEvent actionEvent) {
         Command cmd = new MinusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
+    @FXML
     public void setToBack(ActionEvent actionEvent) {
         Command cmd = new ToBackCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+
+    @FXML
+    public void putToFront(ActionEvent actionEvent) {
+        Command cmd = new ToFrontCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 }
