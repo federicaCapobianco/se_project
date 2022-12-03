@@ -24,9 +24,9 @@ Below you can check our documentation, in particular:
 
     * [Sprint Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/e_delpezzo_studenti_unisa_it/Ee4dgBR3mOtNoKHUuNQwYvEB5y63Oqt_HkIITklnTxFyVA?e=C09RF9)
 
-    * [Sprint Review]()
+    * [Sprint Review](https://unisalerno-my.sharepoint.com/:w:/g/personal/e_delpezzo_studenti_unisa_it/EcFPhK2F-VNErGc-1utfd2MBo2hkzaE5lR9nC_0JUHmPqw?e=VUYKeL)
 
-    * [Sprint Retrospective]()
+    * [Sprint Retrospective](https://unisalerno-my.sharepoint.com/:w:/g/personal/e_delpezzo_studenti_unisa_it/ERMwL6QgY5dMrZnu1O0Her8Bh2xHrzo-GU6sWW9aBBWMOw?e=heiGYU)
 
 ### Team members
 
