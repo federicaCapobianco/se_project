@@ -66,8 +66,7 @@ public class Controller implements Initializable {
     private FileManager fileManager;
     private FileChooser fileChooser;
     private Editor shapeEditor;
-    private final Clipboard clipboard = Clipboard.getSystemClipboard();
-
+    private CustomClipboard clipboard;
     @FXML
     private ToggleButton moveToggle;
     @FXML
@@ -79,6 +78,7 @@ public class Controller implements Initializable {
         fileManager = new FileManager(drawingPane);
         fileChooser = new FileChooser();
         shapeEditor = new Editor();
+        clipboard = new CustomClipboard();
 
         toolManager.setShapeLineColor(Color.BLACK);
         toolManager.setShapeFillColor(Color.TRANSPARENT);
@@ -132,11 +132,11 @@ public class Controller implements Initializable {
                 });
 
                 copy.setOnAction((ActionEvent event) -> {
-                    shapeEditor.copyShape(target);
+                    clipboard.copy(target);
                 });
 
                 paste.setOnAction((ActionEvent event) -> {
-                    shapeEditor.pasteShape(drawingPane, selectionPointX, selectionPointY);
+                    clipboard.paste(drawingPane, selectionPointX, selectionPointY);
                 });
 
                 delete.setOnAction((ActionEvent event) -> {

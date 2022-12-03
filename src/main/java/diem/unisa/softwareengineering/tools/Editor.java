@@ -71,47 +71,6 @@ public class  Editor {
         this.clearSelectedNode();
     }
 
-    public void copyShape(Node shape){
-        Clipboard clipboard = Clipboard.getSystemClipboard();
-        File file = new File("copy.xml");
-        shape.setEffect(null);
-        try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(Files.newOutputStream(file.toPath())))) {
-            encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
-            encoder.writeObject(shape);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        ClipboardContent content = new ClipboardContent();
-        List<File> files = List.of(file);
-        content.putFiles(files);
-
-        clipboard.setContent(content);
-    }
-
-    public Shape pasteShape(Pane drawingPane, double selectionPointX, double selectionPointY){
-        Clipboard clipboard = Clipboard.getSystemClipboard();
-        List<File> files = clipboard.getFiles();
-        try (XMLDecoder decoder = new XMLDecoder(
-                new BufferedInputStream(
-                        Files.newInputStream(files.get(0).toPath())))) {
-
-            decoder.setExceptionListener(e -> {
-                throw new RuntimeException(e);
-            });
-
-            Shape nodeToAdd = (Shape) decoder.readObject();
-
-            nodeToAdd.relocate(selectionPointX, selectionPointY);
-            System.out.println("node: "+nodeToAdd+"x: "+nodeToAdd.getTranslateX()+" y: "+nodeToAdd.getTranslateY());
-            drawingPane.getChildren().add(nodeToAdd);
-            return nodeToAdd;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public void setCommand(Command c) {
         this.c = c;
     }

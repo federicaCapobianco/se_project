@@ -56,33 +56,9 @@ class EditorTest {
         assertNull(editor.getSelectedNode());
     }
 
-    /*
-    @Test
-    void testCopyShape() {
-        Editor editor = new Editor();
-        Shape shape = new Line();
-        Pane canva = new Pane();
-        //create a new clipboard
 
-        canva.getChildren().add(shape);
-
-        editor.selectShape(shape, null);
-        editor.copyShape(editor.getSelectedNode());
-
-        Shape copiedShape = editor.pasteShape(canva,0,0);
-        assertEquals(shape, copiedShape);
-    }
-*/
     @Test
     void testExecuteCommand() {
-        //Crea uno stack vuoto
-        //Crea un editor
-        //Crea un comando
-        //Esegui il comando
-        //Verifica che lo stack non sia vuoto
-        //Verifica che lo stack abbia un elemento
-        //Verifica che lo stack abbia il comando che hai creato
-       // Stack<Command> commandStack = new Stack<Command>();
         Editor editor = new Editor();
         Shape shape = new Line(10,15,20,35);
         Pane p = new Pane();
@@ -92,7 +68,7 @@ class EditorTest {
     }
 
     @Test
-    void testUnduCommand() {
+    void testUndoCommand() {
         Editor editor = new Editor();
         Shape shape = new Line(10,15,20,35);
         Pane p = new Pane();
