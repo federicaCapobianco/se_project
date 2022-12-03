@@ -70,6 +70,8 @@ public class Controller implements Initializable {
 
     @FXML
     private ToggleButton moveToggle;
+    @FXML
+    private Button toFrontButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -233,13 +235,22 @@ public class Controller implements Initializable {
     public void setUndo(ActionEvent actionEvent) {
         shapeEditor.undoCommand();
     }
+    @FXML
     public void setPlusSize(ActionEvent actionEvent) {
         Command cmd = new PlusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
+    @FXML
     public void setMinusSize(ActionEvent actionEvent) {
         Command cmd = new MinusSizeCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+
+
+    @FXML
+    public void putToFront(ActionEvent actionEvent) {
+        Command cmd = new ToFrontCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 }
