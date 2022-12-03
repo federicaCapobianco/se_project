@@ -21,6 +21,12 @@ class DeleteCommandTest {
 
     @Test
     void testUndo() {
-
+        Pane p = new Pane();
+        Shape shape = new Line(10,15,20,35);
+        p.getChildren().add(shape);
+        Command cmd = new DeleteCommand( shape, p );
+        cmd.execute();
+        cmd.undo();
+        assertTrue(p.getChildren().contains(shape));
     }
 }

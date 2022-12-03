@@ -22,6 +22,6 @@ public class DeleteCommand extends Command{
 
     @Override
     public void undo() {
-
+        canva.getChildren().add(shape);
     }
 }
