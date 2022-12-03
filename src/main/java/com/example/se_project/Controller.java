@@ -247,6 +247,11 @@ public class Controller implements Initializable {
         shapeEditor.executeCommand(cmd);
     }
 
+    @FXML
+    public void setToBack(ActionEvent actionEvent) {
+        Command cmd = new ToBackCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
 
     @FXML
     public void putToFront(ActionEvent actionEvent) {

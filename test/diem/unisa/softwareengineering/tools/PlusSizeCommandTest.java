@@ -1,5 +1,6 @@
 package diem.unisa.softwareengineering.tools;
 
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -58,7 +59,7 @@ class PlusSizeCommandTest {
         assertTrue(rect.getScaleX() < prevX);
         assertTrue(rect.getScaleY() < prevY);
 
-        Shape ellipse = new Rectangle(10,15,20,35);
+        Shape ellipse = new Ellipse(10,15,20,35);
         prevX = ellipse.getScaleX();
         prevY = ellipse.getScaleY();
         cmd = new PlusSizeCommand(ellipse);

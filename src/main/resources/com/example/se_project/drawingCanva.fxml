@@ -100,6 +100,11 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
                </graphic>
             </Button>
+            <Button fx:id="toBackButton" layoutX="600.0" layoutY="31.0" mnemonicParsing="false" onAction="#setToBack" prefHeight="35.0" prefWidth="35.0">
+               <graphic>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="toBack" />
+               </graphic>
+            </Button>
             <Button fx:id="toFrontButton" layoutX="905.0" layoutY="48.0" mnemonicParsing="false" onAction="#putToFront" text="To Front" />
          </children>
       </Pane>
