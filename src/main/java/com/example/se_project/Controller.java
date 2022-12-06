@@ -9,8 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.*;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
@@ -45,14 +46,6 @@ public class Controller implements Initializable {
     private Button ellipseButton;
     @FXML
     private Label tfLine;
-    @FXML
-    private Pane drawingPane;
-
-    @FXML
-    private Button plusSizeButton;
-
-    @FXML
-    private Button minusSizeButton;
 
     ContextMenu contextMenu = new ContextMenu();
     MenuItem deselect = new MenuItem("Deselect");
@@ -71,6 +64,12 @@ public class Controller implements Initializable {
     private ToggleButton moveToggle;
     @FXML
     private Button toFrontButton;
+    @FXML
+    private Button toBackButton;
+    @FXML
+    private Pane drawingPane;
+    @FXML
+    private GridPane gridPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -86,6 +85,15 @@ public class Controller implements Initializable {
         lineButton.disableProperty().bind(moveToggle.selectedProperty());
         rectangleButton.disableProperty().bind(moveToggle.selectedProperty());
         ellipseButton.disableProperty().bind(moveToggle.selectedProperty());
+
+        gridPane.setStyle("" +
+                "-fx-grid-lines-visible: true;" +
+                "-fx-strokes: red;" +
+                "cell-border-color: red;" +
+                "-fx-grid-lines-visible: true;" +
+                "-fx-stroke-width: 1;" +
+                "-fx-stroke: red;");
+
     }
 
     @FXML
@@ -235,13 +243,13 @@ public class Controller implements Initializable {
     public void setUndo(ActionEvent actionEvent) {
         shapeEditor.undoCommand();
     }
-    @FXML
+    @Deprecated
     public void setPlusSize(ActionEvent actionEvent) {
         Command cmd = new PlusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
-    @FXML
+    @Deprecated
     public void setMinusSize(ActionEvent actionEvent) {
         Command cmd = new MinusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
