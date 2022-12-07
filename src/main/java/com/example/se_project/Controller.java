@@ -90,6 +90,9 @@ public class Controller implements Initializable {
         lineButton.disableProperty().bind(moveToggle.selectedProperty());
         rectangleButton.disableProperty().bind(moveToggle.selectedProperty());
         ellipseButton.disableProperty().bind(moveToggle.selectedProperty());
+        lineButton.disableProperty().bind(polygonButton.selectedProperty());
+        rectangleButton.disableProperty().bind(polygonButton.selectedProperty());
+        ellipseButton.disableProperty().bind(polygonButton.selectedProperty());
         //polygonButton.disableProperty().bind(moveToggle.selectedProperty());
     }
 
@@ -109,13 +112,23 @@ public class Controller implements Initializable {
     }
     @FXML
     public void setPolygon(ActionEvent actionEvent) {
-        if(polygonButton.isSelected())
+        //--------
+        if(polygonButton.selectedProperty().getValue()==false){
+            toolManager.closureDraw();
+            polygonButton.selectedProperty().setValue(true);
+            toolManager.changeState(new DrawablePolygon());
+        }
+        toolManager.changeState(new DrawablePolygon());
+        //--------
+
+        /*if(polygonButton.isSelected())
             toolManager.changeState(new DrawablePolygon());
         else{
             //chiusura
-            toolManager.closureDraw();
             polygonButton.selectedProperty().setValue(true);
-        }
+            toolManager.closureDraw();
+
+        }*/
     }
     double selectionPointX;
     double selectionPointY;
