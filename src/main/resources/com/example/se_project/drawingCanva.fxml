@@ -101,6 +101,8 @@
                   <Font size="13.0" />
                </font>
             </Button>
+            <Button layoutX="909.0" layoutY="34.0" mnemonicParsing="false" onAction="#rotateLeft" text="Rotate L" />
+            <Button layoutX="988.0" layoutY="36.0" mnemonicParsing="false" onAction="#rotateRight" text="Rotate R" />
          </children>
       </Pane>
       <Pane fx:id="drawingPane" onMousePressed="#mouseDown" onMouseReleased="#mouseUp" onTouchPressed="#mouseDown" onTouchReleased="#mouseUp" prefHeight="607.0" prefWidth="1280.0">
