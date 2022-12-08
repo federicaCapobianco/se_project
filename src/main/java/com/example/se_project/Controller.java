@@ -70,6 +70,12 @@ public class Controller implements Initializable {
     private Pane drawingPane;
     @FXML
     private GridPane gridPane;
+    @FXML
+    private ToggleButton gridButton;
+    @FXML
+    private Button plusGrid;
+    @FXML
+    private Button lessGrid;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -86,14 +92,7 @@ public class Controller implements Initializable {
         rectangleButton.disableProperty().bind(moveToggle.selectedProperty());
         ellipseButton.disableProperty().bind(moveToggle.selectedProperty());
 
-        gridPane.setStyle("" +
-                "-fx-grid-lines-visible: true;" +
-                "-fx-strokes: red;" +
-                "cell-border-color: red;" +
-                "-fx-grid-lines-visible: true;" +
-                "-fx-stroke-width: 1;" +
-                "-fx-stroke: red;");
-
+        //gridPane.setStyle("" +"-fx-grid-lines-visible: true;");
     }
 
     @FXML
@@ -265,5 +264,30 @@ public class Controller implements Initializable {
     public void putToFront(ActionEvent actionEvent) {
         Command cmd = new ToFrontCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
+    }
+
+    @FXML
+    public void toggleGrid(ActionEvent actionEvent) {
+        if(gridButton.isSelected()){
+            gridPane.setStyle("" +"-fx-grid-lines-visible: true;");
+        }
+        else{
+            gridPane.setStyle("" +"-fx-grid-lines-visible: false;");
+        }
+    }
+
+    @FXML
+    public void makeGridBigger(ActionEvent actionEvent) {
+        //remove 1 rows and 1 column
+        gridPane.getRowConstraints().remove(0);
+        gridPane.getColumnConstraints().remove(0);
+
+    }
+
+    @FXML
+    public void makeGridSmaller(ActionEvent actionEvent) {
+        //add 1 rows and 1 column
+        gridPane.getRowConstraints().add(0, new RowConstraints());
+        gridPane.getColumnConstraints().add(0, new ColumnConstraints());
     }
 }
