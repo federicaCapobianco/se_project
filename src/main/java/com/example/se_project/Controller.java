@@ -71,6 +71,10 @@ public class Controller implements Initializable {
     private ToggleButton moveToggle;
     @FXML
     private Button toFrontButton;
+    @FXML
+    private Button textButton;
+    @FXML
+    private TextField textTextField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -86,6 +90,9 @@ public class Controller implements Initializable {
         lineButton.disableProperty().bind(moveToggle.selectedProperty());
         rectangleButton.disableProperty().bind(moveToggle.selectedProperty());
         ellipseButton.disableProperty().bind(moveToggle.selectedProperty());
+
+        textTextField.disableProperty().setValue(true);
+        textTextField.setText("Add here your text");
     }
 
     @FXML
@@ -257,5 +264,15 @@ public class Controller implements Initializable {
     public void putToFront(ActionEvent actionEvent) {
         Command cmd = new ToFrontCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
+    }
+
+    public void setTextShape(ActionEvent actionEvent) {
+        toolManager.changeState(new DrawableText());
+        textTextField.disableProperty().setValue(false);
+        textTextField.setText("");
+    }
+
+    public void setTextString(ActionEvent actionEvent) {
+        toolManager.setTextString(textTextField.getText());
     }
 }
