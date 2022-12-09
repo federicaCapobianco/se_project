@@ -17,7 +17,7 @@ class MirrorHorizontalCommandTest {
         p.getChildren().add(shape);
         Command cmd = new MirrorHorizontalCommand(shape);
         cmd.execute();
-        assertEquals(shape.getScaleY(), -1);
+        assertEquals(shape.getScaleX(), -1);
 
     }
 
@@ -28,7 +28,7 @@ class MirrorHorizontalCommandTest {
         p.getChildren().add(shape);
         Command cmd = new MirrorHorizontalCommand(shape);
         cmd.undo();
-        assertEquals(shape.getScaleY(), 1);
+        assertEquals(shape.getScaleX(), 1);
 
 
     }

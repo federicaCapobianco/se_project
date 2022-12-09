@@ -48,12 +48,6 @@ public class Controller implements Initializable {
     @FXML
     private Pane drawingPane;
 
-    @FXML
-    private Button plusSizeButton;
-
-    @FXML
-    private Button minusSizeButton;
-
     ContextMenu contextMenu = new ContextMenu();
     MenuItem deselect = new MenuItem("Deselect");
     MenuItem delete = new MenuItem("Delete");
@@ -71,6 +65,12 @@ public class Controller implements Initializable {
     private ToggleButton moveToggle;
     @FXML
     private Button toFrontButton;
+    @FXML
+    private Button toBackButton;
+    @FXML
+    private TextField stretchX;
+    @FXML
+    private TextField stretchY;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -235,13 +235,13 @@ public class Controller implements Initializable {
     public void setUndo(ActionEvent actionEvent) {
         shapeEditor.undoCommand();
     }
-    @FXML
+    @Deprecated
     public void setPlusSize(ActionEvent actionEvent) {
         Command cmd = new PlusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
-    @FXML
+    @Deprecated
     public void setMinusSize(ActionEvent actionEvent) {
         Command cmd = new MinusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
@@ -259,23 +259,32 @@ public class Controller implements Initializable {
         shapeEditor.executeCommand(cmd);
     }
 
+    @Deprecated
     public void mirrorHorizontal(ActionEvent actionEvent) {
         Command cmd = new MirrorHorizontalCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
+    @Deprecated
     public void mirrorVertical(ActionEvent actionEvent) {
         Command cmd = new MirrorVerticalCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
+    @FXML
     public void stretchHorizontal(ActionEvent actionEvent) {
-        Command cmd = new StretchHorizontalCommand(shapeEditor.getSelectedNode());
+        Double n = Double.parseDouble(this.stretchX.getText());
+        Command cmd = new StretchHorizontalCommand(shapeEditor.getSelectedNode(),n);
         shapeEditor.executeCommand(cmd);
+        this.stretchX.clear();
     }
 
+    @FXML
     public void stretchVertical(ActionEvent actionEvent) {
-        Command cmd = new StretchVerticalCommand(shapeEditor.getSelectedNode());
+        Double n = Double.parseDouble(this.stretchY.getText());
+        Command cmd = new StretchVerticalCommand(shapeEditor.getSelectedNode(), n);
         shapeEditor.executeCommand(cmd);
+        this.stretchY.clear();
     }
+
 }

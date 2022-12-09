@@ -4,18 +4,20 @@ import javafx.scene.shape.Shape;
 
 public class StretchVerticalCommand extends Command{
     private Shape shape;
+    private Double n;
 
-    public StretchVerticalCommand (Shape shape){
+    public StretchVerticalCommand (Shape shape, Double n){
+        this.n=n;
         this.shape= shape;
     }
 
     @Override
     public void execute() {
-        shape.setScaleX(shape.getScaleY()+0.3);
+        shape.setScaleY(shape.getScaleY()+n);
     }
 
     @Override
     public void undo() {
-        shape.setScaleX(shape.getScaleY()-0.3);
+        shape.setScaleY(shape.getScaleY()-n);
     }
 }

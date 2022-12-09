@@ -5,18 +5,22 @@ import javafx.scene.shape.Shape;
 public class StretchHorizontalCommand extends Command{
 
     private Shape shape;
+    private Double n;
 
-    public StretchHorizontalCommand (Shape shape){
+    public StretchHorizontalCommand (Shape shape, Double n){
+
         this.shape= shape;
+        this.n=n;
     }
 
     @Override
     public void execute() {
-        shape.setScaleY(shape.getScaleY()+0.3);
+        System.out.println("\n\n\n\n\n\n"+n);
+        shape.setScaleX(shape.getScaleX()+n);
     }
 
     @Override
     public void undo() {
-        shape.setScaleY(shape.getScaleY()-0.3);
+        shape.setScaleX(shape.getScaleX()-n);
     }
 }
