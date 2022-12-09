@@ -55,11 +55,14 @@ public class Controller implements Initializable {
 
     DropShadow dropShadow = new DropShadow();
 
+
+
     private Tools toolManager;
     private FileManager fileManager;
     private FileChooser fileChooser;
     private Editor shapeEditor;
     private CustomClipboard clipboard;
+    private GridHandler gridHandler;
     @FXML
     private ToggleButton moveToggle;
     @FXML
@@ -84,6 +87,7 @@ public class Controller implements Initializable {
         fileChooser = new FileChooser();
         shapeEditor = new Editor();
         clipboard = new CustomClipboard();
+        gridHandler = new GridHandler(gridPane, gridButton);
 
         toolManager.setShapeLineColor(Color.BLACK);
         toolManager.setShapeFillColor(Color.TRANSPARENT);
@@ -91,8 +95,22 @@ public class Controller implements Initializable {
         lineButton.disableProperty().bind(moveToggle.selectedProperty());
         rectangleButton.disableProperty().bind(moveToggle.selectedProperty());
         ellipseButton.disableProperty().bind(moveToggle.selectedProperty());
+        toFrontButton.disableProperty().bind(moveToggle.selectedProperty());
+        toBackButton.disableProperty().bind(moveToggle.selectedProperty());
+        plusGrid.disableProperty().bind(moveToggle.selectedProperty());
+        lessGrid.disableProperty().bind(moveToggle.selectedProperty());
+        gridButton.disableProperty().bind(moveToggle.selectedProperty());
 
-        //gridPane.setStyle("" +"-fx-grid-lines-visible: true;");
+        //add binding between gridButton and + and - buttons
+        BooleanProperty gridButtonSelected = new SimpleBooleanProperty();
+        gridButtonSelected.bind(gridButton.selectedProperty());
+        plusGrid.disableProperty().bind(gridButtonSelected.not());
+        lessGrid.disableProperty().bind(gridButtonSelected.not());
+
+
+
+
+        gridPane.setMouseTransparent(true);
     }
 
     @FXML
@@ -268,26 +286,16 @@ public class Controller implements Initializable {
 
     @FXML
     public void toggleGrid(ActionEvent actionEvent) {
-        if(gridButton.isSelected()){
-            gridPane.setStyle("" +"-fx-grid-lines-visible: true;");
-        }
-        else{
-            gridPane.setStyle("" +"-fx-grid-lines-visible: false;");
-        }
+        gridHandler.toggleGrid();
     }
 
     @FXML
     public void makeGridBigger(ActionEvent actionEvent) {
-        //remove 1 rows and 1 column
-        gridPane.getRowConstraints().remove(0);
-        gridPane.getColumnConstraints().remove(0);
-
+        gridHandler.plusGrid();
     }
 
     @FXML
     public void makeGridSmaller(ActionEvent actionEvent) {
-        //add 1 rows and 1 column
-        gridPane.getRowConstraints().add(0, new RowConstraints());
-        gridPane.getColumnConstraints().add(0, new ColumnConstraints());
+        gridHandler.minusGrid();
     }
 }
