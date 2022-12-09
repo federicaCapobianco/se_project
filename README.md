@@ -30,11 +30,11 @@ Below you can check our documentation, in particular:
 
 * Third sprint
 
-    * [Sprint Backlog]([https://unisalerno-my.sharepoint.com/:x:/g/personal/e_delpezzo_studenti_unisa_it/Ee4dgBR3mOtNoKHUuNQwYvEB5y63Oqt_HkIITklnTxFyVA?e=C09RF](https://unisalerno-my.sharepoint.com/:x:/g/personal/e_delpezzo_studenti_unisa_it/EeSRKM12YkJFmzeoVF-hzqcBdVyo9QkXwHmCXX3nBA2xSA?e=5usvLX)9)
+    * [Sprint Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/e_delpezzo_studenti_unisa_it/Ee4dgBR3mOtNoKHUuNQwYvEB5y63Oqt_HkIITklnTxFyVA?e=C09RF](https://unisalerno-my.sharepoint.com/:x:/g/personal/e_delpezzo_studenti_unisa_it/EeSRKM12YkJFmzeoVF-hzqcBdVyo9QkXwHmCXX3nBA2xSA?e=5usvLX)9)
 
-    * [Sprint Review]([https://unisalerno-my.sharepoint.com/:w:/g/personal/e_delpezzo_studenti_unisa_it/EcFPhK2F-VNErGc-1utfd2MBo2hkzaE5lR9nC_0JUHmPqw?e=VUYKeL](https://unisalerno-my.sharepoint.com/:w:/g/personal/e_delpezzo_studenti_unisa_it/EVwHwDE7oWVEtfIheZocFtoBNZ4PsBAMkKI1FWj1XoglQw?e=euMkTt))
+    * [Sprint Review](https://unisalerno-my.sharepoint.com/:w:/g/personal/e_delpezzo_studenti_unisa_it/EcFPhK2F-VNErGc-1utfd2MBo2hkzaE5lR9nC_0JUHmPqw?e=VUYKeL](https://unisalerno-my.sharepoint.com/:w:/g/personal/e_delpezzo_studenti_unisa_it/EVwHwDE7oWVEtfIheZocFtoBNZ4PsBAMkKI1FWj1XoglQw?e=euMkTt))
 
-    * [Sprint Retrospective]([https://unisalerno-my.sharepoint.com/:w:/g/personal/e_delpezzo_studenti_unisa_it/ERMwL6QgY5dMrZnu1O0Her8Bh2xHrzo-GU6sWW9aBBWMOw?e=heiGYU](https://unisalerno-my.sharepoint.com/:w:/g/personal/e_delpezzo_studenti_unisa_it/EbSY7uIE1xVMhwn4gQzix64B7b5o2ILSISC1PVb1CTdVQw?e=1pgCcF))
+    * [Sprint Retrospective](https://unisalerno-my.sharepoint.com/:w:/g/personal/e_delpezzo_studenti_unisa_it/ERMwL6QgY5dMrZnu1O0Her8Bh2xHrzo-GU6sWW9aBBWMOw?e=heiGYU](https://unisalerno-my.sharepoint.com/:w:/g/personal/e_delpezzo_studenti_unisa_it/EbSY7uIE1xVMhwn4gQzix64B7b5o2ILSISC1PVb1CTdVQw?e=1pgCcF))
 
 ### Team members
 
