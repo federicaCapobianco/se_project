@@ -258,4 +258,14 @@ public class Controller implements Initializable {
         Command cmd = new ToFrontCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
+
+    public void mirrorHorizzontal(ActionEvent actionEvent) {
+        Command cmd = new MirrorHorizzontalCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+
+    public void mirrorVertical(ActionEvent actionEvent) {
+        Command cmd = new MirrorVerticalCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
 }
