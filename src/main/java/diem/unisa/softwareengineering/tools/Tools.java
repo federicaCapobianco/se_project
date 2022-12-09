@@ -21,10 +21,6 @@ public class Tools {
 
     private Color shapeFillColor;
 
-    private double stretchValueX;
-
-    private double stretchValueY;
-
     //add a method changeState that instantiates the shape as for the passed parameter
     public void changeState(DrawableShape state){
         shape = state; //this will be line, circle, rectangle, etc.
@@ -86,20 +82,5 @@ public class Tools {
 
     public DrawableShape getShape(){ return shape;}
 
-    public double getStretchValue() {
-        return stretchValueX;
-    }
-
-    public void setStretchValue(double stretchValue) {
-        this.stretchValueX = stretchValue;
-    }
-
-    public double getStretchValueY() {
-        return stretchValueY;
-    }
-
-    public void setStretchValueY(double stretchValueY) {
-        this.stretchValueY = stretchValueY;
-    }
 }
 
