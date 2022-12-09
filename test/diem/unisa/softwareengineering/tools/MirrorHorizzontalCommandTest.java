@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MirrorHorizzontalCommandTest {
+class MirrorHorizontalCommandTest {
 
     @Test
     void execute() {
@@ -15,7 +15,7 @@ class MirrorHorizzontalCommandTest {
         Pane p = new Pane();
         Shape shape = new Rectangle(10,18,10,18);
         p.getChildren().add(shape);
-        Command cmd = new MirrorHorizzontalCommand(shape);
+        Command cmd = new MirrorHorizontalCommand(shape);
         cmd.execute();
         assertEquals(shape.getScaleY(), -1);
 
@@ -26,7 +26,7 @@ class MirrorHorizzontalCommandTest {
         Pane p = new Pane();
         Shape shape = new Rectangle(10,18,10,18);
         p.getChildren().add(shape);
-        Command cmd = new MirrorHorizzontalCommand(shape);
+        Command cmd = new MirrorHorizontalCommand(shape);
         cmd.undo();
         assertEquals(shape.getScaleY(), 1);
 

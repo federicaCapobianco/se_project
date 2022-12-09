@@ -38,7 +38,7 @@
       </MenuBar>
       <Pane prefHeight="85.0" prefWidth="1281.0" style="-fx-background-color: #f8f8f8;">
          <children>
-            <Button layoutX="1103.0" layoutY="32.0" mnemonicParsing="false" onAction="#mirrorHorizzontal" text="MirrorH" />
+            <Button layoutX="1103.0" layoutY="32.0" mnemonicParsing="false" onAction="#mirrorHorizontal" text="MirrorH" />
             <Label layoutX="83.0" layoutY="2.0" text="Shape" />
             <ColorPicker fx:id="lineColorPicker" layoutX="410.0" layoutY="23.0" onAction="#setLineColor" prefHeight="25.0" prefWidth="99.0">
                <value>
@@ -103,6 +103,8 @@
                   <Font size="13.0" />
                </font>
             </Button>
+            <Button layoutX="981.0" layoutY="23.0" mnemonicParsing="false" onAction="#stretchHorizontal" text="stretchY" />
+            <Button layoutX="983.0" layoutY="57.0" mnemonicParsing="false" onAction="#stretchVertical" text="StretchX" />
          </children>
       </Pane>
       <Pane fx:id="drawingPane" onMousePressed="#mouseDown" onMouseReleased="#mouseUp" onTouchPressed="#mouseDown" onTouchReleased="#mouseUp" prefHeight="607.0" prefWidth="1280.0">

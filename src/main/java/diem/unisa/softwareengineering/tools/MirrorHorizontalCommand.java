@@ -6,10 +6,10 @@ import javafx.scene.transform.Affine;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 
-public class MirrorHorizzontalCommand extends Command{
+public class MirrorHorizontalCommand extends Command{
     private Shape shape;
 
-    public MirrorHorizzontalCommand (Shape shape){
+    public MirrorHorizontalCommand (Shape shape){
         this.shape= shape;
     }
 
