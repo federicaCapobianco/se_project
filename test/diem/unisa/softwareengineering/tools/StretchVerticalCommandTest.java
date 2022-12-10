@@ -7,17 +7,20 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MirrorVerticalCommandTest {
+class StretchVerticalCommandTest {
+
+    private double prevY;
 
     @Test
     void execute() {
-
         Pane p = new Pane();
         Shape shape = new Rectangle(10,18,10,18);
         p.getChildren().add(shape);
-        Command cmd = new MirrorVerticalCommand(shape);
+        double n = 3;
+        prevY = shape.getScaleY();
+        Command cmd = new StretchVerticalCommand(shape,n);
         cmd.execute();
-        assertEquals(shape.getScaleY(), -1);
+        assertTrue(shape.getScaleY() > prevY);
 
     }
 
@@ -26,10 +29,11 @@ class MirrorVerticalCommandTest {
         Pane p = new Pane();
         Shape shape = new Rectangle(10,18,10,18);
         p.getChildren().add(shape);
-        Command cmd = new MirrorVerticalCommand(shape);
+        double n = 3;
+        prevY = shape.getScaleY();
+        Command cmd = new StretchVerticalCommand(shape,n);
         cmd.undo();
-        assertEquals(shape.getScaleY(), 1);
-
+        assertTrue(shape.getScaleY() < prevY);
 
     }
 }

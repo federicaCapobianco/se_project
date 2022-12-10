@@ -47,6 +47,9 @@ public class Controller implements Initializable {
     private Button ellipseButton;
 
     @FXML
+    private Label tfLine;
+
+    @FXML
     private Pane drawingPane;
 
     ContextMenu contextMenu = new ContextMenu();
@@ -68,6 +71,10 @@ public class Controller implements Initializable {
     private Button toFrontButton;
     @FXML
     private Button toBackButton;
+    @FXML
+    private TextField stretchX;
+    @FXML
+    private TextField stretchY;
     @FXML
     private Button textButton;
     @FXML
@@ -263,13 +270,13 @@ public class Controller implements Initializable {
     public void setUndo(ActionEvent actionEvent) {
         shapeEditor.undoCommand();
     }
-    @FXML
+    @Deprecated
     public void setPlusSize(ActionEvent actionEvent) {
         Command cmd = new PlusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
-    @FXML
+    @Deprecated
     public void setMinusSize(ActionEvent actionEvent) {
         Command cmd = new MinusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
@@ -298,6 +305,21 @@ public class Controller implements Initializable {
         Command cmd = new MirrorVerticalCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
+
+    @FXML
+    public void stretchHorizontal(ActionEvent actionEvent) {
+        Double n = Double.parseDouble(this.stretchX.getText());
+        Command cmd = new StretchHorizontalCommand(shapeEditor.getSelectedNode(),n);
+        shapeEditor.executeCommand(cmd);
+        this.stretchX.clear();
+    }
+
+    @FXML
+    public void stretchVertical(ActionEvent actionEvent) {
+        Double n = Double.parseDouble(this.stretchY.getText());
+        Command cmd = new StretchVerticalCommand(shapeEditor.getSelectedNode(), n);
+        shapeEditor.executeCommand(cmd);
+        this.stretchY.clear();
 
     @FXML
     public void rotateLeft(ActionEvent actionEvent) {

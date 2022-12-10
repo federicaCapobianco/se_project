@@ -40,7 +40,7 @@
       </MenuBar>
       <Pane prefHeight="85.0" prefWidth="1281.0" style="-fx-background-color: #f8f8f8;">
          <children>
-            <Button layoutX="1103.0" layoutY="32.0" mnemonicParsing="false" onAction="#mirrorHorizzontal" text="MirrorH" />
+            <Button layoutX="1174.0" layoutY="53.0" mnemonicParsing="false" onAction="#mirrorHorizontal" text="MirrorH" />
             <Label layoutX="83.0" layoutY="2.0" text="Shape" />
             <ColorPicker fx:id="lineColorPicker" layoutX="410.0" layoutY="23.0" onAction="#setLineColor" prefHeight="25.0" prefWidth="99.0">
                <value>
@@ -80,9 +80,9 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="14.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
                </graphic>
             </Button>
-            <Button layoutX="1044.0" layoutY="32.0" mnemonicParsing="false" onAction="#mirrorVertical" text="MirrorV" />
+            <Button layoutX="1174.0" layoutY="17.0" mnemonicParsing="false" onAction="#mirrorVertical" text="MirrorV" />
             <Label layoutX="973.0" layoutY="3.0" text="Edit shape" />
-            <Label layoutX="1211.0" layoutY="3.0" text="Size" />
+            <Label layoutX="1245.0" layoutY="-1.0" text="Size" />
             <Line endX="1231.0" endY="-7.000007629394531" layoutX="49.0" layoutY="93.0" opacity="0.19" startX="-117.00000762939453" startY="-7.000007629394531" />
             <Button layoutX="848.0" layoutY="34.0" mnemonicParsing="false" onAction="#setUndo" text="Undo" />
             <Button fx:id="toFrontButton" layoutX="539.0" layoutY="56.0" mnemonicParsing="false" onAction="#putToFront" prefHeight="25.0" prefWidth="46.0" text="Front" />
@@ -94,17 +94,23 @@
             </Button>
 
             <ToggleButton fx:id="moveToggle" layoutX="787.0" layoutY="35.0" mnemonicParsing="false" text="Move" />
-            <Line endX="-99.99998474121094" endY="78.99999237060547" layoutX="1267.0" layoutY="7.0" opacity="0.09" startX="-99.99998474121094" startY="-6.999997615814209" />
-            <Button layoutX="1235.0" layoutY="30.0" mnemonicParsing="false" onAction="#setPlusSize" prefHeight="25.0" prefWidth="29.0" text="+">
+            <Line endX="-99.99998474121094" endY="78.99999237060547" layoutX="1336.0" layoutY="7.0" opacity="0.09" startX="-99.99998474121094" startY="-6.999997615814209" />
+            <Button layoutX="1244.0" layoutY="18.0" mnemonicParsing="false" onAction="#setPlusSize" prefHeight="25.0" prefWidth="29.0" text="+">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button layoutX="1181.0" layoutY="30.0" mnemonicParsing="false" onAction="#setMinusSize" prefHeight="25.0" prefWidth="29.0" text="-" textAlignment="CENTER">
+            <Button layoutX="1243.0" layoutY="53.0" mnemonicParsing="false" onAction="#setMinusSize" prefHeight="25.0" prefWidth="29.0" text="-" textAlignment="CENTER">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
+
+            <Button layoutX="1104.0" layoutY="17.0" mnemonicParsing="false" onAction="#stretchVertical" text="stretchY" />
+            <Button layoutX="1037.0" layoutY="17.0" mnemonicParsing="false" onAction="#stretchHorizontal" text="StretchX" />
+            <TextField fx:id="stretchY" layoutX="1117.0" layoutY="47.0" prefHeight="25.0" prefWidth="35.0" />
+            <TextField fx:id="stretchX" layoutX="1050.0" layoutY="47.0" prefHeight="25.0" prefWidth="35.0" />
+
 
             <Button layoutX="909.0" layoutY="34.0" mnemonicParsing="false" onAction="#rotateLeft" text="Rotate L" />
             <Button layoutX="988.0" layoutY="36.0" mnemonicParsing="false" onAction="#rotateRight" text="Rotate R" />
@@ -121,6 +127,7 @@
                   <Polygon fill="#1f93ff00" points="-59.0, -15.0, -39.5, -21.5, -46.0, -4.5" stroke="BLACK" strokeType="INSIDE" />
                </graphic>
             </ToggleButton>
+
 
          </children>
       </Pane>
