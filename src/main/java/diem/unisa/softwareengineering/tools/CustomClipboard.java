@@ -49,4 +49,22 @@ public class CustomClipboard {
         }
         return null;
     }
+
+    public Shape getShape(){
+        try (XMLDecoder decoder = new XMLDecoder(
+                new BufferedInputStream(
+                        Files.newInputStream(new File("copy.xml").toPath())))) {
+
+            decoder.setExceptionListener(e -> {
+                throw new RuntimeException(e);
+            });
+
+            Shape nodeToAdd = (Shape) decoder.readObject();
+            return nodeToAdd;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -2,6 +2,7 @@ package diem.unisa.softwareengineering.tools;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
@@ -34,9 +35,9 @@ public class Tools {
         return shape.draw(xS,yS,xE,yE, shapeLineColor, shapeFillColor);
     }
 
-    public Shape closureDraw(){
+    public Shape closureDraw(Pane canva){
         DrawablePolygon poly = (DrawablePolygon) shape; //cast fatto per non inserire in drawableShape in metodo della closure
-        return poly.closureDraw(shapeLineColor, shapeFillColor);
+        return poly.closureDraw(shapeLineColor, shapeFillColor, canva);
     }
 
     public double getxS() {

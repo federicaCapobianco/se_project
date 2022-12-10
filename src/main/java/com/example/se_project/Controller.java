@@ -114,21 +114,12 @@ public class Controller implements Initializable {
     public void setPolygon(ActionEvent actionEvent) {
         //--------
         if(polygonButton.selectedProperty().getValue()==false){
-            toolManager.closureDraw();
-            polygonButton.selectedProperty().setValue(true);
+            toolManager.closureDraw(drawingPane);
+            //polygonButton.selectedProperty().setValue(true);
             toolManager.changeState(new DrawablePolygon());
         }
         toolManager.changeState(new DrawablePolygon());
-        //--------
 
-        /*if(polygonButton.isSelected())
-            toolManager.changeState(new DrawablePolygon());
-        else{
-            //chiusura
-            polygonButton.selectedProperty().setValue(true);
-            toolManager.closureDraw();
-
-        }*/
     }
     double selectionPointX;
     double selectionPointY;
