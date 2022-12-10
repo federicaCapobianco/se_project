@@ -288,6 +288,18 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    public void mirrorHorizzontal(ActionEvent actionEvent) {
+        Command cmd = new MirrorHorizzontalCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+
+    @FXML
+    public void mirrorVertical(ActionEvent actionEvent) {
+        Command cmd = new MirrorVerticalCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+
+    @FXML
     public void rotateLeft(ActionEvent actionEvent) {
         Command cmd = new RotateCommandLeft(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
