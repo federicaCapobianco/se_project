@@ -4,13 +4,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+import java.util.List;
+
 import static java.lang.Math.abs;
 
 public class DrawableRectangle extends DrawableShape{
     private Shape rectangle;
 
     @Override
-    public Shape draw(double xS, double yS, double xE, double yE, Color lineColor, Color fillColor){
+    public Shape draw(double xS, double yS, double xE, double yE, Color lineColor, Color fillColor, String text){
         // le y ragionano in logica negata nel pane
         if(xS>xE){
             if(yS<yE){

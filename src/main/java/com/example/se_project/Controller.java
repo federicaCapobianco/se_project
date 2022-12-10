@@ -19,6 +19,8 @@ import javafx.stage.Window;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -44,8 +46,15 @@ public class Controller implements Initializable {
 
     @FXML
     private Button ellipseButton;
+
     @FXML
     private Label tfLine;
+    
+    @FXML
+    private Label tfLine;
+
+    @FXML
+    private Pane drawingPane;
 
     ContextMenu contextMenu = new ContextMenu();
     MenuItem deselect = new MenuItem("Deselect");
@@ -79,6 +88,16 @@ public class Controller implements Initializable {
     private Button plusGrid;
     @FXML
     private Button lessGrid;
+    private TextField stretchX;
+    @FXML
+    private TextField stretchY;
+    @FXML
+    private Button textButton;
+    @FXML
+    private TextField textTextField;
+    @FXML
+    private ToggleButton polygonButton;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -95,6 +114,7 @@ public class Controller implements Initializable {
         lineButton.disableProperty().bind(moveToggle.selectedProperty());
         rectangleButton.disableProperty().bind(moveToggle.selectedProperty());
         ellipseButton.disableProperty().bind(moveToggle.selectedProperty());
+
         toFrontButton.disableProperty().bind(moveToggle.selectedProperty());
         toBackButton.disableProperty().bind(moveToggle.selectedProperty());
         plusGrid.disableProperty().bind(moveToggle.selectedProperty());
@@ -107,10 +127,13 @@ public class Controller implements Initializable {
         plusGrid.disableProperty().bind(gridButtonSelected.not());
         lessGrid.disableProperty().bind(gridButtonSelected.not());
 
-
-
-
         gridPane.setMouseTransparent(true);
+
+        textTextField.disableProperty().setValue(true);
+        textTextField.setText("Add here your text");
+
+        lineButton.disableProperty().bind(polygonButton.selectedProperty());
+        rectangleButton.disableProperty().bind(polygonButton.selectedProperty());
     }
 
     @FXML
@@ -127,10 +150,17 @@ public class Controller implements Initializable {
     public void setRectangle(ActionEvent actionEvent) {
         toolManager.changeState(new DrawableRectangle());
     }
-
+    @FXML
+    public void setPolygon(ActionEvent actionEvent) {
+        if(polygonButton.selectedProperty().getValue()==false){
+            toolManager.closureDraw();
+            polygonButton.selectedProperty().setValue(true);
+            toolManager.changeState(new DrawablePolygon());
+        }
+        toolManager.changeState(new DrawablePolygon());
+    }
     double selectionPointX;
     double selectionPointY;
-
 
     @FXML
     public void mouseDown(MouseEvent mouseEvent) {
@@ -150,7 +180,6 @@ public class Controller implements Initializable {
                 dropShadow.setOffsetX(3.0);
                 dropShadow.setOffsetY(3.0);
                 dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
-
 
                 deselect.setOnAction((ActionEvent event) -> {
                     shapeEditor.deselectShape(target);
@@ -174,13 +203,13 @@ public class Controller implements Initializable {
                 if(moveToggle.isSelected()){
                     Command cmd = new MoveCommand(shapeEditor.getSelectedNode(), drawingPane, mouseEvent.getX(), mouseEvent.getY());
                     shapeEditor.executeCommand(cmd);
+                } else {
+                        toolManager.setxS(mouseEvent.getX());
+                        toolManager.setyS(mouseEvent.getY());
+                        shapeEditor.getSelectedNode().setEffect(null);
+                        shapeEditor.clearSelectedNode();
                 }
-                else {
-                    toolManager.setxS(mouseEvent.getX());
-                    toolManager.setyS(mouseEvent.getY());
-                    shapeEditor.getSelectedNode().setEffect(null);
-                    shapeEditor.clearSelectedNode();
-                }
+
             }
     }
 
@@ -195,6 +224,7 @@ public class Controller implements Initializable {
 
                 Shape shape = toolManager.draw();
                 drawingPane.getChildren().add(shape);
+
             }
         }
     }
@@ -256,7 +286,7 @@ public class Controller implements Initializable {
         }
     }
 
-
+    @FXML
     public void setUndo(ActionEvent actionEvent) {
         shapeEditor.undoCommand();
     }
@@ -298,4 +328,57 @@ public class Controller implements Initializable {
     public void makeGridSmaller(ActionEvent actionEvent) {
         gridHandler.minusGrid();
     }
+
+    @FXML
+    public void mirrorHorizontal(ActionEvent actionEvent) {
+        Command cmd = new MirrorHorizontalCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+
+    @FXML
+    public void mirrorVertical(ActionEvent actionEvent) {
+        Command cmd = new MirrorVerticalCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+
+    @FXML
+    public void stretchHorizontal(ActionEvent actionEvent) {
+        Double n = Double.parseDouble(this.stretchX.getText());
+        Command cmd = new StretchHorizontalCommand(shapeEditor.getSelectedNode(),n);
+        shapeEditor.executeCommand(cmd);
+        this.stretchX.clear();
+    }
+
+    @FXML
+    public void stretchVertical(ActionEvent actionEvent) {
+        Double n = Double.parseDouble(this.stretchY.getText());
+        Command cmd = new StretchVerticalCommand(shapeEditor.getSelectedNode(), n);
+        shapeEditor.executeCommand(cmd);
+        this.stretchY.clear();
+    }
+
+    @FXML
+    public void rotateLeft(ActionEvent actionEvent) {
+        Command cmd = new RotateCommandLeft(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+
+    @FXML
+    public void rotateRight(ActionEvent actionEvent) {
+        Command cmd = new RotateCommandRight(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+    
+    @FXML
+    public void setTextShape(ActionEvent actionEvent) {
+        toolManager.changeState(new DrawableText());
+        textTextField.disableProperty().setValue(false);
+        textTextField.setText("");
+    }
+
+    @FXML
+    public void setTextString(ActionEvent actionEvent) {
+        toolManager.setTextString(textTextField.getText());
+    }
+
 }
