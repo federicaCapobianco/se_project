@@ -18,6 +18,8 @@ import java.util.List;
 
 public class CustomClipboard {
 
+    private Shape shape;
+
     public void copy(Node shape){
         File file = new File("copy.xml");
         shape.setEffect(null);
@@ -41,6 +43,7 @@ public class CustomClipboard {
             Shape nodeToAdd = (Shape) decoder.readObject();
 
             nodeToAdd.relocate(selectionPointX, selectionPointY);
+            this.shape = nodeToAdd;
             drawingPane.getChildren().add(nodeToAdd);
             return nodeToAdd;
         }
@@ -48,5 +51,9 @@ public class CustomClipboard {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Shape getShape(){
+        return this.shape;
     }
 }

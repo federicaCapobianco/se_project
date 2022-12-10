@@ -183,11 +183,14 @@ public class Controller implements Initializable {
                 });
 
                 copy.setOnAction((ActionEvent event) -> {
-                    clipboard.copy(target);
+                    Command cmd = new CopyCommand(target, clipboard);
+                    shapeEditor.executeCommand(cmd);
                 });
 
                 paste.setOnAction((ActionEvent event) -> {
-                    clipboard.paste(drawingPane, selectionPointX, selectionPointY);
+                    Command cmd = new PasteCommand(drawingPane,selectionPointX,selectionPointY,clipboard);
+                    shapeEditor.executeCommand(cmd);
+                    //clipboard.paste(drawingPane, selectionPointX, selectionPointY);
                 });
 
                 delete.setOnAction((ActionEvent event) -> {
@@ -208,7 +211,10 @@ public class Controller implements Initializable {
                 } else {
                         toolManager.setxS(mouseEvent.getX());
                         toolManager.setyS(mouseEvent.getY());
-                        shapeEditor.getSelectedNode().setEffect(null);
+                        Node selectedNode = shapeEditor.getSelectedNode();
+                        if (selectedNode != null) {
+                            selectedNode.setEffect(null);
+                        }
                         shapeEditor.clearSelectedNode();
                 }
 
@@ -290,6 +296,7 @@ public class Controller implements Initializable {
 
     @FXML
     public void setUndo(ActionEvent actionEvent) {
+
         shapeEditor.undoCommand();
     }
     @Deprecated

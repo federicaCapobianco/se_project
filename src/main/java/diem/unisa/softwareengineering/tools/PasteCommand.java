@@ -3,26 +3,28 @@ package diem.unisa.softwareengineering.tools;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 
-public class CutCommand extends Command{
-    private Shape shape;
-
+public class PasteCommand extends Command{
     private Pane canva;
-
+    private double x;
+    private double y;
     private CustomClipboard clipboard;
 
-    public CutCommand(Shape shape, Pane canva, CustomClipboard clipboard) {
-        this.shape = shape;
+
+    public PasteCommand(Pane canva, double x, double y, CustomClipboard clipboard) {
         this.canva = canva;
+        this.x = x;
+        this.y = y;
         this.clipboard = clipboard;
     }
 
     @Override
     public void execute() {
-        canva.getChildren().remove(shape);
-        clipboard.copy(shape);
+        clipboard.paste(this.canva,this.x, this.y);
     }
 
     @Override
     public void undo() {
+        canva.getChildren().remove(clipboard.getShape());
     }
 }
+
