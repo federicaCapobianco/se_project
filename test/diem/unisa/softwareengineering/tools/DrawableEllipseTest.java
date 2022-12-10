@@ -16,15 +16,15 @@ class DrawableEllipseTest {
     void testDraw() {
         DrawableEllipse elipse = new DrawableEllipse();
 
-        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,80.0,220.0, Color.BLACK, Color.TRANSPARENT));
-        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,150.0,220.0, Color.BLACK, Color.TRANSPARENT));
-        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,220.0,220.0, Color.BLACK, Color.TRANSPARENT));
-        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,220.0,150.0, Color.BLACK, Color.TRANSPARENT));
-        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,220.0,80.0, Color.BLACK, Color.TRANSPARENT));
-        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,150.0,80.0, Color.BLACK, Color.TRANSPARENT));
-        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,80.0,80.0, Color.BLACK, Color.TRANSPARENT));
-        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,80.0,150.0, Color.BLACK, Color.TRANSPARENT));
-        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,150.0,150.0, Color.BLACK, Color.TRANSPARENT));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,80.0,220.0, Color.BLACK, Color.TRANSPARENT, "unesed text"));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,150.0,220.0, Color.BLACK, Color.TRANSPARENT, "unesed text"));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,220.0,220.0, Color.BLACK, Color.TRANSPARENT, "unesed text"));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,220.0,150.0, Color.BLACK, Color.TRANSPARENT, "unesed text"));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,220.0,80.0, Color.BLACK, Color.TRANSPARENT, "unesed text"));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,150.0,80.0, Color.BLACK, Color.TRANSPARENT, "unesed text"));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,80.0,80.0, Color.BLACK, Color.TRANSPARENT, "unesed text"));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,80.0,150.0, Color.BLACK, Color.TRANSPARENT, "unesed text"));
+        assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,150.0,150.0, Color.BLACK, Color.TRANSPARENT,"unesed text"));
 
 
     }
