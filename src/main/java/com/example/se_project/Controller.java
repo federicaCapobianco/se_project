@@ -49,12 +49,6 @@ public class Controller implements Initializable {
     @FXML
     private Pane drawingPane;
 
-    @FXML
-    private Button plusSizeButton;
-
-    @FXML
-    private Button minusSizeButton;
-
     ContextMenu contextMenu = new ContextMenu();
     MenuItem deselect = new MenuItem("Deselect");
     MenuItem delete = new MenuItem("Delete");
@@ -72,6 +66,8 @@ public class Controller implements Initializable {
     private ToggleButton moveToggle;
     @FXML
     private Button toFrontButton;
+    @FXML
+    private Button toBackButton;
     @FXML
     private Button textButton;
     @FXML
@@ -267,13 +263,13 @@ public class Controller implements Initializable {
     public void setUndo(ActionEvent actionEvent) {
         shapeEditor.undoCommand();
     }
-    @FXML
+    @Deprecated
     public void setPlusSize(ActionEvent actionEvent) {
         Command cmd = new PlusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
-    @FXML
+    @Deprecated
     public void setMinusSize(ActionEvent actionEvent) {
         Command cmd = new MinusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
@@ -288,6 +284,18 @@ public class Controller implements Initializable {
     @FXML
     public void putToFront(ActionEvent actionEvent) {
         Command cmd = new ToFrontCommand(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+
+    @FXML
+    public void rotateLeft(ActionEvent actionEvent) {
+        Command cmd = new RotateCommandLeft(shapeEditor.getSelectedNode());
+        shapeEditor.executeCommand(cmd);
+    }
+
+    @FXML
+    public void rotateRight(ActionEvent actionEvent) {
+        Command cmd = new RotateCommandRight(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
     

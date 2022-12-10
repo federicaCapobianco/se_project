@@ -104,6 +104,9 @@
                </font>
             </Button>
 
+            <Button layoutX="909.0" layoutY="34.0" mnemonicParsing="false" onAction="#rotateLeft" text="Rotate L" />
+            <Button layoutX="988.0" layoutY="36.0" mnemonicParsing="false" onAction="#rotateRight" text="Rotate R" />
+
             <Button fx:id="textButton" layoutX="237.0" layoutY="13.0" mnemonicParsing="false" onAction="#setTextShape" prefHeight="35.0" prefWidth="35.0">
                <graphic>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  T" wrappingWidth="19.5537109375" />
