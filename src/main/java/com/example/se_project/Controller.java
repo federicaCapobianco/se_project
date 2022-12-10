@@ -9,8 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.*;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.FileChooser;
@@ -48,6 +49,9 @@ public class Controller implements Initializable {
 
     @FXML
     private Label tfLine;
+    
+    @FXML
+    private Label tfLine;
 
     @FXML
     private Pane drawingPane;
@@ -60,11 +64,14 @@ public class Controller implements Initializable {
 
     DropShadow dropShadow = new DropShadow();
 
+
+
     private Tools toolManager;
     private FileManager fileManager;
     private FileChooser fileChooser;
     private Editor shapeEditor;
     private CustomClipboard clipboard;
+    private GridHandler gridHandler;
     @FXML
     private ToggleButton moveToggle;
     @FXML
@@ -72,6 +79,15 @@ public class Controller implements Initializable {
     @FXML
     private Button toBackButton;
     @FXML
+    private Pane drawingPane;
+    @FXML
+    private GridPane gridPane;
+    @FXML
+    private ToggleButton gridButton;
+    @FXML
+    private Button plusGrid;
+    @FXML
+    private Button lessGrid;
     private TextField stretchX;
     @FXML
     private TextField stretchY;
@@ -90,6 +106,7 @@ public class Controller implements Initializable {
         fileChooser = new FileChooser();
         shapeEditor = new Editor();
         clipboard = new CustomClipboard();
+        gridHandler = new GridHandler(gridPane, gridButton);
 
         toolManager.setShapeLineColor(Color.BLACK);
         toolManager.setShapeFillColor(Color.TRANSPARENT);
@@ -97,12 +114,26 @@ public class Controller implements Initializable {
         lineButton.disableProperty().bind(moveToggle.selectedProperty());
         rectangleButton.disableProperty().bind(moveToggle.selectedProperty());
         ellipseButton.disableProperty().bind(moveToggle.selectedProperty());
+
+        toFrontButton.disableProperty().bind(moveToggle.selectedProperty());
+        toBackButton.disableProperty().bind(moveToggle.selectedProperty());
+        plusGrid.disableProperty().bind(moveToggle.selectedProperty());
+        lessGrid.disableProperty().bind(moveToggle.selectedProperty());
+        gridButton.disableProperty().bind(moveToggle.selectedProperty());
+
+        //add binding between gridButton and + and - buttons
+        BooleanProperty gridButtonSelected = new SimpleBooleanProperty();
+        gridButtonSelected.bind(gridButton.selectedProperty());
+        plusGrid.disableProperty().bind(gridButtonSelected.not());
+        lessGrid.disableProperty().bind(gridButtonSelected.not());
+
+        gridPane.setMouseTransparent(true);
+
         textTextField.disableProperty().setValue(true);
         textTextField.setText("Add here your text");
 
         lineButton.disableProperty().bind(polygonButton.selectedProperty());
         rectangleButton.disableProperty().bind(polygonButton.selectedProperty());
-        ellipseButton.disableProperty().bind(polygonButton.selectedProperty());
     }
 
     @FXML
@@ -281,6 +312,21 @@ public class Controller implements Initializable {
     public void putToFront(ActionEvent actionEvent) {
         Command cmd = new ToFrontCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
+    }
+
+    @FXML
+    public void toggleGrid(ActionEvent actionEvent) {
+        gridHandler.toggleGrid();
+    }
+
+    @FXML
+    public void makeGridBigger(ActionEvent actionEvent) {
+        gridHandler.plusGrid();
+    }
+
+    @FXML
+    public void makeGridSmaller(ActionEvent actionEvent) {
+        gridHandler.minusGrid();
     }
 
     @FXML
