@@ -4,6 +4,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+import java.util.List;
+
 import static java.lang.Math.abs;
 
 public class DrawableRectangle extends DrawableShape{

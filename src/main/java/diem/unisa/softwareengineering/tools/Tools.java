@@ -3,10 +3,12 @@ package diem.unisa.softwareengineering.tools;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class that allows the user to set the current tool and draw a new shape on the canva as the user drags the mouse.
@@ -32,6 +34,11 @@ public class Tools {
     //add a method draw that calls the draw method of the shape class
     public Shape draw(){
        return shape.draw(xS,yS,xE,yE,shapeLineColor, shapeFillColor, textString);
+    }
+
+    public Shape closureDraw(){
+        DrawablePolygon poly = (DrawablePolygon) shape; //cast fatto per non inserire in drawableShape in metodo della closure
+        return poly.closureDraw(shapeLineColor, shapeFillColor);
     }
 
     public double getxS() {

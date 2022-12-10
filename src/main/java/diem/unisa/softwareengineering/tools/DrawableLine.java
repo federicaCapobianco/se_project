@@ -4,11 +4,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
+import java.util.List;
+
 public class DrawableLine extends DrawableShape{
     private Shape line;
-
-
-    public DrawableLine(){ }
 
     @Override
     public Shape draw(double xS, double yS, double xE, double yE, Color lineColor, Color fillColor, String text) {
