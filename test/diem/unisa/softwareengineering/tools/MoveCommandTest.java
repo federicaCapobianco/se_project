@@ -23,6 +23,16 @@ class MoveCommandTest {
 
     @Test
     void testUndo() {
-
+        Pane p = new Pane();
+        Shape shape = new Line(15,15,20,20);
+        p.getChildren().add(shape);
+        //recupera posizioni della shape
+        double x = shape.getLayoutX();
+        double y = shape.getLayoutY();
+        Command cmd = new MoveCommand( shape, p,40.0,40.0 );
+        cmd.execute();
+        cmd.undo();
+        assertEquals(x , shape.getLayoutX());
+        assertEquals(y, shape.getLayoutY());
     }
 }
