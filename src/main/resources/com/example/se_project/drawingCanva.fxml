@@ -15,11 +15,12 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_project.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_project.Controller">
 
    <children>
       <MenuBar prefHeight="28.0" prefWidth="1280.0">
@@ -55,7 +56,7 @@
             <Label fx:id="fillLabel" layoutX="334.0" layoutY="61.0" prefHeight="17.0" prefWidth="52.0" text="Fill Color" />
             <ColorPicker fx:id="fillColorPicker" layoutX="410.0" layoutY="56.0" onAction="#setFillColor" prefHeight="25.0" prefWidth="99.0">
                <value>
-                  <Color />
+                  <Color opacity="0.0" />
                </value>
             </ColorPicker>
             <Button fx:id="ellipseButton" layoutX="112.0" layoutY="34.0" mnemonicParsing="false" onAction="#setEllipse" prefHeight="35.0" prefWidth="14.0" style="color:blue;">
@@ -104,10 +105,30 @@
                   <Font size="13.0" />
                </font>
             </Button>
+
             <Button layoutX="1104.0" layoutY="17.0" mnemonicParsing="false" onAction="#stretchVertical" text="stretchY" />
             <Button layoutX="1037.0" layoutY="17.0" mnemonicParsing="false" onAction="#stretchHorizontal" text="StretchX" />
             <TextField fx:id="stretchY" layoutX="1117.0" layoutY="47.0" prefHeight="25.0" prefWidth="35.0" />
             <TextField fx:id="stretchX" layoutX="1050.0" layoutY="47.0" prefHeight="25.0" prefWidth="35.0" />
+
+
+            <Button layoutX="909.0" layoutY="34.0" mnemonicParsing="false" onAction="#rotateLeft" text="Rotate L" />
+            <Button layoutX="988.0" layoutY="36.0" mnemonicParsing="false" onAction="#rotateRight" text="Rotate R" />
+
+            <Button fx:id="textButton" layoutX="237.0" layoutY="13.0" mnemonicParsing="false" onAction="#setTextShape" prefHeight="35.0" prefWidth="35.0">
+               <graphic>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  T" wrappingWidth="19.5537109375" />
+               </graphic>
+            </Button>
+            <TextField fx:id="textTextField" layoutX="194.0" layoutY="53.0" onAction="#setTextString" prefHeight="17.0" prefWidth="122.0" />
+
+            <ToggleButton fx:id="polygonButton" layoutX="159.0" layoutY="35.0" mnemonicParsing="false" onAction="#setPolygon" prefHeight="35.0" prefWidth="39.0">
+               <graphic>
+                  <Polygon fill="#1f93ff00" points="-59.0, -15.0, -39.5, -21.5, -46.0, -4.5" stroke="BLACK" strokeType="INSIDE" />
+               </graphic>
+            </ToggleButton>
+
+
          </children>
       </Pane>
       <Pane fx:id="drawingPane" onMousePressed="#mouseDown" onMouseReleased="#mouseUp" onTouchPressed="#mouseDown" onTouchReleased="#mouseUp" prefHeight="607.0" prefWidth="1280.0">
