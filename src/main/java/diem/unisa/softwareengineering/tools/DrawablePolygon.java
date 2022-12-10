@@ -15,15 +15,23 @@ public class DrawablePolygon extends DrawableShape{
     private List totalPoints = new ArrayList(); //lista con tutti i punti, tramite cui si crea la vera e propria polygon shape
 
     private Queue currentPoints = new ArrayDeque(); //lista di appoggio per permettere la visualizzazione del disegno del poligono
-
+    private List polygonLine = new ArrayList();
     public Shape closureDraw(Color lineColor, Color fillColor){
+        Polygon removed;
+
+        for(int i=0; i<polygonLine.size(); i++){
+            removed = (Polygon) polygonLine.get(i);
+            removed.setOpacity(0);
+        }
 
         this.polygon.getPoints().addAll(totalPoints);
+        this.polygon.setOpacity(1);
         this.polygon.setStroke(lineColor);
         this.polygon.setFill(fillColor);
 
         currentPoints.clear();
         totalPoints.clear();
+        polygonLine.clear();
 
         return polygon;
     }
@@ -39,6 +47,7 @@ public class DrawablePolygon extends DrawableShape{
 
         this.polygon.getPoints().addAll(currentPoints); //totalPoints instead of currentPoints: si avrebbe poligono come somma di triangoli
         this.polygon.setStroke(lineColor);
+        this.polygonLine.add(this.polygon);
 
         if(currentPoints.size() == 4) { //per permettere il disegno del poligono lato per lato (eccetto l'ultimo) e non come somma di triangoli
             currentPoints.remove();
