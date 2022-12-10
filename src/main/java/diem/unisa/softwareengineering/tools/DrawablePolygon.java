@@ -29,7 +29,7 @@ public class DrawablePolygon extends DrawableShape{
     }
 
     @Override
-    public Shape draw(double xS, double yS, double xE, double yE, Color lineColor, Color fillColor) {
+    public Shape draw(double xS, double yS, double xE, double yE, Color lineColor, Color fillColor, String text) {
         this.polygon = new Polygon();
 
         this.currentPoints.add(xS);

@@ -259,17 +259,17 @@ public class Controller implements Initializable {
         }
     }
 
-
+    @FXML
     public void setUndo(ActionEvent actionEvent) {
         shapeEditor.undoCommand();
     }
-    @Deprecated
+    @FXML
     public void setPlusSize(ActionEvent actionEvent) {
         Command cmd = new PlusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
-    @Deprecated
+    @FXML
     public void setMinusSize(ActionEvent actionEvent) {
         Command cmd = new MinusSizeCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
