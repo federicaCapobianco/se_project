@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
@@ -14,6 +15,8 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.scene.transform.Scale;
+import javafx.scene.transform.Transform;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
@@ -79,6 +82,13 @@ public class Controller implements Initializable {
     private Button plusGrid;
     @FXML
     private Button lessGrid;
+    @FXML
+    private Button zoomPlus;
+    @FXML
+    private Button zoomMinus;
+    @FXML
+    private ScrollPane scrollPane;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -107,6 +117,8 @@ public class Controller implements Initializable {
         plusGrid.disableProperty().bind(gridButtonSelected.not());
         lessGrid.disableProperty().bind(gridButtonSelected.not());
 
+        // add a border to the pane di colore chiaro per evidenziare il bordo
+        drawingPane.setStyle("-fx-border-color: lightgray;");
 
 
 
@@ -298,4 +310,54 @@ public class Controller implements Initializable {
     public void makeGridSmaller(ActionEvent actionEvent) {
         gridHandler.minusGrid();
     }
+
+    @FXML
+    public void zoomPlusAction(ActionEvent actionEvent) {
+        //make a scale transformation
+        Scale scale = new Scale(); //create a scale transformation
+        scale.setX(drawingPane.getScaleX() + 0.1);
+        scale.setY(drawingPane.getScaleY() + 0.1);
+        scale.setPivotX(0);
+        scale.setPivotY(0);
+        //apply the scale transformation
+        drawingPane.getTransforms().add(scale);
+        //add the scale transformation to all the shapes
+        /*for (Node node : drawingPane.getChildren()) {
+            node.getTransforms().add(scale);
+        }*/
+        Transform test = drawingPane.getTransforms().get(0);
+
+        //if (test.getMxx() > 1) {
+            drawingPane.setPrefWidth(drawingPane.getPrefWidth() + 100);
+            drawingPane.setPrefHeight(drawingPane.getPrefHeight() + 100);
+        //}
+
+        /*if(drawingPane.getScaleX() > 1.0){
+            drawingPane.setPrefWidth(drawingPane.getPrefWidth() + 100);
+            drawingPane.setPrefHeight(drawingPane.getPrefHeight() + 100);
+        }*/
+
+    }
+    @FXML
+    public void zoomMinusAction(ActionEvent actionEvent) {
+        Scale scale = new Scale();
+        scale.setX(drawingPane.getScaleX() - 0.1);
+        scale.setY(drawingPane.getScaleY() - 0.1);
+        scale.setPivotX(0);
+        scale.setPivotY(0);
+        //apply the scale transformation
+        drawingPane.getTransforms().add(scale);
+       /* for (Node node : drawingPane.getChildren()) {
+            node.getTransforms().add(scale);
+        }*/
+        Transform test = drawingPane.getTransforms().get(0);
+        if (test.getMxx() > 1) {
+            drawingPane.setPrefWidth(drawingPane.getPrefWidth() - 100);
+            drawingPane.setPrefHeight(drawingPane.getPrefHeight() - 100);
+        }
+    }
+
 }
+
+// se faccio prima più, quando faccio meno non mi riduce più le dimensioni laterali sticazzi
+// se faccio prima meno, quando faccio più non mi aumenta più le dimensioni laterali
