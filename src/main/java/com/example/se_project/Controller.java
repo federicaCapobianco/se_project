@@ -58,6 +58,7 @@ public class Controller implements Initializable {
     MenuItem delete = new MenuItem("Delete");
     MenuItem copy = new MenuItem("Copy");
     MenuItem paste = new MenuItem("Paste");
+    MenuItem cut = new MenuItem("Cut");
 
     DropShadow dropShadow = new DropShadow();
 
@@ -169,7 +170,7 @@ public class Controller implements Initializable {
 
                 shapeEditor.selectShape((Node) target, dropShadow);
 
-                contextMenu.getItems().addAll(deselect, delete, copy, paste);
+                contextMenu.getItems().addAll(deselect, delete, copy, paste, cut);
                 contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
 
                 dropShadow.setRadius(5.0);
@@ -191,6 +192,11 @@ public class Controller implements Initializable {
 
                 delete.setOnAction((ActionEvent event) -> {
                     Command cmd = new DeleteCommand(shapeEditor.getSelectedNode(), drawingPane);
+                    shapeEditor.executeCommand(cmd);
+                });
+
+                cut.setOnAction((ActionEvent event) -> {
+                    Command cmd = new CutCommand(shapeEditor.getSelectedNode(), drawingPane, clipboard);
                     shapeEditor.executeCommand(cmd);
                 });
 
