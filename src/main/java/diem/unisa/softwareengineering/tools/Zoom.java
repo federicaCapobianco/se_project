@@ -11,6 +11,10 @@ public class Zoom {
     private Pane drawingPane;
     private GridPane gridPane;
 
+    Double plusValue = 1.1;
+    Double minusValue = 0.9;
+
+
     public Zoom(Pane drawingPane, GridPane gridPane) {
         this.drawingPane = drawingPane;
         this.gridPane = gridPane;
@@ -18,60 +22,42 @@ public class Zoom {
 
     public void zoomPlus(){
         Scale scale = new Scale();
-        scale.setX(1.1);
-        scale.setY(1.1);
+        scale.setX(drawingPane.getScaleX() * plusValue);
+        scale.setY(drawingPane.getScaleY() * plusValue);
         scale.setPivotX(0);
         scale.setPivotY(0);
         drawingPane.getTransforms().add(scale);
         //gridPane.getTransforms().add(scale);
 
         //add the scale transformation to all the shapes
-        for (Node node : drawingPane.getChildren()) {
+        /*for (Node node : drawingPane.getChildren()) {
             node.getTransforms().add(scale);
-        }
+        }*/
 
-        drawingPane.setPrefWidth(drawingPane.getPrefWidth() + 100);
-        drawingPane.setPrefHeight(drawingPane.getPrefHeight() + 100);
+        drawingPane.setPrefWidth(drawingPane.getPrefWidth() * plusValue);
+        drawingPane.setPrefHeight(drawingPane.getPrefHeight() * plusValue);
 
-        //gridPane.setPrefSize(drawingPane.getPrefWidth(), drawingPane.getPrefHeight());
-
-        //gridPane.setPrefWidth(gridPane.getPrefWidth() + 100);
-        //gridPane.setPrefHeight(gridPane.getPrefHeight() + 100);
-
-        //gridPane.setPrefWidth(drawingPane.getPrefWidth());
-        //gridPane.setPrefHeight(drawingPane.getPrefHeight());
     }
 
     public void zoomMinus(){
         Scale scale = new Scale();
-        scale.setX(0.9);
-        scale.setY(0.9);
+        scale.setX(drawingPane.getScaleX() * minusValue);
+        scale.setY(drawingPane.getScaleY() * minusValue);
         scale.setPivotX(0);
         scale.setPivotY(0);
         drawingPane.getTransforms().add(scale);
         //gridPane.getTransforms().add(scale);
 
         //add the scale transformation to all the shapes
-        for (Node node : drawingPane.getChildren()) {
+        /*for (Node node : drawingPane.getChildren()) {
             node.getTransforms().add(scale);
-        }
+        }*/
 
         Transform test = drawingPane.getTransforms().get(0);
         if (test.getMxx() > 1) {
-            drawingPane.setPrefWidth(drawingPane.getPrefWidth() - 100);
-            drawingPane.setPrefHeight(drawingPane.getPrefHeight() - 100);
+            drawingPane.setPrefWidth(drawingPane.getPrefWidth() * minusValue);
+            drawingPane.setPrefHeight(drawingPane.getPrefHeight() * minusValue);
         }
-
-        /*Transform test2 = gridPane.getTransforms().get(0);
-        if (test2.getMxx() > 1) {
-            gridPane.setPrefWidth(gridPane.getPrefWidth() - 100);
-            gridPane.setPrefHeight(gridPane.getPrefHeight() - 100);
-        }*/
-        //gridPane.setPrefSize(drawingPane.getPrefWidth(), drawingPane.getPrefHeight());
-
-        //imposta la dimensione del pane uguale a quello della griglia
-        //gridPane.setPrefWidth(drawingPane.getPrefWidth());
-        //gridPane.setPrefHeight(drawingPane.getPrefHeight());
     }
 
 }
