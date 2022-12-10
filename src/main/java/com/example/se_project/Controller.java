@@ -88,7 +88,7 @@ public class Controller implements Initializable {
     private Button zoomMinus;
     @FXML
     private ScrollPane scrollPane;
-    private Zoom zoomHandler;
+    private Zoom windowZoomHandler;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         toolManager = new Tools();
@@ -97,7 +97,7 @@ public class Controller implements Initializable {
         shapeEditor = new Editor();
         clipboard = new CustomClipboard();
         gridHandler = new GridHandler(gridPane, gridButton);
-        zoomHandler = new Zoom(drawingPane);
+        windowZoomHandler = new Zoom(drawingPane, gridPane);
 
         toolManager.setShapeLineColor(Color.BLACK);
         toolManager.setShapeFillColor(Color.TRANSPARENT);
@@ -118,19 +118,10 @@ public class Controller implements Initializable {
         lessGrid.disableProperty().bind(gridButtonSelected.not());
 
         // add a border to the pane di colore chiaro per evidenziare il bordo
-        //scrollPane.setStyle("-fx-border-color: lightgray;");
         drawingPane.setStyle("-fx-border-color: lightgray;");
-        //gridPane.setStyle("-fx-border-color: lightgray;");
 
-        //imposta la stessa dimensione per il gridPane, il drawingPane e il scrollPane
-        //gridPane.prefWidthProperty().bind(scrollPane.widthProperty());
-        //gridPane.prefHeightProperty().bind(scrollPane.heightProperty());
-        //drawingPane.prefWidthProperty().bind(gridPane.widthProperty());
-        //drawingPane.prefHeightProperty().bind(gridPane.heightProperty());
-
-        //adatta la dimensione del gridPane al pane
-        //gridPane.prefWidthProperty().bind(drawingPane.widthProperty());
-        //gridPane.prefHeightProperty().bind(drawingPane.heightProperty());
+        // set the pane equals to the grid pane
+        //gridPane.setPrefSize(drawingPane.getPrefWidth(), drawingPane.getPrefHeight());
 
         gridPane.setMouseTransparent(true);
     }
@@ -320,68 +311,11 @@ public class Controller implements Initializable {
 
     @FXML
     public void zoomPlusAction(ActionEvent actionEvent) {
-        //zoomHandler.zoomPlus();
-        Scale scale = new Scale();
-        scale.setX(drawingPane.getScaleX() + 0.1);
-        scale.setY(drawingPane.getScaleY() + 0.1);
-        scale.setPivotX(0);
-        scale.setPivotY(0);
-
-        //add the scale transformation to all the shapes
-        /*for (Node node : drawingPane.getChildren()) {
-            node.getTransforms().add(scale);
-        }*/
-        drawingPane.getTransforms().add(scale);
-        scale.setX(gridPane.getScaleX() + 0.1);
-        scale.setY(gridPane.getScaleY() + 0.1);
-        scale.setPivotX(0);
-        scale.setPivotY(0);
-        gridPane.getTransforms().add(scale);
-
-        drawingPane.setPrefWidth(drawingPane.getPrefWidth() + 100);
-        drawingPane.setPrefHeight(drawingPane.getPrefHeight() + 100);
-
-        //gridPane.setPrefWidth(gridPane.getPrefWidth() + 100);
-        //gridPane.setPrefHeight(gridPane.getPrefHeight() + 100);
-
-        //gridPane.setPrefWidth(drawingPane.getPrefWidth());
-        //gridPane.setPrefHeight(drawingPane.getPrefHeight());
+        windowZoomHandler.zoomPlus();
     }
     @FXML
     public void zoomMinusAction(ActionEvent actionEvent) {
-        Scale scale = new Scale();
-        scale.setX(drawingPane.getScaleX() - 0.1);
-        scale.setY(drawingPane.getScaleY() - 0.1);
-        scale.setPivotX(0);
-        scale.setPivotY(0);
-        drawingPane.getTransforms().add(scale);
-
-        /*for (Node node : drawingPane.getChildren()) {
-            node.getTransforms().add(scale);
-        }*/
-
-        scale.setX(gridPane.getScaleX() - 0.1);
-        scale.setY(gridPane.getScaleY() - 0.1);
-        scale.setPivotX(0);
-        scale.setPivotY(0);
-        gridPane.getTransforms().add(scale);
-
-        /*Transform test = drawingPane.getTransforms().get(0);
-        if (test.getMxx() > 1) {
-            drawingPane.setPrefWidth(drawingPane.getPrefWidth() - 100);
-            drawingPane.setPrefHeight(drawingPane.getPrefHeight() - 100);
-        }*/
-
-        /*Transform test2 = gridPane.getTransforms().get(0);
-        if (test2.getMxx() > 1) {
-            gridPane.setPrefWidth(gridPane.getPrefWidth() - 100);
-            gridPane.setPrefHeight(gridPane.getPrefHeight() - 100);
-        }*/
-
-        //imposta la dimensione del pane uguale a quello della griglia
-        //gridPane.setPrefWidth(drawingPane.getPrefWidth());
-        //gridPane.setPrefHeight(drawingPane.getPrefHeight());
-
+        windowZoomHandler.zoomMinus();
     }
 
 }
