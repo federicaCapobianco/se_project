@@ -49,9 +49,6 @@ public class Controller implements Initializable {
 
     @FXML
     private Label tfLine;
-    
-    @FXML
-    private Label tfLine;
 
     @FXML
     private Pane drawingPane;
@@ -79,8 +76,6 @@ public class Controller implements Initializable {
     @FXML
     private Button toBackButton;
     @FXML
-    private Pane drawingPane;
-    @FXML
     private GridPane gridPane;
     @FXML
     private ToggleButton gridButton;
@@ -88,6 +83,7 @@ public class Controller implements Initializable {
     private Button plusGrid;
     @FXML
     private Button lessGrid;
+    @FXML
     private TextField stretchX;
     @FXML
     private TextField stretchY;
