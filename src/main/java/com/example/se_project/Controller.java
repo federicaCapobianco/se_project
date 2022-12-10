@@ -121,23 +121,12 @@ public class Controller implements Initializable {
     }
     @FXML
     public void setPolygon(ActionEvent actionEvent) {
-        //--------
         if(polygonButton.selectedProperty().getValue()==false){
             toolManager.closureDraw();
             polygonButton.selectedProperty().setValue(true);
             toolManager.changeState(new DrawablePolygon());
         }
         toolManager.changeState(new DrawablePolygon());
-        //--------
-
-        /*if(polygonButton.isSelected())
-            toolManager.changeState(new DrawablePolygon());
-        else{
-            //chiusura
-            polygonButton.selectedProperty().setValue(true);
-            toolManager.closureDraw();
-
-        }*/
     }
     double selectionPointX;
     double selectionPointY;
@@ -295,8 +284,8 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void mirrorHorizzontal(ActionEvent actionEvent) {
-        Command cmd = new MirrorHorizzontalCommand(shapeEditor.getSelectedNode());
+    public void mirrorHorizontal(ActionEvent actionEvent) {
+        Command cmd = new MirrorHorizontalCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
 
@@ -320,6 +309,7 @@ public class Controller implements Initializable {
         Command cmd = new StretchVerticalCommand(shapeEditor.getSelectedNode(), n);
         shapeEditor.executeCommand(cmd);
         this.stretchY.clear();
+    }
 
     @FXML
     public void rotateLeft(ActionEvent actionEvent) {
