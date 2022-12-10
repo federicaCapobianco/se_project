@@ -8,7 +8,7 @@ import javafx.scene.transform.Transform;
 
 public class Zoom {
 
-    private Pane drawingPane;
+    Pane drawingPane;
     private GridPane gridPane;
 
     Double plusValue = 1.1;
@@ -37,6 +37,7 @@ public class Zoom {
         drawingPane.setPrefWidth(drawingPane.getPrefWidth() * plusValue);
         drawingPane.setPrefHeight(drawingPane.getPrefHeight() * plusValue);
 
+
     }
 
     public void zoomMinus(){
@@ -52,12 +53,10 @@ public class Zoom {
         /*for (Node node : drawingPane.getChildren()) {
             node.getTransforms().add(scale);
         }*/
-
-        Transform test = drawingPane.getTransforms().get(0);
-        if (test.getMxx() > 1) {
-            drawingPane.setPrefWidth(drawingPane.getPrefWidth() * minusValue);
-            drawingPane.setPrefHeight(drawingPane.getPrefHeight() * minusValue);
-        }
+        //if (test.getMxx() < 1) {
+        drawingPane.setPrefWidth(drawingPane.getPrefWidth() * minusValue);
+        drawingPane.setPrefHeight(drawingPane.getPrefHeight() * minusValue);
+        //}
     }
 
 }

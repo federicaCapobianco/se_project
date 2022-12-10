@@ -118,12 +118,6 @@ public class Controller implements Initializable {
         plusGrid.disableProperty().bind(gridButtonSelected.not());
         lessGrid.disableProperty().bind(gridButtonSelected.not());
 
-        // add a border to the pane di colore chiaro per evidenziare il bordo
-        //drawingPane.setStyle("-fx-border-color: lightgray;");
-
-        // set the pane equals to the grid pane
-        //gridPane.setPrefSize(drawingPane.getPrefWidth(), drawingPane.getPrefHeight());
-
         gridPane.setMouseTransparent(true);
 
     }
