@@ -61,5 +61,4 @@ class GridHandlerTest {
         assertEquals(3, gridPane.getColumnCount());
         assertEquals(3, gridPane.getRowCount());
     }
-
 }
