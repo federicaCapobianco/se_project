@@ -4,6 +4,8 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
+import java.util.List;
+
 import static java.lang.Math.abs;
 
 public class DrawableEllipse extends DrawableShape{
