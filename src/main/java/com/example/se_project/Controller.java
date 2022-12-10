@@ -73,6 +73,10 @@ public class Controller implements Initializable {
     @FXML
     private Button toFrontButton;
     @FXML
+    private Button textButton;
+    @FXML
+    private TextField textTextField;
+    @FXML
     private ToggleButton polygonButton;
 
 
@@ -90,10 +94,12 @@ public class Controller implements Initializable {
         lineButton.disableProperty().bind(moveToggle.selectedProperty());
         rectangleButton.disableProperty().bind(moveToggle.selectedProperty());
         ellipseButton.disableProperty().bind(moveToggle.selectedProperty());
+        textTextField.disableProperty().setValue(true);
+        textTextField.setText("Add here your text");
+
         lineButton.disableProperty().bind(polygonButton.selectedProperty());
         rectangleButton.disableProperty().bind(polygonButton.selectedProperty());
         ellipseButton.disableProperty().bind(polygonButton.selectedProperty());
-        //polygonButton.disableProperty().bind(moveToggle.selectedProperty());
     }
 
     @FXML
@@ -284,6 +290,17 @@ public class Controller implements Initializable {
         Command cmd = new ToFrontCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
     }
+    
+    @FXML
+    public void setTextShape(ActionEvent actionEvent) {
+        toolManager.changeState(new DrawableText());
+        textTextField.disableProperty().setValue(false);
+        textTextField.setText("");
+    }
 
+    @FXML
+    public void setTextString(ActionEvent actionEvent) {
+        toolManager.setTextString(textTextField.getText());
+    }
 
 }

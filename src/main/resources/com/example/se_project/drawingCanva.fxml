@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -102,11 +103,20 @@
                   <Font size="13.0" />
                </font>
             </Button>
+
+            <Button fx:id="textButton" layoutX="237.0" layoutY="13.0" mnemonicParsing="false" onAction="#setTextShape" prefHeight="35.0" prefWidth="35.0">
+               <graphic>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  T" wrappingWidth="19.5537109375" />
+               </graphic>
+            </Button>
+            <TextField fx:id="textTextField" layoutX="194.0" layoutY="53.0" onAction="#setTextString" prefHeight="17.0" prefWidth="122.0" />
+
             <ToggleButton fx:id="polygonButton" layoutX="159.0" layoutY="35.0" mnemonicParsing="false" onAction="#setPolygon" prefHeight="35.0" prefWidth="39.0">
                <graphic>
                   <Polygon fill="#1f93ff00" points="-59.0, -15.0, -39.5, -21.5, -46.0, -4.5" stroke="BLACK" strokeType="INSIDE" />
                </graphic>
             </ToggleButton>
+
          </children>
       </Pane>
       <Pane fx:id="drawingPane" onMousePressed="#mouseDown" onMouseReleased="#mouseUp" onTouchPressed="#mouseDown" onTouchReleased="#mouseUp" prefHeight="607.0" prefWidth="1280.0">

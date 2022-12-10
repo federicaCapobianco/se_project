@@ -23,6 +23,8 @@ public class Tools {
 
     private Color shapeFillColor;
 
+    private String textString;
+
 
     //add a method changeState that instantiates the shape as for the passed parameter
     public void changeState(DrawableShape state){
@@ -31,7 +33,7 @@ public class Tools {
 
     //add a method draw that calls the draw method of the shape class
     public Shape draw(){
-        return shape.draw(xS,yS,xE,yE, shapeLineColor, shapeFillColor);
+       return shape.draw(xS,yS,xE,yE,shapeLineColor, shapeFillColor, textString);
     }
 
     public Shape closureDraw(){
@@ -77,6 +79,14 @@ public class Tools {
 
     public void setyE(double yE) {
         this.yE = yE;
+    }
+
+    public String getTextString() {
+        return textString;
+    }
+
+    public void setTextString(String textString) {
+        this.textString = textString;
     }
 
     public void setShapeLineColor(Color shapeLineColor){ this.shapeLineColor = shapeLineColor; }
