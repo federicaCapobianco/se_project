@@ -10,26 +10,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class MirrorVerticalCommandTest {
 
     @Test
-    void execute() {
-
+    void mirrorVertical() {
         Pane p = new Pane();
         Shape shape = new Rectangle(10,18,10,18);
+        Double scaleX = shape.getScaleX();
         p.getChildren().add(shape);
-        Command cmd = new MirrorVerticalCommand(shape);
+        MirrorVerticalCommand cmd = new MirrorVerticalCommand(shape);
+        cmd.mirrorVertical(shape);
+        assertEquals(shape.getScaleX(), -1 * scaleX);
+        scaleX = shape.getScaleX();
         cmd.execute();
-        assertEquals(shape.getScaleY(), -1);
-
-    }
-
-    @Test
-    void undo() {
-        Pane p = new Pane();
-        Shape shape = new Rectangle(10,18,10,18);
-        p.getChildren().add(shape);
-        Command cmd = new MirrorVerticalCommand(shape);
+        assertEquals(shape.getScaleX(), -1 * scaleX);
+        scaleX = shape.getScaleX();
         cmd.undo();
-        assertEquals(shape.getScaleY(), 1);
-
-
+        assertEquals(shape.getScaleX(), -1 * scaleX );
     }
 }
