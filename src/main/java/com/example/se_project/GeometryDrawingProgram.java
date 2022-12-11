@@ -8,10 +8,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 //
-public class HelloApplication extends Application {
+public class GeometryDrawingProgram extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("drawingCanva.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GeometryDrawingProgram.class.getResource("drawingCanva.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setTitle("Geometry drawing program");
         stage.setScene(scene);
