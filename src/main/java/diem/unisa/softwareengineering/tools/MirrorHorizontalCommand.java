@@ -1,10 +1,6 @@
 package diem.unisa.softwareengineering.tools;
 
 import javafx.scene.shape.Shape;
-import javafx.scene.transform.Affine;
-
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 
 public class MirrorHorizontalCommand extends Command{
     private Shape shape;
@@ -15,12 +11,16 @@ public class MirrorHorizontalCommand extends Command{
 
     @Override
     public void execute() {
-        shape.setScaleX(-1);
+        this.mirrorHorizontal(shape);
     }
 
     @Override
     public void undo() {
-        shape.setScaleX(1);
+        this.mirrorHorizontal(shape);
+    }
+
+    public void mirrorHorizontal(Shape shape){
+        shape.setScaleY(shape.getScaleY() * -1);
     }
 }
 

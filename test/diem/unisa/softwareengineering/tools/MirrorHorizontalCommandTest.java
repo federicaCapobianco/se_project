@@ -10,27 +10,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class MirrorHorizontalCommandTest {
 
     @Test
-    void execute() {
-
+    void mirrorHorizontal() {
         Pane p = new Pane();
         Shape shape = new Rectangle(10,18,10,18);
+        Double scaleY = shape.getScaleY();
         p.getChildren().add(shape);
-        Command cmd = new MirrorHorizontalCommand(shape);
+        MirrorHorizontalCommand cmd = new MirrorHorizontalCommand(shape);
+        cmd.mirrorHorizontal(shape);
+        assertEquals(shape.getScaleY(), -1 * scaleY);
+        scaleY = shape.getScaleY();
         cmd.execute();
-        assertEquals(shape.getScaleX(), -1);
-
-    }
-
-    @Test
-    void undo() {
-        Pane p = new Pane();
-        Shape shape = new Rectangle(10,18,10,18);
-        p.getChildren().add(shape);
-        Command cmd = new MirrorHorizontalCommand(shape);
+        assertEquals(shape.getScaleY(), -1 * scaleY);
+        scaleY = shape.getScaleY();
         cmd.undo();
-        assertEquals(shape.getScaleX(), 1);
-
-
+        assertEquals(shape.getScaleY(), -1 * scaleY);
     }
 }
-

@@ -357,7 +357,7 @@ public class Controller implements Initializable {
         windowZoomHandler.zoomMinus();
     }
 
-
+    @FXML
     public void mirrorHorizontal(ActionEvent actionEvent) {
         Command cmd = new MirrorHorizontalCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
