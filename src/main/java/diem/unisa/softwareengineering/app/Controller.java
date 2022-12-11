@@ -274,7 +274,6 @@ public class Controller implements Initializable {
             File file = fileChooser.showSaveDialog(stage);
             if (file != null) {
                 fileManager.saveFile(file);
-                System.out.println(file.getName());
             }
         }
         catch (Exception e){
@@ -293,7 +292,6 @@ public class Controller implements Initializable {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 fileManager.loadFile(file);
-                System.out.println(file.getName());
             }
         }
         catch (Exception e){

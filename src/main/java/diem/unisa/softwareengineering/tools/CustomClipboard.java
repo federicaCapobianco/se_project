@@ -47,7 +47,6 @@ public class CustomClipboard {
             encoder.setPersistenceDelegate(Text.class, new DefaultPersistenceDelegate(new String[]{"x", "y","text"}));
 
             if(shape!=null) {
-                System.out.println(shape);
                 encoder.writeObject(shape);
             }
         } catch (Exception e) {
