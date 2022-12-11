@@ -8,6 +8,8 @@ The given task is to realize a geometric drawing application.
 
 Below you can check our documentation, in particular:
 
+* [Burndown chart](https://unisalerno-my.sharepoint.com/:x:/g/personal/e_delpezzo_studenti_unisa_it/EasKX3Cd21JAqT2CDVHDq9gBq4KEimjQmMADs1MGBVbiLQ?e=2luJnj)
+
 * [Design of the architecture](https://unisalerno-my.sharepoint.com/:w:/g/personal/f_pastorepalumbo_studenti_unisa_it/EWAyS3HCib5Kvemxl1PEV9wBoJxS9kPa1sQcf4BrEly2lg?e=GiAVxd)
 
 * [Product Backlog](https://unisalerno-my.sharepoint.com/:x:/g/personal/f_pastorepalumbo_studenti_unisa_it/EQfgEhzQ0RJEsK45KyKajq0Bn4kl0isU5TcEatUb3XHl3g?e=ix1xTv)
