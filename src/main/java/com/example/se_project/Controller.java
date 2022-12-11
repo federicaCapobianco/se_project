@@ -213,7 +213,6 @@ public class Controller implements Initializable {
                 paste.setOnAction((ActionEvent event) -> {
                     Command cmd = new PasteCommand(drawingPane,selectionPointX,selectionPointY,clipboard);
                     shapeEditor.executeCommand(cmd);
-                    //clipboard.paste(drawingPane, selectionPointX, selectionPointY);
                 });
 
                 delete.setOnAction((ActionEvent event) -> {

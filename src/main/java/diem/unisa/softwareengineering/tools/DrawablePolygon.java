@@ -23,7 +23,10 @@ public class DrawablePolygon extends DrawableShape{
             removed = (Polygon) polygonLine.get(i);
             removed.setOpacity(0);
         }
-
+        //check if the polygon is null
+        if(polygon == null){
+            this.polygon = new Polygon();
+        }
         this.polygon.getPoints().addAll(totalPoints);
         this.polygon.setOpacity(1);
         this.polygon.setStroke(lineColor);

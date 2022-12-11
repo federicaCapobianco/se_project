@@ -28,7 +28,7 @@ public class CustomClipboard {
         shape.setEffect(null);
         try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(Files.newOutputStream(file.toPath())))) {
             encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
-            encoder.setPersistenceDelegate(Polygon.class, new DefaultPersistenceDelegate(new String[]{"points, fill, stroke, strokeWidth"}));
+            encoder.setPersistenceDelegate(Polygon.class, new DefaultPersistenceDelegate(new String[]{"points"}));
             encoder.setPersistenceDelegate(Text.class, new DefaultPersistenceDelegate(new String[]{"x", "y","text"}));
             encoder.setPersistenceDelegate(Font.class, new DefaultPersistenceDelegate(new String[]{"name", "size"}));
             encoder.writeObject(shape);
@@ -45,11 +45,9 @@ public class CustomClipboard {
             decoder.setExceptionListener(e -> {
                 throw new RuntimeException(e);
             });
-
             Shape nodeToAdd = (Shape) decoder.readObject();
             nodeToAdd.relocate(selectionPointX, selectionPointY);
             this.shape = nodeToAdd;
-            //check if the shape is null
             if(nodeToAdd != null) {
                 drawingPane.getChildren().add(nodeToAdd);
                 return nodeToAdd;
