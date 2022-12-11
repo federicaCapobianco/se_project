@@ -29,8 +29,6 @@ public class CustomClipboard {
         File file = new File("copy.xml");
         shape.setEffect(null);
 
-
-        //if it contains a polygon, launch an alert
         if (shape instanceof Polygon) {
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setContentText("The file contains a polygon, it will not be saved");
@@ -47,8 +45,6 @@ public class CustomClipboard {
                 System.out.println(shape);
                 encoder.writeObject(shape);
             }
-
-            //encoder.writeObject(shape);
         } catch (Exception e) {
             e.printStackTrace();
         }

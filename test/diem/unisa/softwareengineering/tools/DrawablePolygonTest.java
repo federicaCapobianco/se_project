@@ -25,9 +25,6 @@ class DrawablePolygonTest {
         assertInstanceOf(Shape.class, poly.draw(5.0, 5.0, 2.0, 3.0, Color.BLACK, Color.YELLOW, "Unused string"));
         assertNotEquals(Color.YELLOW, poly.draw(5.0, 5.0, 2.0, 3.0, Color.BLACK, Color.YELLOW, "Unused string").getFill());
         assertEquals(Color.BLACK, poly.draw(5.0, 5.0, 2.0, 3.0, Color.BLACK, Color.YELLOW, "Unused string").getFill());
-        //i due assert finali serve per verificare che non sia una shape chiusa
-        //verificando la non esecuzione della setFill (con colore YELLOW)
-        //essendo impostato il valore di default (con colore BLACK)
     }
     @Test
     void testClosureDraw(){

@@ -2,7 +2,6 @@ package diem.unisa.softwareengineering.tools;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class DrawableText extends DrawableShape{
