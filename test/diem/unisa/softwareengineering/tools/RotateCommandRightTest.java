@@ -15,10 +15,10 @@ class RotateCommandRightTest {
         Pane p = new Pane();
         Shape shape = new Rectangle(10,18,10,18);
         p.getChildren().add(shape);
+        Double value = shape.rotateProperty().getValue();
         Command cmd = new RotateCommandRight(shape);
         cmd.execute();
-        assertEquals(80 - shape.getLayoutBounds().getMinX(), shape.getTransforms());
-        assertEquals(80 - shape.getLayoutBounds().getMinY(), shape.getTransforms());
+        assertEquals(value + 1 , shape.rotateProperty().getValue());
     }
 
     @Test
@@ -26,9 +26,9 @@ class RotateCommandRightTest {
         Pane p = new Pane();
         Shape shape = new Rectangle(10,18,10,18);
         p.getChildren().add(shape);
+        Double value = shape.rotateProperty().getValue();
         Command cmd = new RotateCommandRight(shape);
         cmd.execute();
-        assertEquals(80 + shape.getLayoutBounds().getMinX(), shape.getTransforms());
-        assertEquals(80 + shape.getLayoutBounds().getMinY(), shape.getTransforms());
+        assertEquals(value - 1 , shape.rotateProperty().getValue());
     }
 }

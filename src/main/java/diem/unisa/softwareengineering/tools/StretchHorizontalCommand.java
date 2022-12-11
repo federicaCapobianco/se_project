@@ -14,11 +14,11 @@ public class StretchHorizontalCommand extends Command{
 
     @Override
     public void execute() {
-        shape.setScaleX(shape.getScaleX()+n);
+        shape.setScaleX(shape.getScaleX() + n);
     }
 
     @Override
     public void undo() {
-        shape.setScaleX(shape.getScaleX()-n);
+        shape.setScaleX(shape.getScaleX()  - n);
     }
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -8,29 +7,6 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Point3D?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ColorPicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Ellipse?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_project.Controller">
 
@@ -132,19 +108,14 @@
 
             <Button layoutX="909.0" layoutY="34.0" mnemonicParsing="false" onAction="#rotateLeft" text="Rotate L" />
             <Button layoutX="970.0" layoutY="35.0" mnemonicParsing="false" onAction="#rotateRight" text="Rotate R" />
-
-            <Button fx:id="textButton" layoutX="237.0" layoutY="13.0" mnemonicParsing="false" onAction="#setTextShape" prefHeight="35.0" prefWidth="35.0">
-               <graphic>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  T" wrappingWidth="19.5537109375" />
-               </graphic>
-            </Button>
-            <TextField fx:id="textTextField" layoutX="194.0" layoutY="53.0" onAction="#setTextString" prefHeight="17.0" prefWidth="122.0" />
+            <TextField fx:id="textTextField" layoutX="194.0" layoutY="53.0" prefHeight="17.0" prefWidth="122.0" />
 
             <ToggleButton fx:id="polygonButton" layoutX="159.0" layoutY="35.0" mnemonicParsing="false" onAction="#setPolygon" prefHeight="35.0" prefWidth="39.0">
                <graphic>
                   <Polygon fill="#1f93ff00" points="-59.0, -15.0, -39.5, -21.5, -46.0, -4.5" stroke="BLACK" strokeType="INSIDE" />
                </graphic>
             </ToggleButton>
+            <ToggleButton fx:id="textButton" layoutX="228.0" layoutY="9.0" mnemonicParsing="false" onAction="#setTextButton" prefHeight="35.0" prefWidth="39.0" text="T" />
 
          </children>
       </Pane>
