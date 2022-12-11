@@ -184,8 +184,6 @@ public class Controller implements Initializable {
                 Node target = (Node) mouseEvent.getTarget();
 
                 shapeEditor.selectShape((Node) target, dropShadow);
-
-
                 contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
 
                 dropShadow.setRadius(5.0);
@@ -279,10 +277,10 @@ public class Controller implements Initializable {
             File file = fileChooser.showSaveDialog(stage);
             if (file != null) {
                 fileManager.saveFile(file);
-                System.out.println(file.getName());
             }
         }
         catch (Exception e){
+            System.out.println("Error saving file");
             System.out.println(e.getLocalizedMessage());
         }
     }
@@ -298,7 +296,6 @@ public class Controller implements Initializable {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 fileManager.loadFile(file);
-                System.out.println(file.getName());
             }
         }
         catch (Exception e){

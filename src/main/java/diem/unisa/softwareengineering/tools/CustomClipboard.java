@@ -1,6 +1,7 @@
 package diem.unisa.softwareengineering.tools;
 
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.Pane;
@@ -26,6 +27,14 @@ public class CustomClipboard {
     public void copy(Node shape){
         File file = new File("copy.xml");
         shape.setEffect(null);
+
+        //if it is a polygon, launch an alert
+        if (shape instanceof Polygon) {
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("The shape is a polygon, it will not be copied");
+            a.show();
+            return;
+        }
 
         try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(Files.newOutputStream(file.toPath())))) {
             encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
