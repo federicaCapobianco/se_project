@@ -15,12 +15,12 @@ public class MirrorHorizontalCommand extends Command{
 
     @Override
     public void execute() {
-        shape.setScaleY(-1);
+        shape.setScaleX(-1);
     }
 
     @Override
     public void undo() {
-        shape.setScaleY(1);
+        shape.setScaleX(1);
     }
 }
 

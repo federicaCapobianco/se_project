@@ -11,11 +11,11 @@ public class MirrorVerticalCommand extends Command{
 
     @Override
     public void execute() {
-        shape.setScaleX(-1);
+        shape.setScaleY(-1);
     }
 
     @Override
     public void undo() {
-        shape.setScaleX(1);
+        shape.setScaleY(1);
     }
 }
