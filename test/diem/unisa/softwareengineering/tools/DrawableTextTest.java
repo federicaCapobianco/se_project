@@ -1,5 +1,6 @@
 package diem.unisa.softwareengineering.tools;
 
+import diem.unisa.softwareengineering.shapes.DrawableText;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import org.junit.jupiter.api.Test;

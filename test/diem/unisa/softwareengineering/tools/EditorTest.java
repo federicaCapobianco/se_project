@@ -1,14 +1,13 @@
 package diem.unisa.softwareengineering.tools;
 
 
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.DataFormat;
+import diem.unisa.softwareengineering.commands.Command;
+import diem.unisa.softwareengineering.commands.DeleteCommand;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;

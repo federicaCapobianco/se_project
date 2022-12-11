@@ -1,5 +1,7 @@
 package diem.unisa.softwareengineering.tools;
 
+import diem.unisa.softwareengineering.commands.Command;
+import diem.unisa.softwareengineering.commands.PlusSizeCommand;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;

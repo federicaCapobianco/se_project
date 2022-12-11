@@ -1,5 +1,7 @@
 package diem.unisa.softwareengineering.tools;
 
+import diem.unisa.softwareengineering.commands.Command;
+import diem.unisa.softwareengineering.commands.ToBackCommand;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;

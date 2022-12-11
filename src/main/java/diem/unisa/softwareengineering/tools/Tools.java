@@ -1,17 +1,13 @@
 package diem.unisa.softwareengineering.tools;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import diem.unisa.softwareengineering.shapes.DrawablePolygon;
+import diem.unisa.softwareengineering.shapes.DrawableShape;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A class that allows the user to set the current tool and draw a new shape on the canva as the user drags the mouse.
+ * It is based on the Command design pattern.
  */
 public class Tools {
     private DrawableShape shape;

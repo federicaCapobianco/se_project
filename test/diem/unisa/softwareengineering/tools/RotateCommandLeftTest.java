@@ -1,5 +1,7 @@
 package diem.unisa.softwareengineering.tools;
 
+import diem.unisa.softwareengineering.commands.Command;
+import diem.unisa.softwareengineering.commands.RotateCommandLeft;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -27,7 +29,7 @@ class RotateCommandLeftTest {
         p.getChildren().add(shape);
         Double value = shape.rotateProperty().getValue();
         Command cmd = new RotateCommandLeft(shape);
-        cmd.execute();
+        cmd.undo();
         assertEquals(value + 1 , shape.rotateProperty().getValue());
     }
 }

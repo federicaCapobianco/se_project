@@ -1,16 +1,11 @@
 package diem.unisa.softwareengineering.tools;
 
+import diem.unisa.softwareengineering.shapes.DrawableEllipse;
+import diem.unisa.softwareengineering.shapes.DrawableLine;
+import diem.unisa.softwareengineering.shapes.DrawableRectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Shape;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 

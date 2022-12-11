@@ -3,8 +3,10 @@ package diem.unisa.softwareengineering.tools;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Scale;
 
+/**
+ * A class that allows to zoom in and out the canva.
+ */
 public class Zoom {
-
     Pane drawingPane;
 
     Double plusValue = 1.1;

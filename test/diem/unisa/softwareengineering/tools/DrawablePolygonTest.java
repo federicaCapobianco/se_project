@@ -1,11 +1,10 @@
 package diem.unisa.softwareengineering.tools;
 
+import diem.unisa.softwareengineering.shapes.DrawablePolygon;
 import javafx.scene.shape.Shape;
 import org.junit.jupiter.api.Test;
 
 import javafx.scene.paint.Color;
-
-import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

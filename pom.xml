@@ -119,7 +119,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.se_project/com.example.se_project.HelloApplication</mainClass>
+                            <mainClass>com.example.se_project/diem.unisa.softwareengineering.app.GeometryDrawingProgram</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
