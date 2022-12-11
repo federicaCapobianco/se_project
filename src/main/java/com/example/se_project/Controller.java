@@ -28,10 +28,21 @@ import java.util.ResourceBundle;
 
 
 public class Controller implements Initializable {
-
+    private ContextMenu contextMenu;
+    private MenuItem deselect;
+    private MenuItem delete;
+    private MenuItem copy;
+    private MenuItem paste;
+    private MenuItem cut;
+    private DropShadow dropShadow;
+    private Tools toolManager;
+    private FileManager fileManager;
+    private FileChooser fileChooser;
+    private Editor shapeEditor;
+    private CustomClipboard clipboard;
+    private GridHandler gridHandler;
     @FXML
     private Label fillLabel;
-
     @FXML
     private Button lineButton;
     @FXML
@@ -40,38 +51,16 @@ public class Controller implements Initializable {
     private MenuItem saveButton;
     @FXML
     private MenuItem loadButton;
-
     @FXML
     private ColorPicker lineColorPicker;
-
     @FXML
     private ColorPicker fillColorPicker;
-
     @FXML
     private Button ellipseButton;
-
     @FXML
     private Label tfLine;
-
     @FXML
     private Pane drawingPane;
-
-    private ContextMenu contextMenu;
-    private MenuItem deselect;
-    private MenuItem delete;
-    private MenuItem copy;
-    private MenuItem paste;
-    private MenuItem cut;
-
-    private DropShadow dropShadow;
-
-
-    private Tools toolManager;
-    private FileManager fileManager;
-    private FileChooser fileChooser;
-    private Editor shapeEditor;
-    private CustomClipboard clipboard;
-    private GridHandler gridHandler;
     @FXML
     private ToggleButton moveToggle;
     @FXML
@@ -154,7 +143,10 @@ public class Controller implements Initializable {
         lineButton.disableProperty().bind(polygonButton.selectedProperty());
         rectangleButton.disableProperty().bind(polygonButton.selectedProperty());
         ellipseButton.disableProperty().bind(polygonButton.selectedProperty());
+
     }
+
+
 
     @FXML
     private void setLine(ActionEvent actionEvent) {

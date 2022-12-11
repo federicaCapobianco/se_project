@@ -3,6 +3,9 @@ package diem.unisa.softwareengineering.tools;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.beans.DefaultPersistenceDelegate;
 import java.beans.XMLDecoder;
@@ -35,6 +38,12 @@ public class FileManager {
             });
 
             encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
+            encoder.setPersistenceDelegate(Polygon.class, new DefaultPersistenceDelegate(new String[]{"points"}));
+            encoder.setPersistenceDelegate(Text.class, new DefaultPersistenceDelegate(new String[]{"x", "y","text"}));
+            encoder.setPersistenceDelegate(Font.class, new DefaultPersistenceDelegate(new String[]{"name", "size"}));
+            encoder.setPersistenceDelegate(Node.class, new DefaultPersistenceDelegate(new String[]{"layoutX", "layoutY"}));
+            //make a for loop to save all the shapes
+
             encoder.writeObject(canvas.getChildren().toArray(new Node[0]));
             return file;
         }
@@ -48,6 +57,7 @@ public class FileManager {
             decoder.setExceptionListener(e -> {
                 throw new RuntimeException(e);
             });
+
             canvas.getChildren().setAll((Node[]) decoder.readObject());
         }
         return file;

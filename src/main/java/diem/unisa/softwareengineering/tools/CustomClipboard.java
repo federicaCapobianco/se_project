@@ -26,12 +26,17 @@ public class CustomClipboard {
     public void copy(Node shape){
         File file = new File("copy.xml");
         shape.setEffect(null);
+
         try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(Files.newOutputStream(file.toPath())))) {
             encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
             encoder.setPersistenceDelegate(Polygon.class, new DefaultPersistenceDelegate(new String[]{"points"}));
             encoder.setPersistenceDelegate(Text.class, new DefaultPersistenceDelegate(new String[]{"x", "y","text"}));
             encoder.setPersistenceDelegate(Font.class, new DefaultPersistenceDelegate(new String[]{"name", "size"}));
-            encoder.writeObject(shape);
+            if(shape!=null) {
+                encoder.writeObject(shape);
+            }
+
+            //encoder.writeObject(shape);
         } catch (Exception e) {
             e.printStackTrace();
         }
