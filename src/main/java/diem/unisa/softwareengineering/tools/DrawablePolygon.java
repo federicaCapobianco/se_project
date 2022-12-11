@@ -11,11 +11,15 @@ import java.util.Queue;
 
 public class DrawablePolygon extends DrawableShape{
     private Polygon polygon;
+    private List totalPoints; //lista con tutti i punti, tramite cui si crea la vera e propria polygon shape
+    private Queue currentPoints; //lista di appoggio per permettere la visualizzazione del disegno del poligono
+    private List polygonLine;
 
-    private List totalPoints = new ArrayList(); //lista con tutti i punti, tramite cui si crea la vera e propria polygon shape
-
-    private Queue currentPoints = new ArrayDeque(); //lista di appoggio per permettere la visualizzazione del disegno del poligono
-    private List polygonLine = new ArrayList();
+    public DrawablePolygon(){
+        totalPoints = new ArrayList();
+        currentPoints = new ArrayDeque();
+        polygonLine = new ArrayList();
+    }
     public Shape closureDraw(Color lineColor, Color fillColor){
         Polygon removed;
 
@@ -23,7 +27,6 @@ public class DrawablePolygon extends DrawableShape{
             removed = (Polygon) polygonLine.get(i);
             removed.setOpacity(0);
         }
-
         this.polygon.getPoints().addAll(totalPoints);
         this.polygon.setOpacity(1);
         this.polygon.setStroke(lineColor);
