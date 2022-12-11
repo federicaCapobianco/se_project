@@ -81,8 +81,10 @@ public class  Editor {
     }
 
     public void undoCommand() {
-        Command c = commandStack.pop();
-        c.undo();
+        if(!commandStack.isEmpty()) {
+            Command c = commandStack.pop();
+            c.undo();
+        }
     }
 
     public Stack<Command> getCommandStack() {
