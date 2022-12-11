@@ -241,7 +241,7 @@ public class Controller implements Initializable {
 
                 Shape shape = toolManager.draw();
                 drawingPane.getChildren().add(shape);
-
+                gridPane.toFront();
             }
         }
     }
