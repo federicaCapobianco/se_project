@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
@@ -14,6 +15,8 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.scene.transform.Scale;
+import javafx.scene.transform.Transform;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
@@ -85,6 +88,14 @@ public class Controller implements Initializable {
     @FXML
     private Button lessGrid;
     @FXML
+    private Button zoomPlus;
+    @FXML
+    private Button zoomMinus;
+    @FXML
+    private ScrollPane scrollPane;
+    @FXML
+    private Zoom windowZoomHandler;
+    @FXML
     private TextField stretchX;
     @FXML
     private TextField stretchY;
@@ -104,6 +115,7 @@ public class Controller implements Initializable {
         shapeEditor = new Editor();
         clipboard = new CustomClipboard();
         gridHandler = new GridHandler(gridPane, gridButton);
+        windowZoomHandler = new Zoom(drawingPane, gridPane);
 
         toolManager.setShapeLineColor(Color.BLACK);
         toolManager.setShapeFillColor(Color.TRANSPARENT);
@@ -131,6 +143,7 @@ public class Controller implements Initializable {
 
         lineButton.disableProperty().bind(polygonButton.selectedProperty());
         rectangleButton.disableProperty().bind(polygonButton.selectedProperty());
+
     }
 
     @FXML
@@ -254,8 +267,6 @@ public class Controller implements Initializable {
         shapeEditor.executeCommand(cmd);
     }
 
-
-
     @FXML
     public void saveFile(ActionEvent actionEvent) {
         Window stage = drawingPane.getScene().getWindow();
@@ -339,6 +350,17 @@ public class Controller implements Initializable {
     }
 
     @FXML
+
+    public void zoomPlusAction(ActionEvent actionEvent) {
+        windowZoomHandler.zoomPlus();
+    }
+    @FXML
+    public void zoomMinusAction(ActionEvent actionEvent) {
+        windowZoomHandler.zoomMinus();
+    }
+
+}
+
     public void mirrorHorizontal(ActionEvent actionEvent) {
         Command cmd = new MirrorHorizontalCommand(shapeEditor.getSelectedNode());
         shapeEditor.executeCommand(cmd);
@@ -391,3 +413,4 @@ public class Controller implements Initializable {
     }
 
 }
+
