@@ -6,6 +6,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
@@ -28,20 +29,23 @@ public class CustomClipboard {
         File file = new File("copy.xml");
         shape.setEffect(null);
 
-        //if it is a polygon, launch an alert
+    /*
+        //if it contains a polygon, launch an alert
         if (shape instanceof Polygon) {
             Alert a = new Alert(Alert.AlertType.WARNING);
-            a.setContentText("The shape is a polygon, it will not be copied");
+            a.setContentText("The file contains a polygon, it will not be saved");
             a.show();
             return;
         }
+        */
 
         try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(Files.newOutputStream(file.toPath())))) {
             encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
-            encoder.setPersistenceDelegate(Polygon.class, new DefaultPersistenceDelegate(new String[]{"points"}));
             encoder.setPersistenceDelegate(Text.class, new DefaultPersistenceDelegate(new String[]{"x", "y","text"}));
-            encoder.setPersistenceDelegate(Font.class, new DefaultPersistenceDelegate(new String[]{"name", "size"}));
+            //encoder.setPersistenceDelegate(Polygon.class, new DefaultPersistenceDelegate(new String[]{"points", "fill", "stroke", "strokeWidth"}));
+
             if(shape!=null) {
+                System.out.println(shape);
                 encoder.writeObject(shape);
             }
 

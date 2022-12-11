@@ -32,6 +32,8 @@ public class FileManager {
 
 
     public File saveFile(File file) throws IOException {
+
+        /*
         boolean containsPolygon = false;
         for (Node node : canvas.getChildren()) {
             if (node instanceof Polygon) {
@@ -46,7 +48,7 @@ public class FileManager {
             a.show();
             return null;
         }
-
+*/
         try (XMLEncoder encoder = new XMLEncoder(
                 new BufferedOutputStream(
                         Files.newOutputStream(file.toPath())))) {
@@ -58,8 +60,7 @@ public class FileManager {
             encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
             encoder.setPersistenceDelegate(Polygon.class, new DefaultPersistenceDelegate(new String[]{"points"}));
             encoder.setPersistenceDelegate(Text.class, new DefaultPersistenceDelegate(new String[]{"x", "y","text"}));
-            encoder.setPersistenceDelegate(Font.class, new DefaultPersistenceDelegate(new String[]{"name", "size"}));
-            encoder.setPersistenceDelegate(Node.class, new DefaultPersistenceDelegate(new String[]{"layoutX", "layoutY"}));
+
 
             encoder.writeObject(canvas.getChildren().toArray(new Node[0]));
             return file;
