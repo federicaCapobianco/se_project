@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.CubicCurve?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="diem.unisa.softwareengineering.app.Controller">
+
+   <children>
+      <MenuBar prefHeight="28.0" prefWidth="1280.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#saveFile" text="Save" />
+                  <MenuItem fx:id="loadButton" mnemonicParsing="false" onAction="#loadFile" text="Load" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Pane prefHeight="85.0" prefWidth="1281.0" style="-fx-background-color: #f8f8f8;">
+         <children>
+            <Button layoutX="1104.0" layoutY="53.0" mnemonicParsing="false" onAction="#mirrorHorizontal" text="MirrorH" />
+            <Label layoutX="83.0" layoutY="2.0" text="Shape" />
+            <ColorPicker fx:id="lineColorPicker" layoutX="410.0" layoutY="23.0" onAction="#setLineColor" prefHeight="25.0" prefWidth="38.0">
+               <value>
+                  <Color />
+               </value>
+            </ColorPicker>
+            <Button fx:id="lineButton" layoutX="9.0" layoutY="34.0" mnemonicParsing="false" onAction="#setLine" prefHeight="35.0" prefWidth="35.0">
+               <graphic>
+                  <Line endX="-633.7697143554688" endY="0.45956626534461975" startX="-616.3101196289062" startY="12.08578872680664" />
+               </graphic>
+            </Button>
+            <Label fx:id="tfLine" layoutX="334.0" layoutY="22.0" prefHeight="25.0" prefWidth="75.0" text="Line Color" />
+            <Label fx:id="fillLabel" layoutX="334.0" layoutY="61.0" prefHeight="17.0" prefWidth="52.0" text="Fill Color" />
+            <ColorPicker fx:id="fillColorPicker" layoutX="410.0" layoutY="56.0" onAction="#setFillColor" prefHeight="25.0" prefWidth="38.0">
+               <value>
+                  <Color opacity="0.0" />
+               </value>
+            </ColorPicker>
+            <Button fx:id="ellipseButton" layoutX="96.0" layoutY="34.0" mnemonicParsing="false" onAction="#setEllipse" prefHeight="35.0" prefWidth="14.0" style="color:blue;">
+               <graphic>
+                  <Ellipse fill="#1f93ff00" radiusX="10.0" radiusY="6.0" stroke="BLACK" strokeType="INSIDE" />
+               </graphic>
+            </Button>
+            <Line endX="-99.99998474121094" endY="78.99999237060547" layoutX="565.0" layoutY="7.0" opacity="0.09" startX="-99.99998474121094" startY="-6.999997615814209">
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
+            </Line>
+            <Line endX="-99.99998474121094" endY="78.99999237060547" layoutX="420.0" layoutY="6.0" opacity="0.09" startX="-99.99998474121094" startY="-6.999997615814209" />
+            <Line endX="-99.99998474121094" endY="78.99999237060547" layoutX="871.0" layoutY="7.0" opacity="0.09" startX="-99.99998474121094" startY="-6.999997615814209" />
+            <Label layoutX="401.0" layoutY="1.0" text="Color" />
+            <Button fx:id="rectangleButton" layoutX="51.0" layoutY="34.0" mnemonicParsing="false" onAction="#setRectangle" prefHeight="35.0" prefWidth="35.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <graphic>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="14.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+               </graphic>
+            </Button>
+            <Label layoutX="243.0" layoutY="2.0" text="Text" />
+            <Button layoutX="1103.0" layoutY="18.0" mnemonicParsing="false" onAction="#mirrorVertical" text="MirrorV" />
+            <Label layoutX="973.0" layoutY="1.0" text="Edit shape" />
+            <Label layoutX="1199.0" layoutY="1.0" text="Size shape" />
+            <Line endX="1231.0" endY="-7.000007629394531" layoutX="49.0" layoutY="93.0" opacity="0.19" startX="-117.00000762939453" startY="-7.000007629394531" />
+            <Button layoutX="777.0" layoutY="32.0" mnemonicParsing="false" onAction="#setUndo" prefWidth="29.0" />
+            <Button fx:id="toFrontButton" layoutX="523.0" layoutY="35.0" mnemonicParsing="false" onAction="#putToFront" prefHeight="25.0" prefWidth="46.0" text="Front" />
+            <Label layoutX="575.0" layoutY="2.0" text="Canva actions" />
+            <Button fx:id="toBackButton" layoutX="472.0" layoutY="35.0" mnemonicParsing="false" onAction="#setToBack" prefHeight="25.0" prefWidth="46.0">
+               <graphic>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Back" />
+               </graphic>
+            </Button>
+
+            <ToggleButton fx:id="moveToggle" layoutX="820.0" layoutY="32.0" mnemonicParsing="false" text="Move" />
+            <Line endX="-99.99998474121094" endY="78.99999237060547" layoutX="1272.0" layoutY="10.0" opacity="0.09" startX="-99.99998474121094" startY="-6.999997615814209" />
+            <Button layoutX="1237.0" layoutY="30.0" mnemonicParsing="false" onAction="#setPlusSize" prefHeight="25.0" prefWidth="29.0" text="+">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="1180.0" layoutY="30.0" mnemonicParsing="false" onAction="#setMinusSize" prefHeight="25.0" prefWidth="29.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+
+            <ToggleButton fx:id="gridButton" layoutX="688.0" layoutY="29.0" mnemonicParsing="false" onAction="#toggleGrid" prefHeight="35.0" prefWidth="38.0" />
+            <Button fx:id="plusGrid" layoutX="733.0" layoutY="31.0" mnemonicParsing="false" onAction="#makeGridBigger" prefHeight="27.0" prefWidth="29.0" text="+" />
+            <Button fx:id="lessGrid" layoutX="652.0" layoutY="32.0" mnemonicParsing="false" onAction="#makeGridSmaller" prefHeight="27.0" prefWidth="29.0" text="-" />
+
+            <Button fx:id="zoomPlus" layoutX="577.0" layoutY="21.0" mnemonicParsing="false" onAction="#zoomPlusAction" prefHeight="25.0" prefWidth="59.0" text="Zoom +" />
+            <Button fx:id="zoomMinus" layoutX="577.0" layoutY="51.0" mnemonicParsing="false" onAction="#zoomMinusAction" prefHeight="25.0" prefWidth="59.0" text="Zoom -" />
+            <Button layoutX="1026.0" layoutY="19.0" mnemonicParsing="false" onAction="#stretchVertical" text="stretchY" />
+            <Button layoutX="958.0" layoutY="19.0" mnemonicParsing="false" onAction="#stretchHorizontal" text="StretchX" />
+            <TextField fx:id="stretchY" layoutX="1035.0" layoutY="50.0" prefHeight="25.0" prefWidth="35.0" />
+            <TextField fx:id="stretchX" layoutX="971.0" layoutY="51.0" prefHeight="25.0" prefWidth="35.0" />
+
+
+            <Button layoutX="880.0" layoutY="17.0" mnemonicParsing="false" onAction="#rotateLeft" text="Rotate L" />
+            <Button layoutX="879.0" layoutY="52.0" mnemonicParsing="false" onAction="#rotateRight" text="Rotate R" />
+            <TextField fx:id="textTextField" layoutX="238.0" layoutY="39.0" prefHeight="25.0" prefWidth="73.0" />
+
+            <ToggleButton fx:id="polygonButton" layoutX="138.0" layoutY="35.0" mnemonicParsing="false" onAction="#setPolygon" prefHeight="35.0" prefWidth="24.0">
+               <graphic>
+                  <Polygon fill="#1f93ff00" points="-59.0, -15.0, -39.5, -21.5, -46.0, -4.5" stroke="BLACK" strokeType="INSIDE" />
+               </graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="textButton" layoutX="195.0" layoutY="34.0" mnemonicParsing="false" onAction="#setTextButton" prefHeight="35.0" prefWidth="35.0" text="T" />
+            <Line endX="-99.99998474121094" endY="78.99999237060547" layoutX="281.0" layoutY="6.0" opacity="0.09" startX="-99.99998474121094" startY="-6.999997615814209" />
+            <Line endX="-64.16668701171875" layoutX="785.0" layoutY="55.0" startX="-91.5" startY="-3.814697265625E-6" stroke="#97bdfb" />
+            <Line endX="-100.0" endY="-23.707107543945312" layoutX="798.0" layoutY="59.0" startX="-100.0" stroke="#97bdfb" />
+            <Line endX="-100.0" endY="-23.707107543945312" layoutX="804.0" layoutY="59.0" startX="-100.0" stroke="#97bdfb" />
+            <Line endX="-100.0" endY="-23.707107543945312" layoutX="811.0" layoutY="59.0" startX="-100.0" stroke="#97bdfb" />
+            <Line endX="-100.0" endY="-23.707107543945312" layoutX="817.0" layoutY="59.0" startX="-100.0" stroke="#97bdfb" />
+            <CubicCurve controlX1="14.5" controlX2="14.5" controlY1="-15.166000366210938" controlY2="-15.166000366210938" endX="22.1666259765625" endY="-3.5000038146972656" fill="#ffffff00" layoutX="779.0" layoutY="51.0" startX="7.0" startY="-3.5000038146972656" stroke="BLACK" />
+            <Line endX="56.80902099609375" endY="-16.77853775024414" layoutX="732.0" layoutY="64.0" startX="52.5" startY="-12.000003814697266" />
+            <Line endX="41.79290771484375" endY="-28.000019073486328" layoutX="742.0" layoutY="74.0" startX="41.79290771484375" startY="-21.292896270751953" />
+            <Line endX="-64.16668701171875" layoutX="785.0" layoutY="41.0" startX="-91.5" startY="-3.814697265625E-6" stroke="#97bdfb" />
+            <Line endX="-64.16668701171875" layoutX="785.0" layoutY="48.0" startX="-91.5" startY="-3.814697265625E-6" stroke="#97bdfb" />
+
+         </children>
+      </Pane>
+      <ScrollPane fx:id="scrollPane" hbarPolicy="ALWAYS" prefHeight="611.0" prefWidth="1280.0" vbarPolicy="ALWAYS">
+         <content>
+            <Pane fx:id="drawingPane" onMousePressed="#mouseDown" onMouseReleased="#mouseUp" prefHeight="596.0" prefWidth="1265.0">
+               <cursor>
+                  <Cursor fx:constant="CROSSHAIR" />
+               </cursor>
+               <children>
+                  <GridPane fx:id="gridPane" prefHeight="604.0" prefWidth="1280.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </children>
+            </Pane>
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>

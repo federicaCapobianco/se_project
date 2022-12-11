@@ -5,6 +5,9 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 
+/**
+ * The GridHandler class is used to create a grid on the canvas and resize it.
+ */
 public class GridHandler {
     private GridPane gridPane;
     private ToggleButton gridButton;

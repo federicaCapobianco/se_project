@@ -1,5 +1,6 @@
 package diem.unisa.softwareengineering.tools;
 
+import diem.unisa.softwareengineering.shapes.DrawableEllipse;
 import org.junit.jupiter.api.Test;
 
 import javafx.scene.shape.Shape;
@@ -25,7 +26,5 @@ class DrawableEllipseTest {
         assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,80.0,80.0, Color.BLACK, Color.TRANSPARENT, "unesed text"));
         assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,80.0,150.0, Color.BLACK, Color.TRANSPARENT, "unesed text"));
         assertInstanceOf(Shape.class, elipse.draw(150.0,150.0,150.0,150.0, Color.BLACK, Color.TRANSPARENT,"unesed text"));
-
-
     }
 }

@@ -1,7 +1,9 @@
 package diem.unisa.softwareengineering.tools;
 
+import diem.unisa.softwareengineering.commands.ChangeFillColorCommand;
+import diem.unisa.softwareengineering.commands.Command;
+import diem.unisa.softwareengineering.commands.StretchHorizontalCommand;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import org.junit.jupiter.api.Test;

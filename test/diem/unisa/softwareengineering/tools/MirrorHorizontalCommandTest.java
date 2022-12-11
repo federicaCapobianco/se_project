@@ -1,5 +1,7 @@
 package diem.unisa.softwareengineering.tools;
 
+import diem.unisa.softwareengineering.commands.ChangeFillColorCommand;
+import diem.unisa.softwareengineering.commands.MirrorHorizontalCommand;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;

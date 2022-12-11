@@ -1,5 +1,7 @@
 package diem.unisa.softwareengineering.tools;
 
+import diem.unisa.softwareengineering.commands.ChangeFillColorCommand;
+import diem.unisa.softwareengineering.commands.Command;
 import javafx.application.Platform;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.Pane;

@@ -19,8 +19,13 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.nio.file.Files;
-import java.util.List;
 
+
+/**
+ * The CustomClipboard class is used to copy and paste shapes on the canvas.
+ * It is necessary because the system clipboard does not support testing in junit.
+ * It uses the XMLEncoder and XMLDecoder to serialize and deserialize the shapes because the clone method is not avaliable outside the shape classes.
+ */
 public class CustomClipboard {
 
     private Shape shape;
