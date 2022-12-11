@@ -28,10 +28,21 @@ import java.util.ResourceBundle;
 
 
 public class Controller implements Initializable {
-
+    private ContextMenu contextMenu;
+    private MenuItem deselect;
+    private MenuItem delete;
+    private MenuItem copy;
+    private MenuItem paste;
+    private MenuItem cut;
+    private DropShadow dropShadow;
+    private Tools toolManager;
+    private FileManager fileManager;
+    private FileChooser fileChooser;
+    private Editor shapeEditor;
+    private CustomClipboard clipboard;
+    private GridHandler gridHandler;
     @FXML
     private Label fillLabel;
-
     @FXML
     private Button lineButton;
     @FXML
@@ -40,39 +51,16 @@ public class Controller implements Initializable {
     private MenuItem saveButton;
     @FXML
     private MenuItem loadButton;
-
     @FXML
     private ColorPicker lineColorPicker;
-
     @FXML
     private ColorPicker fillColorPicker;
-
     @FXML
     private Button ellipseButton;
-
     @FXML
     private Label tfLine;
-
     @FXML
     private Pane drawingPane;
-
-    ContextMenu contextMenu = new ContextMenu();
-    MenuItem deselect = new MenuItem("Deselect");
-    MenuItem delete = new MenuItem("Delete");
-    MenuItem copy = new MenuItem("Copy");
-    MenuItem paste = new MenuItem("Paste");
-    MenuItem cut = new MenuItem("Cut");
-
-    DropShadow dropShadow = new DropShadow();
-
-
-
-    private Tools toolManager;
-    private FileManager fileManager;
-    private FileChooser fileChooser;
-    private Editor shapeEditor;
-    private CustomClipboard clipboard;
-    private GridHandler gridHandler;
     @FXML
     private ToggleButton moveToggle;
     @FXML
@@ -109,6 +97,17 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        contextMenu = new ContextMenu();
+        deselect = new MenuItem("Deselect");
+        delete = new MenuItem("Delete");
+        copy = new MenuItem("Copy");
+        paste = new MenuItem("Paste");
+        cut = new MenuItem("Cut");
+
+        dropShadow = new DropShadow();
+
+        contextMenu.getItems().addAll(deselect, delete, copy, paste, cut);
+
         toolManager = new Tools();
         fileManager = new FileManager(drawingPane);
         fileChooser = new FileChooser();
@@ -143,8 +142,11 @@ public class Controller implements Initializable {
 
         lineButton.disableProperty().bind(polygonButton.selectedProperty());
         rectangleButton.disableProperty().bind(polygonButton.selectedProperty());
+        ellipseButton.disableProperty().bind(polygonButton.selectedProperty());
 
     }
+
+
 
     @FXML
     private void setLine(ActionEvent actionEvent) {
@@ -182,8 +184,6 @@ public class Controller implements Initializable {
                 Node target = (Node) mouseEvent.getTarget();
 
                 shapeEditor.selectShape((Node) target, dropShadow);
-
-                contextMenu.getItems().addAll(deselect, delete, copy, paste, cut);
                 contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
 
                 dropShadow.setRadius(5.0);
@@ -203,7 +203,6 @@ public class Controller implements Initializable {
                 paste.setOnAction((ActionEvent event) -> {
                     Command cmd = new PasteCommand(drawingPane,selectionPointX,selectionPointY,clipboard);
                     shapeEditor.executeCommand(cmd);
-                    //clipboard.paste(drawingPane, selectionPointX, selectionPointY);
                 });
 
                 delete.setOnAction((ActionEvent event) -> {
@@ -278,10 +277,10 @@ public class Controller implements Initializable {
             File file = fileChooser.showSaveDialog(stage);
             if (file != null) {
                 fileManager.saveFile(file);
-                System.out.println(file.getName());
             }
         }
         catch (Exception e){
+            System.out.println("Error saving file");
             System.out.println(e.getLocalizedMessage());
         }
     }
@@ -297,7 +296,6 @@ public class Controller implements Initializable {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 fileManager.loadFile(file);
-                System.out.println(file.getName());
             }
         }
         catch (Exception e){
@@ -359,7 +357,6 @@ public class Controller implements Initializable {
         windowZoomHandler.zoomMinus();
     }
 
-}
 
     public void mirrorHorizontal(ActionEvent actionEvent) {
         Command cmd = new MirrorHorizontalCommand(shapeEditor.getSelectedNode());
