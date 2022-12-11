@@ -5,7 +5,10 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.beans.DefaultPersistenceDelegate;
 import java.beans.XMLDecoder;
@@ -25,6 +28,9 @@ public class CustomClipboard {
         shape.setEffect(null);
         try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(Files.newOutputStream(file.toPath())))) {
             encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
+            encoder.setPersistenceDelegate(Polygon.class, new DefaultPersistenceDelegate(new String[]{"points, fill, stroke, strokeWidth"}));
+            encoder.setPersistenceDelegate(Text.class, new DefaultPersistenceDelegate(new String[]{"x", "y","text"}));
+            encoder.setPersistenceDelegate(Font.class, new DefaultPersistenceDelegate(new String[]{"name", "size"}));
             encoder.writeObject(shape);
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,10 +47,13 @@ public class CustomClipboard {
             });
 
             Shape nodeToAdd = (Shape) decoder.readObject();
-
             nodeToAdd.relocate(selectionPointX, selectionPointY);
             this.shape = nodeToAdd;
-            drawingPane.getChildren().add(nodeToAdd);
+            //check if the shape is null
+            if(nodeToAdd != null) {
+                drawingPane.getChildren().add(nodeToAdd);
+                return nodeToAdd;
+            }
             return nodeToAdd;
         }
         catch (Exception e) {

@@ -56,15 +56,14 @@ public class Controller implements Initializable {
     @FXML
     private Pane drawingPane;
 
-    ContextMenu contextMenu = new ContextMenu();
-    MenuItem deselect = new MenuItem("Deselect");
-    MenuItem delete = new MenuItem("Delete");
-    MenuItem copy = new MenuItem("Copy");
-    MenuItem paste = new MenuItem("Paste");
-    MenuItem cut = new MenuItem("Cut");
+    private ContextMenu contextMenu;
+    private MenuItem deselect;
+    private MenuItem delete;
+    private MenuItem copy;
+    private MenuItem paste;
+    private MenuItem cut;
 
-    DropShadow dropShadow = new DropShadow();
-
+    private DropShadow dropShadow;
 
 
     private Tools toolManager;
@@ -109,6 +108,17 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        contextMenu = new ContextMenu();
+        deselect = new MenuItem("Deselect");
+        delete = new MenuItem("Delete");
+        copy = new MenuItem("Copy");
+        paste = new MenuItem("Paste");
+        cut = new MenuItem("Cut");
+
+        dropShadow = new DropShadow();
+
+        contextMenu.getItems().addAll(deselect, delete, copy, paste, cut);
+
         toolManager = new Tools();
         fileManager = new FileManager(drawingPane);
         fileChooser = new FileChooser();
@@ -143,7 +153,7 @@ public class Controller implements Initializable {
 
         lineButton.disableProperty().bind(polygonButton.selectedProperty());
         rectangleButton.disableProperty().bind(polygonButton.selectedProperty());
-
+        ellipseButton.disableProperty().bind(polygonButton.selectedProperty());
     }
 
     @FXML
@@ -183,7 +193,7 @@ public class Controller implements Initializable {
 
                 shapeEditor.selectShape((Node) target, dropShadow);
 
-                contextMenu.getItems().addAll(deselect, delete, copy, paste, cut);
+
                 contextMenu.show(drawingPane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
 
                 dropShadow.setRadius(5.0);
@@ -359,7 +369,6 @@ public class Controller implements Initializable {
         windowZoomHandler.zoomMinus();
     }
 
-}
 
     public void mirrorHorizontal(ActionEvent actionEvent) {
         Command cmd = new MirrorHorizontalCommand(shapeEditor.getSelectedNode());
