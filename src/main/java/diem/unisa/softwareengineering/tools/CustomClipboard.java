@@ -29,7 +29,7 @@ public class CustomClipboard {
         File file = new File("copy.xml");
         shape.setEffect(null);
 
-    /*
+
         //if it contains a polygon, launch an alert
         if (shape instanceof Polygon) {
             Alert a = new Alert(Alert.AlertType.WARNING);
@@ -37,12 +37,11 @@ public class CustomClipboard {
             a.show();
             return;
         }
-        */
+
 
         try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(Files.newOutputStream(file.toPath())))) {
             encoder.setPersistenceDelegate(Color.class, new DefaultPersistenceDelegate(new String[]{"red", "green", "blue", "opacity"}));
             encoder.setPersistenceDelegate(Text.class, new DefaultPersistenceDelegate(new String[]{"x", "y","text"}));
-            //encoder.setPersistenceDelegate(Polygon.class, new DefaultPersistenceDelegate(new String[]{"points", "fill", "stroke", "strokeWidth"}));
 
             if(shape!=null) {
                 System.out.println(shape);
