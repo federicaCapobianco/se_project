@@ -20,7 +20,7 @@ public class MirrorHorizontalCommand extends Command{
     }
 
     public void mirrorHorizontal(Shape shape){
-        shape.setScaleY(shape.getScaleY() * -1);
+        shape.setScaleX(shape.getScaleX() * -1);
     }
 }
 

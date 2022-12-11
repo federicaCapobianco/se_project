@@ -13,11 +13,11 @@ public class StretchVerticalCommand extends Command{
 
     @Override
     public void execute() {
-        shape.setScaleY(shape.getScaleY()+n);
+        shape.setScaleY(shape.getScaleY() + n);
     }
 
     @Override
     public void undo() {
-        shape.setScaleY(shape.getScaleY()-n);
+        shape.setScaleY(shape.getScaleY() - n);
     }
 }
