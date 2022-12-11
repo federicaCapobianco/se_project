@@ -13,17 +13,17 @@ class MirrorHorizontalCommandTest {
     void mirrorHorizontal() {
         Pane p = new Pane();
         Shape shape = new Rectangle(10,18,10,18);
-        Double scaleX = shape.getScaleX();
+        Double scaleY = shape.getScaleY();
         p.getChildren().add(shape);
-        MirrorVerticalCommand cmd = new MirrorVerticalCommand(shape);
-        cmd.mirrorVertical(shape);
-        assertEquals(shape.getScaleX(), -1 * scaleX);
-        scaleX = shape.getScaleX();
+        MirrorHorizontalCommand cmd = new MirrorHorizontalCommand(shape);
+        cmd.mirrorHorizontal(shape);
+        assertEquals(shape.getScaleY(), -1 * scaleY);
+        scaleY = shape.getScaleY();
         cmd.execute();
-        assertEquals(shape.getScaleX(), -1 * scaleX);
-        scaleX = shape.getScaleX();
+        assertEquals(shape.getScaleY(), -1 * scaleY);
+        scaleY = shape.getScaleY();
         cmd.undo();
-        assertEquals(shape.getScaleX(), -1 * scaleX );
+        assertEquals(shape.getScaleY(), -1 * scaleY);
 
     }
 }

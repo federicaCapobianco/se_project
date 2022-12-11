@@ -6,24 +6,17 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import javafx.scene.transform.Scale;
-import javafx.scene.transform.Transform;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
-
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -114,12 +107,11 @@ public class Controller implements Initializable {
         shapeEditor = new Editor();
         clipboard = new CustomClipboard();
         gridHandler = new GridHandler(gridPane, gridButton);
-        windowZoomHandler = new Zoom(drawingPane, gridPane);
+        windowZoomHandler = new Zoom(drawingPane);
 
         toolManager.setShapeLineColor(Color.BLACK);
         toolManager.setShapeFillColor(Color.TRANSPARENT);
 
-        //add binding between gridButton and + and - buttons
         BooleanProperty gridButtonSelected = new SimpleBooleanProperty();
         gridButtonSelected.bind(gridButton.selectedProperty());
         plusGrid.disableProperty().bind(gridButtonSelected.not());
@@ -200,7 +192,6 @@ public class Controller implements Initializable {
                 paste.setOnAction((ActionEvent event) -> {
                     Command cmd = new PasteCommand(drawingPane,selectionPointX,selectionPointY,clipboard);
                     shapeEditor.executeCommand(cmd);
-                    //clipboard.paste(drawingPane, selectionPointX, selectionPointY);
                 });
 
                 delete.setOnAction((ActionEvent event) -> {

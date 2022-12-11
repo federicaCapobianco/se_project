@@ -24,19 +24,15 @@ public class GridHandler {
     }
 
     public void plusGrid(){
-        //get the size of the pane
         double width = gridPane.getWidth();
         double height = gridPane.getHeight();
-        //get the number of columns
         int columns = gridPane.getColumnCount()-1;
         int rows = gridPane.getRowCount()-1;
-        //calculate the new size of the columns
         double newWidth = width / columns;
         double newHeight = height / rows;
-        //delete the old columns
         gridPane.getColumnConstraints().clear();
         gridPane.getRowConstraints().clear();
-        //add the new columns
+
         for (int i = 0; i < columns; i++) {
             ColumnConstraints colConst = new ColumnConstraints();
             colConst.setPrefWidth(newWidth);
@@ -50,19 +46,16 @@ public class GridHandler {
     }
 
     public void minusGrid(){
-        //get the size of the pane
         double width = gridPane.getWidth();
         double height = gridPane.getHeight();
-        //get the number of columns
+
         int columns = gridPane.getColumnCount()+1;
         int rows = gridPane.getRowCount()+1;
-        //calculate the new size of the columns
         double newWidth = width / columns;
         double newHeight = height / rows;
-        //delete the old columns
         gridPane.getColumnConstraints().clear();
         gridPane.getRowConstraints().clear();
-        //add the new columns
+
         for (int i = 0; i < columns; i++) {
             ColumnConstraints colConst = new ColumnConstraints();
             colConst.setPrefWidth(newWidth);

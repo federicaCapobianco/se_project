@@ -1,6 +1,5 @@
 package diem.unisa.softwareengineering.tools;
 
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 
 public class ToBackCommand extends Command{

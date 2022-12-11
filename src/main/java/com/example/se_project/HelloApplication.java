@@ -15,6 +15,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setTitle("Geometry drawing program");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

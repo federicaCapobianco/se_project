@@ -20,6 +20,6 @@ public class MirrorVerticalCommand extends Command{
     }
 
     public void mirrorVertical(Shape shape){
-        shape.setScaleY(shape.getScaleY() * -1);
+        shape.setScaleX(shape.getScaleX() * -1);
     }
 }
