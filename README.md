@@ -10,7 +10,7 @@ Below you can check our documentation, in particular:
 
 * [Burndown chart](https://unisalerno-my.sharepoint.com/:x:/g/personal/e_delpezzo_studenti_unisa_it/EasKX3Cd21JAqT2CDVHDq9gBq4KEimjQmMADs1MGBVbiLQ?e=2luJnj)
 
-* [PowerPoint presentation](https://unisalerno-my.sharepoint.com/:p:/g/personal/f_pastorepalumbo_studenti_unisa_it/EUftq-z8utdAp6uI3ncBnGYBNQdsALmBYwB_2pniuJjkkQ?e=JM9ysA)
+* [PowerPoint presentation](https://www.canva.com/design/DAFSNzrpr2I/GFVojLnUZb_2BVpKAOjdhg/edit?utm_content=DAFSNzrpr2I&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 * [Design of the architecture](https://unisalerno-my.sharepoint.com/:w:/g/personal/f_pastorepalumbo_studenti_unisa_it/EWAyS3HCib5Kvemxl1PEV9wBoJxS9kPa1sQcf4BrEly2lg?e=GiAVxd)
 
